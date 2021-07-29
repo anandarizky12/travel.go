@@ -9,7 +9,6 @@ const sendToken = (user, statusCode, res)=>{
     res.status(statusCode).send({
             success :true, token
     });
-
 }
 
 const register = async (req,res,next)=>{
@@ -37,7 +36,6 @@ const register = async (req,res,next)=>{
         console.log(error)
     
     }
-
 };
 
 
@@ -77,8 +75,6 @@ const login = async (req, res, next) => {
         console.log(error);
 
     }
-
-
 }
 
 
@@ -89,7 +85,6 @@ const getUser = async (req ,res ) => {
     try{
         const user = await userModel.findOne({_id:id});
 
-        console.log(user)
         if(!user){
            return res.status(401).send({message : "invalid Id"});
         }
@@ -103,12 +98,46 @@ const getUser = async (req ,res ) => {
         console.log(error)
         return res.status(500).send({message : "Failed To get The data"})
     }
-  
+};
+
+const updateUser = async (req, res) => {
+
+    try{
+        
+        const {id} = req.params;
+
+        const { profileImage } = req.file;
+        const { username, address, phone } = req.body;
+        const imageProfileName = profileImage.name;
+        await profileImage.mv(`./images/${imageProfileName}`);
+
+        const user = await userModel.findById(id);
+
+        if(user){
+
+            user.profile = imageProfileName;
+            user.username = username;
+            user.address = address;
+            user.phone = phone;
+
+            const updateUser = await user.save();
+
+            if(updateUser){
+
+                res.status(200).send({message : "User Succesfully Updated"})
+
+            }   
+
+        }
+    }catch(error){
+        
+        console.log(error);
+        return res.status(500).send({message : "failed to update data"})
+
+    }
+
+};
 
 
 
-}
-
-
-
-module.exports = {register, login, getUser};
+module.exports = {register, login, getUser, updateUser};

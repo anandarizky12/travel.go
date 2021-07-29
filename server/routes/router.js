@@ -6,7 +6,8 @@ const router = express.Router();
 const {
     register,
     login,
-    getUser
+    getUser,
+    updateUser 
     } = require('../controller/userController');
 
 //user route
@@ -32,6 +33,7 @@ router.post('/login',login);
 
 //user routes 
 router.get('/user/:id', isAuth, getUser);
+router.patch('/user/:id', updateUser);
 
 //trip
 router.get('/trip', getTrip);
