@@ -21,7 +21,7 @@ const tripSchema = new mongoose.Schema(
         screen3 : {type:String, required: true},
 
 
-    }
+    },  { timestamps: {} }
 )
 
 

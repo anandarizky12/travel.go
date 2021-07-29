@@ -1,8 +1,19 @@
 const express = require('express');
 const router = express.Router();
+
+
+//auth
 const {
-    register
+    register,
+    login,
+    getUser
     } = require('../controller/userController');
+
+//user route
+const {
+    isAuth,
+    isAdmin
+} = require('../middleware/auth');
 
 
 //trip import 
@@ -16,7 +27,11 @@ const {
 
 //auth user
 router.post('/register', register);
+router.post('/login',login);
 
+
+//user routes 
+router.get('/user/:id', isAuth, getUser);
 
 //trip
 router.get('/trip', getTrip);

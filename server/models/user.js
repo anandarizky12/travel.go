@@ -22,10 +22,12 @@ const userSchema = new mongoose.Schema(
             minLength : 6,
             selected : false,
         },
-        address : {type: String, default : "-", required: false },
+        address : { type: String, default : "-", required: false },
+        phone : { type : Number, default : null },
+        profile : {type : String, required : false},
         admin: { type: Boolean, default: false, required: true }
 
-    }
+    }, { timestamps: {} }
 );
 
 
@@ -44,14 +46,18 @@ userSchema.pre("save", async function(next){
 
 // Load hash from your password DB.
 userSchema.methods.matchPasswords = async function(passwordFromClient){
-    return await bcrypt.compare(passwordFromClient);
+    
+    return await bcrypt.compare(passwordFromClient, this.password);
+
 };
 
 //to get token when register and login
 userSchema.methods.getSignedToken = function(){
+
     return jwt.sign({id:this._id},process.env.JWT_SECRET,{
         expiresIn : process.env.JWT_EXPIRE,
     });
+
 };
 
 const userModel = mongoose.model('user', userSchema, 'user');
