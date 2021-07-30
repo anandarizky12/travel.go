@@ -17,6 +17,13 @@ const {
 } = require('../middleware/auth');
 
 
+const {
+    createOrder, 
+    getOrderById, 
+    updateOrderToPaid 
+} = require('../controller/orderController');
+
+
 //trip import 
 const { 
     getTrip, 
@@ -30,17 +37,19 @@ const {
 router.post('/register', register);
 router.post('/login',login);
 
-
 //user routes 
 router.get('/user/:id', isAuth, getUser);
 router.patch('/user/:id', updateUser);
 
 //trip
 router.get('/trip', getTrip);
-router.post('/trip', createTrip);
-router.delete('/trip/:id', deleteTrip);
-router.patch('/trip/:id', updateTrip);
+router.post('/trip', isAdmin, createTrip);
+router.delete('/trip/:id', isAdmin, deleteTrip);
+router.patch('/trip/:id', isAdmin, updateTrip);
 
-
+//order 
+roter.post('/order', createOrder);
+router.get('/order/:id', getOrderById);
+router.patch('/order/:id', updateOrderToPaid);
 
 module.exports = router;

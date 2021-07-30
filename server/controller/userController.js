@@ -1,4 +1,3 @@
-const { findOne } = require('../models/user');
 const userModel = require('../models/user');
 
 
@@ -83,7 +82,7 @@ const getUser = async (req ,res ) => {
     const {id}= req.params;
 
     try{
-        const user = await userModel.findOne({_id:id});
+        const user = await userModel.findById(id);
 
         if(!user){
            return res.status(401).send({message : "invalid Id"});
@@ -132,7 +131,7 @@ const updateUser = async (req, res) => {
     }catch(error){
         
         console.log(error);
-        return res.status(500).send({message : "failed to update data"})
+        return res.status(500).send({message : "failed to update user"})
 
     }
 

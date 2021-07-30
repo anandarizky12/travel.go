@@ -80,10 +80,8 @@ const deleteTrip = async (req, res) => {
 
 
 const updateTrip = async (req,res) =>{
-    
 
     try{
-
         const {id} = req.params;
         const trip = await tripModel.findById(id);
         
@@ -125,4 +123,4 @@ const updateTrip = async (req,res) =>{
 
 
 
-module.exports = { getTrip, createTrip, deleteTrip, updateTrip};
+module.exports = { getTrip, createTrip, deleteTrip, updateTrip };
