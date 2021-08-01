@@ -1,6 +1,7 @@
 import Navbar from '../navbar/Navbar';
 import React from 'react';
 import Head from "next/head";
+import Footer from '../footer/Footer';
 function Layout({children}) {
     return (
         <div>   
@@ -10,9 +11,8 @@ function Layout({children}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Navbar/>
-                
                 {children}
-  
+            <Footer/>
         </div>
     )
 }

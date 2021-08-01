@@ -8,7 +8,7 @@ const theme = createTheme({
       main: "#fffff",
     },
     secondary: {
-      main: "#9e9e9e",
+      main: "#757575",
     },
     error: {
       main: red.A400,
@@ -32,6 +32,7 @@ const theme = createTheme({
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
+      "Montserrat"
     ].join(","),
   },
 });

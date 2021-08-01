@@ -30,8 +30,8 @@ const useStyles = makeStyles({
     },
     text2 : {
         color : 'white',
-        fontFamily: "Poppins",
-        fontWeight : 600
+        fontFamily: "Montserrat",
+        fontWeight : 500
     },
     gradient : {
         width : '100%',
@@ -44,19 +44,23 @@ const useStyles = makeStyles({
     button : {
         background : 'none',
         border : '1px solid white',
+        color : 'white',
         fontFamily: "Poppins",
+        fontWeight : 'semibold',
+        fontWeight : 500,
         color : 'white',
         width : '20%',
         marginTop : '15px',
         paddingTop : '4px',
         paddingBottom : '4px',
-        fontWeight : 'bold',
         fontSize : '20px',
+        display : 'flex',
+        alignItems : 'center',
+        justifyContent : 'center',
         '&:hover': {
             backgroundColor: 'white',
             color: 'black',
-            cursor : 'pointer',
-            transitia
+            cursor : 'pointer'
           }
     }
 })
@@ -74,7 +78,7 @@ function Jumbotron() {
                     <Typography className = {classes.text2} variant='h4'>
                         Find Great Place With Us
                     </Typography>
-                    <button className = {classes.button}>Go</button>
+                    <div className = {classes.button}>Go</div>
                 </div>
             </div>
         </div>
