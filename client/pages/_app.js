@@ -1,4 +1,4 @@
-import Layout from "../compoenents/layout/Layout";
+import Layout from "../components/layout/Layout";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../src/theme";
 

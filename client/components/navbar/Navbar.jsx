@@ -69,7 +69,7 @@ const useStyles = makeStyles({
       right : 50,
       justifyContent : 'space-between',
       alignItems : 'center',
-      width : '8%'
+      width : '10%'
     },
     logo : {
       fontFamily: "Poppins",
