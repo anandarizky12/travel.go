@@ -1,99 +1,88 @@
-import { Grid, Typography } from '@material-ui/core'
-import React from 'react'
-import { makeStyles } from '@material-ui/core'
-import PaymentIcon from '@material-ui/icons/Payment';
-import PublicIcon from '@material-ui/icons/Public';
-import CachedIcon from '@material-ui/icons/Cached';
-import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+    marginBottom : '30px'
+  },
+  media: {
+    height: 200,
+    width : 300,
+    borderRadius : '5px'
+  },
+  price : {
+      display : 'flex',
+      flexDirection : 'row',
+      width : '100%',
+      justifyContent : 'flex-end'
+  },
+  content : {
+      marginBottom : '10px',
+      marginTop : '10px',
+  },
+  ratingContent : {
+      background : '#01579b',
+      padding : '5px',
+      borderRadius : '2px',
+      display : 'flex',
+      justifyContent : 'center',
+      width : '18%',
+      color : 'white',
+      fontSize : '12px',
+      marginRight : '5px'
+  },
+  rating : {
+      display : 'flex',
+      justifyContent : 'flex-start',
+      alignItems : 'center'
+  }
+});
 
-    root:{
-        display : 'flex',
-        justifyContent : 'center',
-        flexDirection :'column',
-        alignItems : 'center',
-        width : '100%',
-        fontFamily: "Poppins",
-        marginTop : '40px',
-        marginBottom : '40px',
-    },
-    text1:{
-        fontSize : '22px'
-    },
-    icon:{
-        fontSize : '140px',
-        color : '#757575'
-    },
-    card:{
-        display : 'flex',
-        alignItems : 'center',
-        justifyContent : 'space-around',
-        width : '55%',
-        marginTop : '20px'
-    },
-    title:{
-        fontSize : '20px',
-        fontWeight : 500
-    }
-})
+export default function MediaCard({name, desc, price}) {
+  const classes = useStyles();
 
-function Card() {
+  return (
+    <div className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image="https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          title={name}
+        />
 
-    const classes = useStyles();
+        <div className={classes.content}>
+            <Typography variant="h6" >
+                {name}
+            </Typography>
 
-    return (
-        <Grid className={classes.root}>
+            <div className={classes.rating}>
+                <div className={classes.ratingContent}>
+                    4.5/5.0
+                </div>
+                <Typography color="secondary" variant="subtitle2">
+                    from 150 user
+                </Typography>
+            </div>
 
-            <Typography className={classes.text1}>Why Book With Travel.go?</Typography>
-
-           <Grid className={classes.card}>
-                <PaymentIcon className={classes.icon}/>
-                <Grid>
-                    <Typography className={classes.title}>
-                        Best Price Guarantee
-                    </Typography>
-                    <Typography>
-                        A small river named Duren flows by their place and supplies
-                    </Typography>
-                </Grid>
-           </Grid>
-           <Grid className={classes.card}>
-                <Grid>
-                    <Typography className={classes.title}>
-                        Best In The Dream
-                    </Typography>
-                    <Typography>
-                        A small river named Duren flows by their place and supplies
-                    </Typography>
-                </Grid>
-                <PublicIcon className={classes.icon}/>
-           </Grid>
-           <Grid className={classes.card}>
-                <CachedIcon className={classes.icon}/>
-                <Grid>
-                    <Typography className={classes.title}>
-                        Just Rettle Around The World
-                    </Typography>
-                    <Typography>
-                        A small river named Duren flows by their place and supplies
-                    </Typography>
-                </Grid>
-           </Grid>
-           <Grid className={classes.card}>
-                <Grid>
-                    <Typography className={classes.title}>
-                        Enjoyable Trip Guarantee
-                    </Typography>
-                    <Typography>
-                        A small river named Duren flows by their place and supplies
-                    </Typography>
-                </Grid>
-                <EmojiEmotionsIcon className={classes.icon}/>
-           </Grid>
-          
-        </Grid>
-    )
+            <div className={classes.price}>
+                <Typography>
+                    from &nbsp;
+                </Typography>
+                <Typography size="small" color="secondary" >
+                89.000.000
+                </Typography>
+            </div>
+       </div>
+      </CardActionArea>
+     
+    </div>
+  );
 }
-
-export default Card

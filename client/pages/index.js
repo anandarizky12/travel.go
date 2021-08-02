@@ -1,12 +1,15 @@
 import React from 'react';
 import {  makeStyles } from '@material-ui/core';
 import Jumbotron from '../compoenents/jumbotron/Jumbotron';
-import Card from '../compoenents/card/Card';
+import Branding from '../compoenents/card_branding/Branding';
+import Content from '../compoenents/Content/Content';
+
 export default function Home() {
   return (
     <div style={{marginTop : '40px' }} >
       <Jumbotron/>
-      <Card/>
+      <Branding/>
+      <Content/>
     </div>
   )
 }

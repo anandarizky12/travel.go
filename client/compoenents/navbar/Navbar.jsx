@@ -8,8 +8,8 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-import SearchIcon from '@material-ui/icons/Search';
 
+import SearchBar from './SearchBar';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -90,6 +90,8 @@ HideOnScroll.propTypes = {
 
 export default function Navbar(props) {
 
+  const [openDrawer, setOpenDrawer] = React.useState( false );
+
  const classes = useStyles();
 
   return (
@@ -100,10 +102,8 @@ export default function Navbar(props) {
           <Toolbar className={classes.top}>
               <Typography className={classes.logo} variant="h3">TRAVEL.go</Typography>
               <div className = {classes.icons}> 
-                  <div className={classes.searchIcon}>
-                      <SearchIcon color="secondary"/>
-                      <Typography  variant="subtitle2" className = {classes.logo} color="secondary">Search</Typography>
-                  </div>
+                    {/* Search Bar Drawer */}
+                    <SearchBar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer}/>
                     <PersonOutlineIcon color="secondary"/>
               </div>
           </Toolbar>
@@ -116,6 +116,8 @@ export default function Navbar(props) {
                     <Typography variant="subtitle1">Order</Typography>
                 </div>
           </Toolbar>
+       
+        
         </AppBar>
       </HideOnScroll>
       <Toolbar />

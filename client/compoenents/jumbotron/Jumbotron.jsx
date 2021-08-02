@@ -14,6 +14,7 @@ const useStyles = makeStyles({
         width : '100%',
         backgroundPosition : 'center',
         backgroundSize : 'cover',
+        backgroundAttachment : 'fixed'
      
 
     },
