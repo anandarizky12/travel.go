@@ -1,5 +1,5 @@
 
-import * as types from "./action_types/action_type_alert";
+import * as types from "./actions_type/actions_type_alert";
 
 // buat function action buat ngirim signal ke reducer
 // dua itu return karna pake redux thunk

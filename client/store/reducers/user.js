@@ -1,5 +1,5 @@
 import {
-    LOGIN_USER,
+  LOGIN_USER,
 	LOGIN_SUCCESS,
 	LOGIN_FAILED,
 
@@ -24,7 +24,7 @@ import {
 	
 	USER_IS_UNAUTHORIZED,
 	SET_TOKEN,
-  } from '../constants/userConstants'
+  } from '../../actions/actions_type/actions_type_user';
   
   export const userLoginReducer = (state = {}, action) => {
     switch (action.type) {
@@ -34,6 +34,7 @@ import {
         return { loading: false, userInfo: action.payload }
       case LOGIN_FAILED:
         return { loading: false, error: action.payload }
+       
       case LOGOUT_SUCCESS:
         return {}
       default:

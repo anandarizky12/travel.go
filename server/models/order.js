@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose =  require('mongoose');
 
 const orderSchema = mongoose.Schema(
   {
@@ -13,11 +13,11 @@ const orderSchema = mongoose.Schema(
       ref: 'tripModel',
         },
     counterQty: { type: Number, required: true },
-    total: { type: Integer, required: true },
+    total: { type: Number, required: true },
     status: { type: String, required: true },
     attachment: { type: String, required: true },
-    tripId: { type: Integer, required: true },
-    userId: { type: Integer, required: true },
+    tripId: { type: Number, required: true },
+    userId: { type: Number, required: true },
     isPaid: {
         type: Boolean,
         required: true,
@@ -44,4 +44,4 @@ const orderSchema = mongoose.Schema(
 
 const orderModel = mongoose.model('order', orderSchema, 'order')
 
-export default orderModel;
+module.exports = orderModel;

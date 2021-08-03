@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer, createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,8 +8,11 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-
 import SearchBar from './SearchBar';
+import { logout } from '../../actions/user';
+import { useDispatch, useSelector } from 'react-redux'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Router  from "next/router";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -73,6 +76,21 @@ const useStyles = makeStyles({
     },
     logo : {
       fontFamily: "Poppins",
+    },
+    user:{
+      marginLeft : '10px',
+      display : 'flex',
+      justifyContent : 'center',
+      flexDirection : 'row',
+      color : '#757575',
+      fontFamily: "Poppins",
+      "&:hover": {
+        color : '#bdbdbd',
+        cursor : 'pointer'
+      }
+    },
+    text1 : {
+      fontFamily: "Poppins",
     }
 
   });
@@ -90,9 +108,19 @@ HideOnScroll.propTypes = {
 
 export default function Navbar(props) {
 
-  const [openDrawer, setOpenDrawer] = React.useState( false );
-
+ const [openDrawer, setOpenDrawer] = React.useState( false );
  const classes = useStyles();
+ const dispatch = useDispatch()
+
+ const userLogin = useSelector((state) => state.userLogin)
+ const { userInfo } = userLogin
+
+ const logoutHandler = () => {
+   dispatch(logout())
+ };
+
+ console.log(userInfo)
+
 
   return (
     <React.Fragment>
@@ -102,9 +130,21 @@ export default function Navbar(props) {
           <Toolbar className={classes.top}>
               <Typography className={classes.logo} variant="h3">TRAVEL.go</Typography>
               <div className = {classes.icons}> 
-                    {/* Search Bar Drawer */}
+                    {/* Search Bar Drawer one pack*/}
                     <SearchBar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer}/>
-                    <PersonOutlineIcon color="secondary"/>
+                    {userInfo  
+                     ? 
+                     <div className={classes.user}>
+                       <PersonOutlineIcon />
+                       <Typography className={classes.text1} variant="subtitle2" > {userInfo.userData.username}</Typography>
+                     </div>
+                     : 
+                     <div className={classes.user}>
+                        <ExitToAppIcon onClick={()=>Router.push('/login')} />
+                        <Typography className={classes.text1} variant="subtitle2" >Login</Typography>
+                     </div>
+                  
+                    }
               </div>
           </Toolbar>
           

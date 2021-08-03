@@ -1,12 +1,21 @@
 const userModel = require('../models/user');
 
 
-const sendToken = (user, statusCode, res)=>{
+const sendUserData = (user, statusCode, res)=>{
    
     const token = user.getSignedToken();
    
     res.status(statusCode).send({
-            success :true, token
+            success :true, token ,
+            userData : {
+                         'username' : user.username,
+                         'email'  : user.email,
+                         'address'  : user.address,
+                         'phone'    : user.phone,
+                         'profile'  : user.profile,
+                         'admin'    : user.admin
+                        }
+           
     });
 }
 
@@ -24,7 +33,7 @@ const register = async (req,res,next)=>{
                     username, email, password, address
               });
 
-            sendToken(user, 200, res);
+            sendUserData(user, 200, res);
         }
 
         res.status(400).send({message : 'Failed To Create Account, Email already Exist'})
@@ -66,7 +75,7 @@ const login = async (req, res, next) => {
 
         }
 
-        sendToken(user, 200, res);
+        sendUserData(user, 200, res);
      
     } catch (error) {
 

@@ -9,7 +9,8 @@ import {
   userDetailsReducer,
   userUpdateProfileReducer,
   userUpdateReducer,
-} from './reducers/userReducers'
+} from './reducers/user'
+import Alert from './reducers/alert'
 
 
 const reducer = combineReducers({
@@ -19,19 +20,35 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
   userUpdate: userUpdateReducer,
+  alert : Alert
 
 })
 
 
-const userInfoFromStorage = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo'))
-  : null
+
+
+
+let userInfoFromStorage;
+if (typeof window !== 'undefined'){
+
+      userInfoFromStorage = localStorage.getItem('userInfo')
+      ? JSON.parse(localStorage.getItem('userInfo')) 
+      : null;
+    
+ 
+}
+
+
+
 
 
 const initialState = {
 
-  userLogin: { userInfo: userInfoFromStorage },
+  userLogin: { userInfo:userInfoFromStorage},
+
 }
+
+
 
 const middleware = [thunk]
 

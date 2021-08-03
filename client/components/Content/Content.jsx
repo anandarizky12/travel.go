@@ -86,7 +86,7 @@ const dummy = [
 function Content() {
 
     const classes = useStyles();
-    console.log(dummy)
+   
     return (
         <div className= {classes.root}>
             <Typography className={classes.text1}>Our Tour</Typography>

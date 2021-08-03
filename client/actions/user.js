@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 import {
   LOGIN_USER,
 	LOGIN_SUCCESS,
@@ -25,8 +25,11 @@ import {
 	
 	USER_IS_UNAUTHORIZED,
 	SET_TOKEN,
-} from './actions_type/actions_type_user'
-import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
+} from './actions_type/actions_type_user';
+import { sendAlert } from './AlertActions';
+// import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
+
+
 
 
 
@@ -43,7 +46,7 @@ export const login = (email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      '/api/users/login',
+      'http://127.0.0.1:5000/api/login',
       { email, password },
       config
     )
@@ -52,6 +55,8 @@ export const login = (email, password) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: data,
     })
+    
+    dispatch(sendAlert('Login Successfully', 1))
 
     localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
@@ -61,9 +66,14 @@ export const login = (email, password) => async (dispatch) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
-    })
+    });
+    dispatch(sendAlert(error.response.data.message, 3))
+
   }
 }
+
+
+
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo')

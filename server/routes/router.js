@@ -48,7 +48,7 @@ router.delete('/trip/:id', isAdmin, deleteTrip);
 router.patch('/trip/:id', isAdmin, updateTrip);
 
 //order 
-roter.post('/order', createOrder);
+router.post('/order', createOrder);
 router.get('/order/:id', getOrderById);
 router.patch('/order/:id', updateOrderToPaid);
 

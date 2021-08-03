@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState ,useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -12,6 +10,10 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../actions/user';
+import MyAlert from '../components/alert/Alert';
+import Router  from "next/router";
 
 function Copyright() {
   return (
@@ -57,12 +59,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+export default function SignIn() {
+
+  const [state, setState] = useState({email : "", password : ""});
   const classes = useStyles();
+
+  const dispatch = useDispatch()
+  const userLogin = useSelector((state)=>state.userLogin);
+  const { loading, error, userInfo } = userLogin
+
+  const handleInput = (event) =>{
+    const {name,value} = event.target;
+
+    setState((prev)=>({
+      ...prev, 
+      [name] : value
+    }))
+
+};
+
+  useEffect(() => {
+    if (userInfo) {
+      Router.push('/')
+    }
+  }, [userInfo]);
+
+
+  const submitHandler = (e) =>{
+    e.preventDefault();
+    dispatch(login(state.email,state.password))
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
+      <MyAlert/>
       <CssBaseline />
+     
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
@@ -72,7 +104,7 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form onSubmit={(e)=>submitHandler(e)} className={classes.form} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -83,6 +115,7 @@ export default function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e)=>handleInput(e)}
             />
             <TextField
               variant="outlined"
@@ -94,6 +127,7 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e)=>handleInput(e)}
             />
         
             <Button
