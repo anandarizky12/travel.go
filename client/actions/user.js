@@ -1,26 +1,34 @@
 import axios from 'axios'
 import {
-  GET_USER_DATA,
-  UPDATE_USER_DATA,
-  UPDATE_USER_DATA_SUCCESS,
-  UPDATE_USER_DATA_FAILED,
   LOGIN_USER,
-  LOGIN_SUCCESS,
-  LOGIN_FAILED,
-  LOGOUT_USER,
-  LOGOUT_SUCCESS,
-  LOGOUT_FAILED,
-  FETCH_USER,
-  FETCH_USER_FAILED,
-  FETCH_USER_SUCCESS,
-  REGISTER_USER,
-  REGISTER_SUCCESS,
-  REGISTER_FAILED,
+	LOGIN_SUCCESS,
+	LOGIN_FAILED,
 
-
-
+	LOGOUT_USER,
+	LOGOUT_SUCCESS,
+	LOGOUT_FAILED,
+	
+	REGISTER_USER,
+	REGISTER_SUCCESS,
+	REGISTER_FAILED,
+	
+	GET_USER_DATA,
+	UPDATE_USER_DATA,
+	UPDATE_USER_DATA_SUCCESS,
+	UPDATE_USER_DATA_FAILED,
+	UPDATE_USER_DATA_RESET,
+	
+	FETCH_USER,
+	FETCH_USER_SUCCESS,
+	FETCH_USER_FAILED,
+	FETCH_USER_RESET,
+	
+	USER_IS_UNAUTHORIZED,
+	SET_TOKEN,
 } from './actions_type/actions_type_user'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
+
+
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -59,10 +67,9 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo')
-  localStorage.removeItem('cartItems')
-  localStorage.removeItem('shippingAddress')
   localStorage.removeItem('paymentMethod')
   dispatch({ type: LOGOUT_USER })
+  dispatch({ type: FETCH_USER_RESET })
 
   document.location.href = '/login'
 }
