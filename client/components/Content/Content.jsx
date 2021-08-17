@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import MediaCard from '../card/Card';
 import { CardMedia, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid} from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTrip as fetchTrip } from '../../actions/trip';
 
 const useStyles = makeStyles({
+    
     root:{
         display : 'flex',
         flexDirection : 'column',
@@ -24,7 +27,6 @@ const useStyles = makeStyles({
         marginTop : '30px'
     },
   
-
 });
 
 
@@ -86,16 +88,28 @@ const dummy = [
 function Content() {
 
     const classes = useStyles();
-   
+    const dispatch = useDispatch();
+    
+    const getTrip = useSelector((state) => state.getTrip)
+
+
+    useEffect(() => {
+        dispatch(fetchTrip())
+    }, [])
+
+    // const { userInfo } = getTrip;
+    console.log(getTrip.trip);
     return (
         <div className= {classes.root}>
             <Typography className={classes.text1}>Our Tour</Typography>
             <Grid className={classes.content}>            
-               
-                {dummy.map(e=>{
-                    return <MediaCard name={e.name} desc={e.desc} price={e.price}/>
-                })}
-             
+                {getTrip.trip 
+                ?
+                getTrip.trip.map((e,i)=>{
+                    return <MediaCard key={i} id={e._id} image={e.image} name={e.title} desc={e.description} price={e.price}/>
+                })
+                : <p>NO trip found</p>
+            }
             </Grid>
         </div>
     )

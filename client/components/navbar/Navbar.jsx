@@ -13,6 +13,8 @@ import { logout } from '../../actions/user';
 import { useDispatch, useSelector } from 'react-redux'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Router  from "next/router";
+import { Grid } from '@material-ui/core';
+import { useLoaded } from '../../utils/hook';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -113,14 +115,13 @@ export default function Navbar(props) {
  const dispatch = useDispatch()
 
  const userLogin = useSelector((state) => state.userLogin)
- const { userInfo } = userLogin
+ const { userInfo } = userLogin;
 
+ const loaded = useLoaded();
+ 
  const logoutHandler = () => {
    dispatch(logout())
  };
-
- console.log(userInfo)
-
 
   return (
     <React.Fragment>
@@ -129,23 +130,23 @@ export default function Navbar(props) {
         <AppBar className ={classes.appBar}>
           <Toolbar className={classes.top}>
               <Typography className={classes.logo} variant="h3">TRAVEL.go</Typography>
-              <div className = {classes.icons}> 
+              <Grid className = {classes.icons}> 
                     {/* Search Bar Drawer one pack*/}
                     <SearchBar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer}/>
-                    {userInfo  
+                    {userInfo && loaded 
                      ? 
-                     <div className={classes.user}>
-                       <PersonOutlineIcon />
-                       <Typography className={classes.text1} variant="subtitle2" > {userInfo.userData.username}</Typography>
-                     </div>
+                     <Grid onClick={()=>Router.push('/profile')} className={classes.user}>
+                         <PersonOutlineIcon />
+                         <Typography className={classes.text1} variant="subtitle2" > {userInfo.userData.username}</Typography>
+                     </Grid>
                      : 
-                     <div className={classes.user}>
+                     <Grid className={classes.user}>
                         <ExitToAppIcon onClick={()=>Router.push('/login')} />
                         <Typography className={classes.text1} variant="subtitle2" >Login</Typography>
-                     </div>
+                     </Grid>
                   
                     }
-              </div>
+              </Grid>
           </Toolbar>
           
           <Toolbar className={classes.bottom}>

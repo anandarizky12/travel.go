@@ -67,7 +67,7 @@ export const login = (email, password) => async (dispatch) => {
           ? error.response.data.message
           : error.message,
     });
-    dispatch(sendAlert(error.response.data.message, 3))
+    dispatch(sendAlert(error.response ? error.response.data.message : "Network Error", 3))
 
   }
 }
@@ -221,7 +221,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+    const { data } = await axios.patch(`/api/user/${user._id}`, user, config)
 
     dispatch({ type: UPDATE_USER_DATA_SUCCESS })
 

@@ -17,9 +17,33 @@ const getTrip = async (req, res) => {
    
 };
 
+
+const readOneTrip = async (req, res) => {
+    
+    try {
+      const id = req.params.id;
+      const trip = await tripModel.findById(id);
+
+      if(!trip){
+        res
+        .status(400)
+        .send({ status: 400, message: `${id} is not valid` });
+      }
+
+      res
+        .status(200)
+        .send({ status: 200, message: "Read trip success", data: trip });
+    } catch (err) {
+      res.status(500).send({ status: 500, message: "Failed to read trip" });
+    }
+  };
+
 const createTrip = async (req, res) => {
 
+
+    console.log(req.body)
     try{    
+
         const trip = new tripModel({
         
             title: req.body.title ,
@@ -32,10 +56,10 @@ const createTrip = async (req, res) => {
             price: req.body.price,
             quota: req.body.quota,
             description : req.body.description,
-            image : req.body.image,
-            screen1 : req.body.screen1,
-            screen2 : req.body.screen2,
-            screen3 : req.body.screen2
+            image: "imageTripName.jpg",
+            screen1: "imageTripName.jpg",
+            screen2: "imageTripName.jpg",
+            screen3: "imageTripName.jpg",
     
           });
 
@@ -123,4 +147,4 @@ const updateTrip = async (req,res) =>{
 
 
 
-module.exports = { getTrip, createTrip, deleteTrip, updateTrip };
+module.exports = { getTrip, createTrip, deleteTrip, updateTrip, readOneTrip };

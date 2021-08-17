@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles({
   root: {
@@ -46,15 +47,17 @@ const useStyles = makeStyles({
   }
 });
 
-export default function MediaCard({name, desc, price}) {
+export default function MediaCard({id, name, desc, price, image}) {
+  
+  const router = useRouter();
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div onClick={()=>  router.push(`/trip/${id}`)} className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          image={image}
           title={name}
         />
 

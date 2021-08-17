@@ -11,7 +11,7 @@ const tripSchema = new mongoose.Schema(
         transportation: { type: String, default: 0, required: true },
         eat: { type: String, required: true },
         day: { type: Number, default: 0, required: true },
-        dateTrip: { type: Number, required: true },
+        dateTrip: { type: String, required: true },
         price: { type: Number, default: 0, required: true },
         quota: { type: Number, default: 0, required: true },
         description : {type: String, required: true},

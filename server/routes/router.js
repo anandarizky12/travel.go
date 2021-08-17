@@ -27,6 +27,7 @@ const {
 //trip import 
 const { 
     getTrip, 
+    readOneTrip,
     createTrip, 
     deleteTrip ,
     updateTrip 
@@ -44,6 +45,7 @@ router.patch('/user/:id', updateUser);
 //trip
 router.get('/trip', getTrip);
 router.post('/trip', isAdmin, createTrip);
+router.get('/trip/:id', isAuth, readOneTrip);
 router.delete('/trip/:id', isAdmin, deleteTrip);
 router.patch('/trip/:id', isAdmin, updateTrip);
 

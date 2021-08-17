@@ -9,7 +9,7 @@ const sendUserData = (user, statusCode, res)=>{
             success :true, token ,
             userData : {
                          'username' : user.username,
-                         'email'  : user.email,
+                         'email'    : user.email,
                          'address'  : user.address,
                          'phone'    : user.phone,
                          'profile'  : user.profile,
@@ -62,7 +62,7 @@ const login = async (req, res, next) => {
 
         if(!user){
 
-            return res.status(401).send({message : "Sorry Email or Password Invalid"});
+            return res.status(401).send({message : "The email and password you entered did not match our records. Please double-check and try again."});
 
         }
 
@@ -71,7 +71,7 @@ const login = async (req, res, next) => {
 
         if(!match){
 
-            return res.status(401).send({message : "Sorry, Invalid Password"});
+            return res.status(401).send({message : "Sorry, password you entered did not match our records. Please double-check and try again."});
 
         }
 

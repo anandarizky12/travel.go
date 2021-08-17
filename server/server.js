@@ -6,10 +6,13 @@ const bodyParser = require('body-parser');
 const router = require('./routes/router');
 require('dotenv').config()
 
-app.use(bodyParser.json())
 
+app.use(bodyParser.json());
 app.use(cors());
 app.use('/api',router);
+app.use("/Images", express.static("images"));
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 const PORT = process.env.PORT
 const DB_URI = process.env.MONGODBURI;

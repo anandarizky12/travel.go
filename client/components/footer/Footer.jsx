@@ -17,6 +17,7 @@ const useStyle = makeStyles({
         justifySelf : 'space-between',
         alignItems : 'center',
         fontFamily: "Poppins",
+        bottom : 0
     },
     text1:{
         marginBottom : '5px'

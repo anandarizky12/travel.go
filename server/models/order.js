@@ -11,7 +11,7 @@ const orderSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'tripModel',
-        },
+    },
     counterQty: { type: Number, required: true },
     total: { type: Number, required: true },
     status: { type: String, required: true },
