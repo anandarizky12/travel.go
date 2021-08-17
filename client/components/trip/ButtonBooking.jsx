@@ -39,17 +39,11 @@ export default function ButtonBooking({ price, count, tripId }) {
   };
 
   const onSubmit = () => {
-    const token = localStorage.getItem("token");
-    localStorage.setItem("booking", "booking");
-    if (token !== null && token !== undefined && token.length > 0) {
       router.push({
         pathname: "/book",
         query: { pid: price, cid: count, tid: tripId },
         asPath: `/book/${count}`,
-      });
-    } else {
-      handleClickLogin();
-    }
+      })
   };
 
   return (

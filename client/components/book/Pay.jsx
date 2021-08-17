@@ -4,10 +4,11 @@ import { Box } from "@material-ui/core";
 // import { AuthContext } from "../../src/Provider";
 // import { QueryContext } from "../../src/Query";
 import { useRouter } from "next/router";
-
+import {useDispatch, useSelector } from "react-redux";
 // import CardTransactionSkeleton from "../skeleton/CardTransactionSkeleton";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { CardTransaction } from "./CardTransaction";
+import { readOneTrip } from "../../actions/trip";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,34 +42,44 @@ export default function Pay() {
   const count  = router.query.cid;
   const tripId = router.query.tid;
   const [blank, setBlank] = React.useState(true);
-  const context = React.useContext(AuthContext);
-  const query   = React.useContext(QueryContext);
-  const { user } = context;
-  const { state, getTrip, loading } = query;
+  // const context = React.useContext(AuthContext);
+  // const query   = React.useContext(QueryContext);
+  // const { user } = context;
+  
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.userLogin);;
+  const readTrip = useSelector((state) => state.readOneTrip);
+
+  // const { state, getTrip, loading } = query;
   const [item, setItem] = React.useState({});
 
-  React.useEffect(() => {
-    if (tripId) {
-      getTrip(tripId);
-      setBlank(false);
-    }
+
+React.useEffect(() => {
+
+  if(tripId){
+    dispatch(readOneTrip(tripId))
+  }
   }, [tripId]);
 
-  React.useEffect(() => {
-    if (state.trip) {
-      setItem(state.trip);
-    }
-  }, [state.trip]);
 
+
+React.useEffect(() => {
+  if (readTrip.trip) {
+    setItem(readTrip.trip.data);
+    setBlank(false);
+  }
+  }, [readTrip]);
+
+  console.log(tripId, readTrip,user, item)
   return (
     <Box variant="div" className={classes.root}>
       {blank ? (
        <CircularProgress/>
-      ) : loading ? (
-       <CircularProgress/>
-      ) : (
+      )  
+      : (
+        // <p>wait</p>
         <CardTransaction
-          user={user}
+          user={user.userInfo.userData}
           price={price}
           count={count}
           item={item}

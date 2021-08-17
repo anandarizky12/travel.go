@@ -1,5 +1,7 @@
+import { CircularProgress } from '@material-ui/core';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import CardProfile from '../../components/profile/CardProfile';
 
 function Profile() {
     const dispatch = useDispatch();
@@ -12,11 +14,16 @@ function Profile() {
         <div  style={{marginTop : '50px' }} >
             {userInfo ?
             <div>
-                <p>{userInfo.userData.username}</p>
-                <p>{userInfo.userData.email}</p>
+                <CardProfile 
+                    username={userInfo.userData.username} 
+                    email={userInfo.userData.email} 
+                    phone={userInfo.userData.phone} 
+                    address={userInfo.userData.address} 
+                    image={'null'}
+                />
             </div>
             :
-            <p>Loading...</p>
+            <p>loading...</p>
             }
         </div>
     )

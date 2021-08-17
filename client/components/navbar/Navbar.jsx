@@ -15,6 +15,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Router  from "next/router";
 import { Grid } from '@material-ui/core';
 import { useLoaded } from '../../utils/hook';
+import UserMenu from './User';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -93,6 +94,12 @@ const useStyles = makeStyles({
     },
     text1 : {
       fontFamily: "Poppins",
+    },
+    nav : {
+      '&:hover':{
+        color : '#bdbdbd',
+        cursor : 'pointer'
+      }
     }
 
   });
@@ -135,13 +142,14 @@ export default function Navbar(props) {
                     <SearchBar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer}/>
                     {userInfo && loaded 
                      ? 
-                     <Grid onClick={()=>Router.push('/profile')} className={classes.user}>
-                         <PersonOutlineIcon />
-                         <Typography className={classes.text1} variant="subtitle2" > {userInfo.userData.username}</Typography>
-                     </Grid>
+                    //  <Grid onClick={()=>Router.push('/profile')} className={classes.user}>
+                    //      <PersonOutlineIcon />
+                    //      <Typography className={classes.text1} variant="subtitle2" > {userInfo.userData.username}</Typography>
+                    //  </Grid>
+                    <UserMenu user={userInfo.userData} logout={ logoutHandler }/>
                      : 
-                     <Grid className={classes.user}>
-                        <ExitToAppIcon onClick={()=>Router.push('/login')} />
+                     <Grid onClick={()=>Router.push('/login')} className={classes.user}>
+                        <ExitToAppIcon  />
                         <Typography className={classes.text1} variant="subtitle2" >Login</Typography>
                      </Grid>
                   
@@ -151,10 +159,10 @@ export default function Navbar(props) {
           
           <Toolbar className={classes.bottom}>
                 <div className={classes.ul}>
-                    <Typography variant="subtitle1">Home</Typography>
-                    <Typography variant="subtitle1">Trip</Typography>
-                    <Typography variant="subtitle1">Transaction</Typography>
-                    <Typography variant="subtitle1">Order</Typography>
+                    <Typography className={classes.nav} onClick={()=>Router.push('/')} variant="subtitle1">Home</Typography>
+                    <Typography className={classes.nav} onClick={()=>Router.push('/profile')} variant="subtitle1">Profile</Typography>
+                    <Typography className={classes.nav} variant="subtitle1">Transaction</Typography>
+                    <Typography className={classes.nav} variant="subtitle1">Order</Typography>
                 </div>
           </Toolbar>
        

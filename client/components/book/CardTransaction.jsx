@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-// import SubmitModal from "../components/book/SubmitModal";
+import SubmitModal from "./SubmitModal";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import {
@@ -12,6 +12,7 @@ import {
   Button,
   Box,
   Divider,
+  CircularProgress,
 } from "@material-ui/core";
 import {
   formatDate,
@@ -24,9 +25,7 @@ import InsertPhotoIcon from "@material-ui/icons/InsertPhoto";
 import dynamic from "next/dynamic";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useRouter } from "next/router";
-const SubmitButton = dynamic(() => import("../components/book/SubmitButton"), {
-  ssr: false,
-});
+import SubmitButton from "./SubmitButton";
 
 const useStyles = makeStyles((theme) => ({
   cardTrip: {
@@ -105,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     height: 68,
-    width: 189,
+    width: 109,
     [theme.breakpoints.down("xs")]: {
       width: 120,
       height: 40,
@@ -358,7 +357,7 @@ export function CardTrip({ item, transaction, index }) {
 
   return (
     <>
-      {/* <SubmitModal rest="rest" open={open} setOpen={setOpen} /> */}
+      <SubmitModal rest="rest" open={open} setOpen={setOpen} />
       <Card
         data-aos="slide-up"
         data-aos-duration="950"
@@ -423,6 +422,7 @@ export function CardTransaction({
     };
     reader.readAsDataURL(file);
   };
+  console.log(item)
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesXs = useMediaQuery(theme.breakpoints.down("xs"));
@@ -447,7 +447,7 @@ export function CardTransaction({
       >
         <Grid container spacing={1}>
           <Grid item xs={6} sm={6} md={4} lg={5}>
-            <img src="/Icon2.png" className={classes.icon} alt="" />
+            <img src="/favicon.ico" className={classes.icon} alt="" />
             {!matches && (
               <React.Fragment>
                 <br />
@@ -460,6 +460,12 @@ export function CardTransaction({
             <Typography variant="h6" className={classes.body}>
               {item?.country?.name}
             </Typography>
+            <Grid item xs={4} sm={1} md={1} lg={1} className={classes.gridUser}>
+                <Typography variant="subtitle" className={classes.body}>
+                  {item._id}
+                </Typography>
+                {matchesXs && <br />}
+           </Grid>
             {!matches && (
               <React.Fragment>
                 <br />
@@ -650,19 +656,7 @@ export function CardTransaction({
               {item.transportation}
             </Typography>
           </Grid>
-          <Grid item xs={4} sm={1} md={1} lg={1} className={classes.gridUser}>
-            <Typography
-              variant="h6"
-              className={classes.subtitle}
-              style={{ marginTop: matchesXs && 0 }}
-            >
-              No
-            </Typography>
-            <Typography variant="h6" className={classes.user}>
-              {item.id}
-            </Typography>
-            {matchesXs && <br />}
-          </Grid>
+        
           <Grid item xs={8} sm={5} md={3} lg={3} className={classes.gridUser}>
             <Typography variant="h6" className={classes.fullName}>
               Full Name
@@ -756,7 +750,7 @@ export function CardTransaction({
           tripId={item.id}
           status={status}
         />
-      )}
+     )} 
     </>
   );
 }

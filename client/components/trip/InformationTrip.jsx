@@ -115,6 +115,7 @@ export default function Information({ item }) {
     { id: 5, icon: "/calendar.png", title: "Date Trip", value: item.dateTrip },
   ];
 
+  console.log(item)
   return (
   
     <Grid container spacing={1}>
@@ -216,7 +217,7 @@ export default function Information({ item }) {
             <Divider style={{ height: 3 }} />
         </Grid>
         <Grid item xs={12} lg={12} align="right" style={{ marginTop: 35 }}>
-            <ButtonBooking price={price} count={count} tripId={item.id} />
+            <ButtonBooking price={price} count={count} tripId={item._id} />
         </Grid>
       </Grid>
  

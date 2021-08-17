@@ -8,13 +8,13 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    backgroundColor: "#ffaf00",
+    backgroundColor: "#757575",
     width: 213,
     height: 50,
     color: "white",
     fontWeight: 900,
     position: "absolute",
-    top: theme.spacing(69),
+    top: theme.spacing(75),
     right: "12%",
     fontSize: 18,
     [theme.breakpoints.down("md")]: {
@@ -63,30 +63,22 @@ export default function SubmitButton({
 }) {
   const classes = useStyles();
   const theme = useTheme();
-  const booking = localStorage.getItem("booking");
+  const booking = true;
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [errors, setErrors] = React.useState("");
   const token = localStorage.getItem("token");
-//   const formData = new FormData();
-//   formData.append("counterQty", count);
-//   formData.append("status", status);
-//   formData.append("userId", user.id);
-//   formData.append("tripId", tripId);
-//   formData.append("attachmentImage", files);
-//   formData.append("total", price);
+
   const postTransaction = async () => {
     setIsLoading(true);
     if (!files) {
       setIsLoading(false);
       setErrors("please upload your payment proof image");
     }
-    const url = `${process.env.server}/api/v1/transaction`;
-    // const url = `http://localhost:5000/api/v1/transaction`;
+    // const url = `${process.env.server}/api/v1/transaction`;
+    const url = `http://localhost:5000/api/order`;
     const config = {
-      method: "POST",
-      body: formData,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -104,8 +96,10 @@ export default function SubmitButton({
   };
 
   const onSubmit = (e) => {
+  
     e.preventDefault();
     postTransaction();
+  
   };
 
   return (
