@@ -58,7 +58,8 @@ export const login = (email, password) => async (dispatch) => {
     
     dispatch(sendAlert('Login Successfully', 1))
 
-    localStorage.setItem('userInfo', JSON.stringify(data))
+    localStorage.setItem('userInfo', JSON.stringify(data));
+    
   } catch (error) {
     dispatch({
       type: LOGIN_FAILED,

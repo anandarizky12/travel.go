@@ -42,7 +42,7 @@ export default function ButtonBooking({ price, count, tripId }) {
       router.push({
         pathname: "/book",
         query: { pid: price, cid: count, tid: tripId },
-        asPath: `/book/${count}`,
+        // asPath: `/book/${count}`,
       })
   };
 

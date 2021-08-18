@@ -1,5 +1,21 @@
 const mongoose = require('mongoose');
 
+const reviewSchema = mongoose.Schema(
+    {
+      name: { type: String, required: true },
+      rating: { type: Number, required: true },
+      comment: { type: String, required: true },
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'user',
+      },
+    },
+    {
+      timestamps: true,
+    }
+  )
+  
 
 const tripSchema = new mongoose.Schema(
    
@@ -16,6 +32,17 @@ const tripSchema = new mongoose.Schema(
         quota: { type: Number, default: 0, required: true },
         description : {type: String, required: true},
         image : {type:String, required: true},
+        review : [reviewSchema],
+        rating: {
+            type: Number,
+            required: true,
+            default: 0,
+          },
+        numReviews: {
+            type: Number,
+            required: true,
+            default: 0,
+          },
         screen1 : {type:String, required: true},
         screen2 : {type:String, required: true},
         screen3 : {type:String, required: true},

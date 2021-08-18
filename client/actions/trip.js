@@ -30,7 +30,7 @@ export const getTrip = () => async (dispatch) => {
         payload: data,
       });
   
-     
+
       
     } catch (error) {
       dispatch({

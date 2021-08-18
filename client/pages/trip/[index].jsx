@@ -7,6 +7,8 @@ import Information from '../../components/trip/InformationTrip';
 import Content from '../../components/trip/Content';
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from '@material-ui/core';
+import Reviews from '../../components/trip/Reviews';
+
 
 function Book() {
 
@@ -41,6 +43,7 @@ function Book() {
         <Grid className={classes.container}>
             <Content item={readTrip.trip.data}/>
             <Information item={readTrip.trip.data}/>  
+            <Reviews/>
         </Grid>
             : 
             <CircularProgress/>

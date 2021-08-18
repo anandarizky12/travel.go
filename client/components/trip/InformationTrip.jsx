@@ -12,6 +12,7 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import ButtonBooking from "./ButtonBooking";
 import { formatDate, formatMoney } from "../../src/formatter";
+import Rating from '@material-ui/lab/Rating';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -121,7 +122,7 @@ export default function Information({ item }) {
     <Grid container spacing={1}>
         <Grid item sm={12} xs={12} md={12} lg={12}>
             <Typography variant="h6" className={classes.title}>
-            Information Trip
+                Information Trip
             </Typography>
         </Grid>
         <Hidden mdDown>
@@ -182,7 +183,9 @@ export default function Information({ item }) {
             <Typography variant="h6" className={classes.subTitle}>
             {item.description}
             </Typography>
+        
         </Grid>
+       
         <Grid item xs={8} lg={6}>
             <Typography variant="h6" className={classes.price}>
             IDR. {formatMoney(item.price)}{" "}

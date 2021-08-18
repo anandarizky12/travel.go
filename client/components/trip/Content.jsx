@@ -2,10 +2,12 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography } from "@material-ui/core";
 // import AOS from "aos";
+import Rating from '@material-ui/lab/Rating';
+import PersonIcon from '@material-ui/icons/Person';
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    fontSize: 48,
+    fontSize: 38,
     fontWeight: "thin",
     fontFamily : 'poppins',
     color : '#757575',
@@ -15,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subs: {
     color: "#ababab",
-    fontSize: 24,
+    fontSize: 22,
     margin: "5px 0 15px 0",
     [theme.breakpoints.down("xs")]: {
       fontSize: 18,
@@ -40,6 +42,21 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "hsl(220, 20%, 90%)",
     animation: "loading 0.8s infinite alternate",
   },
+  titleContainer : {
+      display : 'flex',
+      alignItems : 'center',
+      textAlign : 'center'
+  },
+  reviews:{
+    fontFamily : 'poppins',
+    color : '#757575',
+    display : 'flex',
+    alignItems : 'center',
+    fontSize : '14px'
+  },
+  icons : {
+    fontSize : '17px'
+  },
   screenWrap: {
     [theme.breakpoints.down("md")]: {
       display: "none",
@@ -63,9 +80,15 @@ export default function Content({ item }) {
   return (
     <Grid container spacing={1}>
       <Grid item lg={12}>
-        <Typography variant="h1" className={classes.title}>
-          {item.title}
-        </Typography>
+        <Grid className={classes.titleContainer}>
+          <Typography variant="h4" className={classes.title}>
+            {item.title}    
+            &nbsp; 
+          </Typography>
+            <Rating size="small" name="read-only" value={4} readOnly />
+            &nbsp; 
+           <Typography className={classes.reviews}>271 <PersonIcon className={classes.icons}/></Typography>
+        </Grid>
         <Typography variant="body1" className={classes.subs}>
           {item?.countryId}
         </Typography>
