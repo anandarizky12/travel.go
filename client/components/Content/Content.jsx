@@ -30,60 +30,6 @@ const useStyles = makeStyles({
 });
 
 
-const dummy = [
-
-    {
-        name : 'Raja Ampat',
-        desc  : "Berlibur dengan keluarga merupakan hal yang menggembirakan dan mengasyikkan, jangan lewatkan akhir pekan anda, mari tour dengan dewe tour",
-        price : '23,0000,000'
-
-    },
-    {
-        name : 'Ibiza',
-        desc  : "Berlibur dengan keluarga merupakan hal yang menggembirakan dan mengasyikkan",
-        price : '23,0000,000'
-        
-    },
-    {
-        name : 'Labuan Bajo',
-        desc  : "Berlibur dengan keluarga merupakan hal yang menggembirakan dan mengasyikkan, jangan lewatkan akhir pekan anda, mari tour dengan dewe tour",
-        price : '23,0000,000'
-        
-    },
-    {
-        name : 'Death Valley',
-        desc  : "Berlibur dengan keluarga merupakan hal yang menggembirakan dan mengasyikkan,",
-        price : '23,0000,000'
-        
-    },
-    {
-        name :  'Cave of the death',
-        desc  : "Berlibur dengan keluarga merupakan hal yang menggembirakan dan mengasyikkan, jangan lewatkan akhir pekan anda, mari tour dengan dewe tour",
-        price : '23,0000,000'
-        
-    },
-    {
-        name : 'Narnia',
-        desc  : "Berlibur dengan keluarga merupakan hal yang menggembirakan dan mengasyikkan,",
-        price : '23,0000,000'
-        
-    },
-    {
-        name : 'Labuan Bajo',
-        desc  : "Berlibur dengan keluarga merupakan hal yang menggembirakan dan mengasyikkan, jangan lewatkan akhir pekan anda, mari tour dengan dewe tour",
-        price : '23,0000,000'
-        
-    },
-    {
-        name : 'Death Valley',
-        desc  : "Berlibur dengan keluarga merupakan hal yang menggembirakan dan mengasyikkan,",
-        price : '23,0000,000'
-        
-    },
-
-
-
-]
 
 function Content() {
 

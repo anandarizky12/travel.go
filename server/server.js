@@ -9,7 +9,7 @@ require('dotenv').config()
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/api',router);
+app.use('/api', router);
 app.use("/Images", express.static("images"));
 app.use(bodyParser.urlencoded({ extended: false }));
 

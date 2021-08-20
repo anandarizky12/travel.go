@@ -201,7 +201,7 @@ export default function FormInput() {
     <div className={classes.root}>
       <Container>
         <Typography component="h1" variant="h5" className={classes.addtrip}>
-          Add Trip
+          Edit Trip
         </Typography>
       </Container>
       <form ref={form} className={classes.form}>

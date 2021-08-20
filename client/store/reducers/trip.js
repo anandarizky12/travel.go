@@ -9,7 +9,11 @@ import {
 
   CREATE_TRIP,
   CREATE_TRIP_SUCCESS,
-  CREATE_TRIP_FAILED
+  CREATE_TRIP_FAILED,
+ 
+  DELETE_TRIP,
+  DELETE_TRIP_SUCCESS,
+  DELETE_TRIP_FAILED
 } from "../../actions/actions_type/actions_type_trip"
 
 export const getTrip = (state = {}, action) => {
@@ -32,6 +36,19 @@ export const createTrip = (state = {}, action) => {
     case CREATE_TRIP_SUCCESS:
       return { loading: false, trip: action.payload }
     case CREATE_TRIP_FAILED:
+      return { loading: false, error: action.payload }
+    default:
+      return state;
+  }
+}
+
+export const deleteTrip = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_TRIP:
+      return { loading: true }
+    case DELETE_TRIP_SUCCESS:
+      return { loading: false, trip: action.payload }
+    case DELETE_TRIP_FAILED:
       return { loading: false, error: action.payload }
     default:
       return state;

@@ -7,7 +7,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
-import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import SearchBar from './SearchBar';
 import { logout } from '../../actions/user';
 import { useDispatch, useSelector } from 'react-redux'

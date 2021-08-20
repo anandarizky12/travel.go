@@ -8,7 +8,10 @@ import {
     CREATE_TRIP, 
     CREATE_TRIP_SUCCESS, 
     CREATE_TRIP_FAILED, 
-    DELETE_TRIP
+    DELETE_TRIP,
+    DELETE_TRIP_SUCCESS,
+    DELETE_TRIP_FAILED,
+
 } from './actions_type/actions_type_trip';
 import axios from 'axios';
 import { sendAlert } from './AlertActions';
@@ -121,3 +124,49 @@ export const createTrip = (trip) => async (dispatch, getState) => {
     dispatch(sendAlert(error.response ? error.response.data.message : "Network Error", 3))
   }
 }
+
+
+export const deleteTrip = ( id ) => async (dispatch, getState) => {
+
+  try {
+    dispatch({
+      type: DELETE_TRIP,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { deleted } = await axios.delete(`http://localhost:5000/api/trip/${id}`, config )
+
+    dispatch({
+      type: DELETE_TRIP_SUCCESS,
+      payload: deleted,
+    });
+    dispatch(sendAlert('Delete Trip Successfull', 1))
+  } catch (error) {
+    console.log(error)
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    
+    console.log(message)
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
+    dispatch({
+      type: DELETE_TRIP_FAILED,
+      payload: message,
+    });
+    dispatch(sendAlert(error.response ? error.response.data.message : "Network Error", 3));
+  }
+}
+
+

@@ -89,14 +89,19 @@ const deleteTrip = async (req, res) => {
         try{
 
             const id = req.params.id;
+            console.log(id);
+            const data = await tripModel.findByIdAndRemove(id);
             
-            await tripModel.findByIdAndRemove(id);
-
-            return  res.status(200).send({status : 200, message: 'trip data succesfully deleted'});
+            if(data){
+          
+              return  res.status(200).send({status : 200, message: 'trip data succesfully deleted'});
+            }
+         
+            return  res.status(400).send({status : 400, message: 'Not valid Id'});
 
         }
         catch(error){
-            
+           
            return  res.status(400).send({message : "failed to delete the trip data"})
         
         }

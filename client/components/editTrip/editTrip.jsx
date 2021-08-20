@@ -1,9 +1,12 @@
-
 import React, { Fragment, useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Grid, TextField, Container } from "@material-ui/core";
+import dynamic from "next/dynamic";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import SubmitForm from "./SubmitForm";
+
+const SubmitForm = dynamic(() => import("./SubmitForm"), {
+  ssr: false,
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,12 +25,12 @@ const useStyles = makeStyles((theme) => ({
   },
   autocomplete: {
     width: "100%",
-    backgroundColor: "none",
+    backgroundColor: "#c4c4c4",
     borderRadius: 5,
     height: 40,
     "& .MuiOutlinedInput-notchedOutline": {
       borderWidth: "2px",
-      borderColor: "none",
+      borderColor: "#c4c4c4",
       height: 40,
       marginTop: 8,
     },
@@ -49,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#777",
   },
   cssOutlinedInput: {
-    backgroundColor: "none",
+    backgroundColor: "#c4c4c4",
     width: "100%",
   },
   cssFocused: {
@@ -61,16 +64,14 @@ const useStyles = makeStyles((theme) => ({
   },
   label: {
     fontSize: 24,
-    fontWeight: "light",
-    fontFamily : "poppins",
+    fontWeight: "bold",
     [theme.breakpoints.down("xs")]: {
       fontSize: 18,
     },
   },
   addtrip: {
     fontSize: 36,
-    fontWeight: "light",
-    fontFamily : "poppins",
+    fontWeight: "bold",
     [theme.breakpoints.up("lg")]: { marginLeft: 30 },
     [theme.breakpoints.down("xs")]: {
       fontSize: 25,
@@ -121,6 +122,7 @@ export default function FormInput() {
     transportation: "",
     eat: "",
     day: "",
+    night: "",
     dateTrip: "",
     quota: "",
     price: "",
@@ -196,12 +198,11 @@ export default function FormInput() {
     { id: 9, code: "MY", label: "Malaysia", phone: "60" },
   ];
 
-
   return (
     <div className={classes.root}>
       <Container>
         <Typography component="h1" variant="h5" className={classes.addtrip}>
-          Add Trip
+          Edit Trip
         </Typography>
       </Container>
       <form ref={form} className={classes.form}>
@@ -261,14 +262,13 @@ export default function FormInput() {
                   <Autocomplete
                     id="country-select-demo"
                     options={countries}
-                    name="countryId"
                     className={classes.autocomplete}
                     getOptionSelected={(option, value) =>
                       option.id === value.id
                     }
                     onChange={(e, value) => {
                       if (value !== null) {
-                        setValues({ ...values, countryId: e.target.id });
+                        setValues({ ...values, [e.target.name]: value.id });
                       }
                     }}
                     forcePopupIcon={false}
@@ -278,7 +278,7 @@ export default function FormInput() {
                     autoHighlight
                     getOptionLabel={(option) => option.label}
                     renderOption={(option) => (
-                      <React.Fragment >
+                      <React.Fragment>
                         <span>{countryToFlag(option.code)}</span>
                         {option.label} ({option.code}) +{option.phone}
                       </React.Fragment>
@@ -291,7 +291,7 @@ export default function FormInput() {
                         variant="outlined"
                         inputProps={{
                           ...params.inputProps,
-                        
+                          autoComplete: "new-password", // disable autocomplete and autofill
                         }}
                       />
                     )}
@@ -339,7 +339,35 @@ export default function FormInput() {
                       }}
                     />
                     <label className={classes.label}>Day</label>
-                
+                    <TextField
+                      variant="outlined"
+                      className={classes.daynight}
+                      style={{ marginRight: 30, marginLeft: 50 }}
+                      required
+                      size="small"
+                      id="night"
+                      type="text"
+                      name="night"
+                      autoComplete="night"
+                      value={`${values["night"]}`}
+                      onChange={onChange}
+                      error={errorType["night"] ? true : false}
+                      InputLabelProps={{
+                        shrink: true,
+                        classes: {
+                          root: classes.cssLabel,
+                          focused: classes.cssFocused,
+                        },
+                      }}
+                      InputProps={{
+                        classes: {
+                          root: classes.cssOutlinedInput,
+                          focused: classes.cssFocused,
+                          notchedOutline: classes.notchedOutline,
+                        },
+                      }}
+                    />
+                    <label className={classes.label}>Night</label>
                   </Grid>
                 </>
               )}

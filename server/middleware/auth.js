@@ -50,6 +50,7 @@ const isAuth = async (req, res , next)=>{
 
 const isAdmin = async (req, res, next) => {
   let header, token;
+  console.log("is Admin")
   if (
     !(header = req.header("Authorization")) ||
     !(token = header.replace("Bearer ", ""))
@@ -60,13 +61,14 @@ const isAdmin = async (req, res, next) => {
   try {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     const user = await userModel.findById(verified.id);
-   
+  
     if (user.admin !== true){
+    
       return res
       .status(400)
-      .send({ status: 400, message: "invalid operation" });
+      .send({ status: 400, message: "invalid operation, You Are Not an admin" });
     }
- 
+    console.log('try mantap')
     next();
   } catch (err) {
     console.log(err)
