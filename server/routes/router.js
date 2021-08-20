@@ -47,7 +47,7 @@ router.get('/trip', getTrip);
 router.post('/trip', isAdmin, createTrip);
 router.get('/trip/:id', isAuth, readOneTrip);
 router.delete('/trip/:id', isAdmin, deleteTrip);
-router.patch('/trip/:id', isAdmin, updateTrip);
+router.put('/trip/:id', isAdmin, updateTrip);
 
 //order 
 router.post('/order', createOrder);

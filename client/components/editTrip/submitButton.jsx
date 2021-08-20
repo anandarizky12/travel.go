@@ -4,7 +4,8 @@ import { Grid, Button } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
 import { useDispatch, useSelector } from 'react-redux';
-import { createTrip as createTripProduct} from '../../actions/trip';
+import { editTrip } from '../../actions/trip';
+import Router  from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   submit: {
@@ -33,9 +34,9 @@ export default function SubmitButton({
   
   const userLogin = useSelector((state) => state.userLogin)
   const createTrip = useSelector((state) => state.createTrip)
-  const { userInfo } = userLogin;
+
+ 
   const dispatch = useDispatch();
-  
   const [isLoading, setIsLoading] = React.useState(false);
   const [alert, setAlert] = React.useState({
     type: "success",
@@ -59,23 +60,23 @@ export default function SubmitButton({
     screen1: "",
     screen2: "",
     screen3: "",
-  };
+  };  
 
 const fileUpload = async () => {
 
     setIsLoading(true);
-    dispatch(createTripProduct(values));
+    dispatch(editTrip(values));
     setIsLoading(false);
-    
+    setTimeout(()=>{
+      location.reload();
+    },500);
+   
   };
-
-
-
 
   const onSubmit = (e) => {
     e.preventDefault();
-    fileUpload();
-
+    fileUpload(); 
+    
   };
 
   return (
@@ -90,6 +91,12 @@ const fileUpload = async () => {
             {alert.body}
           </Alert>
         )}
+        <Button
+          className={classes.submit}
+          onClick={()=>{Router.push('/trip')}}
+        >
+          Back To Trip
+        </Button>
         <Button
           type="submit"
           className={classes.submit}

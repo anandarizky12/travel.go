@@ -4,6 +4,7 @@ import FormInput from '../../components/editTrip/formInput';
 import MyAlert from '../../components/alert/Alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { readOneTrip as getTrip } from '../../actions/trip';
+import { CircularProgress } from '@material-ui/core';
 
 function index() {
 
@@ -18,13 +19,19 @@ function index() {
         dispatch(getTrip(id));
     },[id]);
 
-
-    console.log(readOneTrip, id)
     return (
-        <div style={{ minHeight: "81.9vh", marginTop : '70px' }}>
-            <MyAlert/>
-            <FormInput/>
-        </div>
+    <div style={{ minHeight: "81.9vh", marginTop : '70px' }} >
+        {trip 
+        ? 
+             <div >
+                 <MyAlert/>
+                 <FormInput data={trip.data} />
+             </div>
+        :
+        <CircularProgress/>
+        }
+       
+    </div>
     )
 }
 

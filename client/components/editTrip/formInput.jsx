@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormInput() {
+export default function FormInput({ data }) {
   const classes = useStyles();
   const form = useRef(null);
   const [errorType, setErrorType] = useState({
@@ -115,16 +115,17 @@ export default function FormInput() {
   });
 
   const [values, setValues] = useState({
-    title: "",
-    countryId: "",
-    accomodation: "",
-    transportation: "",
-    eat: "",
-    day: "",
-    dateTrip: "",
-    quota: "",
-    price: "",
-    description: "",
+    _id: data._id,
+    title: data.title,
+    countryId: data.countryId,
+    accomodation: data.accomodation,
+    transportation: data.transportation,
+    eat: data.eat,
+    day: data.day,
+    dateTrip: data.dateTrip,
+    quota: data.quota,
+    price: data.price,
+    description: data.description,
   });
 
   const tripArr = [
@@ -321,7 +322,8 @@ export default function FormInput() {
                       style={{ marginRight: 30 }}
                       autoComplete="day"
                       onChange={onChange}
-                      value={`${values["day"]}`}
+                      // value={`${values["day"]}`}
+                      value={`${values[item.name]}`}
                       error={errorType["day"] ? true : false}
                       InputLabelProps={{
                         shrink: true,

@@ -20,14 +20,15 @@ export default function Confirmation({ dispatch, open, setOpen, Id, setId }) {
 
     setOpen(false);
     dispatch(deleteTrip(Id));
-    location.reload();
+    setTimeout(()=>{
+      location.reload();
+    },500);
     setId('');
     
   };
 
   return (
-    <div>
-      
+    <div> 
       <Dialog
         open={open}
         onClose={handleClose}

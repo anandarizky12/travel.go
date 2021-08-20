@@ -35,7 +35,7 @@ function Book() {
         dispatch(readOneTrip(query))
     }, [query])
 
-    console.log(readTrip)
+   
     return (
     <Grid className={classes.main}>
         {readTrip.trip 

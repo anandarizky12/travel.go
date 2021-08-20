@@ -8,6 +8,9 @@ import {
     CREATE_TRIP, 
     CREATE_TRIP_SUCCESS, 
     CREATE_TRIP_FAILED, 
+    EDIT_TRIP, 
+    EDIT_TRIP_SUCCESS, 
+    EDIT_TRIP_FAILED, 
     DELETE_TRIP,
     DELETE_TRIP_SUCCESS,
     DELETE_TRIP_FAILED,
@@ -119,6 +122,50 @@ export const createTrip = (trip) => async (dispatch, getState) => {
     }
     dispatch({
       type: CREATE_TRIP_FAILED,
+      payload: message,
+    });
+    dispatch(sendAlert(error.response ? error.response.data.message : "Network Error", 3))
+  }
+}
+
+
+export const editTrip = (trip) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: EDIT_TRIP,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+
+    const { data } = await axios.put(`http://localhost:5000/api/trip/${trip._id}`, trip, config)
+  
+    dispatch({
+      type: EDIT_TRIP_SUCCESS,
+      payload: data,
+    });
+    dispatch(sendAlert('Edit Trip Successfull', 1))
+  } catch (error) {
+    
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
+
+    dispatch({
+      type: EDIT_TRIP_FAILED,
       payload: message,
     });
     dispatch(sendAlert(error.response ? error.response.data.message : "Network Error", 3))

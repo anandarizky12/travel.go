@@ -11,7 +11,7 @@ import {
   userUpdateReducer,
 } from './reducers/user'
 import Alert from './reducers/alert'
-import { getTrip, createTrip, readOneTrip, deleteTrip } from './reducers/trip'
+import { getTrip, createTrip, readOneTrip, deleteTrip, editTrip } from './reducers/trip'
 
 
 
@@ -26,6 +26,7 @@ const reducer = combineReducers({
   createTrip,
   deleteTrip,
   readOneTrip,
+  editTrip,
   alert : Alert
 
 })

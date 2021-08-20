@@ -108,47 +108,48 @@ const deleteTrip = async (req, res) => {
 };
 
 
+
+
 const updateTrip = async (req,res) =>{
 
     try{
         const {id} = req.params;
         const trip = await tripModel.findById(id);
-        
-        if(trip){
 
-            trip.title = req.body.title;
-            trip.countryId = req.body.countryId;
-            trip.accomodation = req.body.accomodation;
-            trip.transportation = req.body.transportation;
-            trip.eat = req.body.eat;
-            trip.day = req.body.day;
-            trip.dateTrip = req.body.dateTrip;
-            trip.price = req.body.price;
-            trip.quota = req.body.quota;
-            trip.description  = req.body.description;
-            trip.image  = req.body.image;
-            trip.screen1  = req.body.screen1;
-            trip.screen2  = req.body.screen2;
-            trip.screen3  = req.body.screen2;
-            
-            const updatedTrip = await trip.save();
-       
-            if(updatedTrip){
-                return res.status(200)
-                          .send({message : "Data successfully updated!"});
-            }
+        if(trip)
+         {
+            trip.title = req.body.title
+            trip.countryId = req.body.countryId
+            trip.accomodation = req.body.accomodation
+            trip.transportation = req.body.transportation
+            trip.eat = req.body.eat
+            trip.day = req.body.day
+            trip.dateTrip = req.body.dateTrip
+            trip.price = req.body.price
+            trip.quota = req.body.quota
+            trip.description  = req.body.description
+            trip.image  = req.body.image
+            trip.screen1  = req.body.screen1
+            trip.screen2  = req.body.screen2
+            trip.screen3  = req.body.screen2
+
+            const updatedProduct = await trip.save();
+
+            return res.status(200)
+            .send({message : "Data successfully updated!", data : updatedProduct });
+         };
+
+            return res.status(400).send({message : "failed to update data possibly because of the id invalid"});
         }
 
-        return res.status(400).send({message : "failed to update data possibly because of the id invalid"});
-    
-    }catch(error){
+        catch(error){
 
-            console.log(error)
-            return res.status(500)
-                      .send({message : "failed to update data"});
+          console.log(error)
+          return res.status(500)
+                    .send({message : "failed to update data"});
+  }    
+}
 
-    }
-} 
 
 const createProductReview = async (req, res) => {
     const { rating, comment } = req.body

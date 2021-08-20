@@ -11,9 +11,9 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from '@material-ui/icons/Edit';
 import { formatString } from "../../src/formatter";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import { deleteTrip } from "../../actions/trip";
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import Confirmation from "../confirmation/Confirmation";
+import Router  from "next/router";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -48,12 +48,6 @@ export default function CustomizedTables({ dispatch, data, trip }) {
   const [Id, setId] = React.useState('');
 
   const deletedTrip = useSelector(state => state.deleteTrip);
- 
-
-  const handleOpen = (row) => {
-    setOpen(true);
-    setItem(row);
-  };
 
 
   const handleDelete = (id) => {
@@ -61,8 +55,12 @@ export default function CustomizedTables({ dispatch, data, trip }) {
         setOpen(true);
         setId(id);
         // handleCloseOk(id);
-  
+
   };
+
+  const handleEdit = (id) => {
+      Router.push(`/edittrip/${id}`);
+  }
 
   return (
     <>
@@ -102,7 +100,7 @@ export default function CustomizedTables({ dispatch, data, trip }) {
                   {e.countryId}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <IconButton onClick={() => alert("click")}>
+                  <IconButton onClick={() => handleEdit(e._id)}>
                     <EditIcon style={{ color: "#ffac33" }} />
                   </IconButton>
                   <IconButton onClick={() => handleDelete(e._id)}>
