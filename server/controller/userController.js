@@ -8,12 +8,13 @@ const sendUserData = (user, statusCode, res)=>{
     res.status(statusCode).send({
             success :true, token ,
             userData : {
+                         'id'       : user._id,
                          'username' : user.username,
                          'email'    : user.email,
                          'address'  : user.address,
                          'phone'    : user.phone,
                          'profile'  : user.profile,
-                         'admin'    : user.admin
+                         'admin'    : user.admin,
                         }
            
     });

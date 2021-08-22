@@ -5,6 +5,9 @@ import SubmitModal from "./SubmitModal";
 import Alert from "@material-ui/lab/Alert";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useDispatch } from 'react-redux';
+import { createOrder } from "../../actions/order";
+
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -39,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
   alert: {
     position: "absolute",
     width: "75.5%",
-    top: "10.5%",
+    top: "18.5%",
+    backgroundColor : "#ffcc80",
     left: "12.3%",
     [theme.breakpoints.down("sm")]: {
       width: "93.7%",
@@ -58,6 +62,7 @@ export default function SubmitButton({
   price,
   count,
   tripId,
+  item,
   status,
   files,
 }) {
@@ -69,30 +74,30 @@ export default function SubmitButton({
   const [isLoading, setIsLoading] = React.useState(false);
   const [errors, setErrors] = React.useState("");
   const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
 
-  const postTransaction = async () => {
+
+  const [order, setorder] = React.useState({
+    userId : user.id,
+    tripId: tripId,
+    counterQty : parseInt(count),
+    total: parseInt(price),
+    attachment: files,
+    status: status ,
+
+  })
+  const postTransaction = () => {
     setIsLoading(true);
     if (!files) {
       setIsLoading(false);
       setErrors("please upload your payment proof image");
-    }
-    // const url = `${process.env.server}/api/v1/transaction`;
-    const url = `http://localhost:5000/api/order`;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      return;
     };
-    await fetch(url, config)
-      .then((res) => res.json)
-      .then((data) => {
-        setOpen(true);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setErrors("Please chooose your transactions correctly");
-      });
+    console.log('ok')
+    return dispatch(createOrder(order));
+   
+   
+  
   };
 
   const onSubmit = (e) => {
@@ -101,18 +106,20 @@ export default function SubmitButton({
     postTransaction();
   
   };
-
+ 
   return (
     <>
-      {errors !== undefined && Object.keys(errors).length > 0 && (
+      {Object.keys(errors).length > 0 && (
         <Alert
-          severity="error"
+          severity="warning"
           className={classes.alert}
           onClose={() => setErrors("")}
         >
           {errors}
         </Alert>
       )}
+       
+     
       {booking && (
         <Button
           variant="contained"

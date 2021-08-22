@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonBooking({ price, count, tripId }) {
+export default function ButtonBooking({ price, count, tripId, item }) {
   const classes = useStyles();
   const router = useRouter();
   const [open, setOpen] = React.useState({
@@ -45,7 +45,7 @@ export default function ButtonBooking({ price, count, tripId }) {
         // asPath: `/book/${count}`,
       })
   };
-
+  console.log(item)
   return (
     <>
       <Button variant="contained" className={classes.button} onClick={onSubmit}>

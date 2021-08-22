@@ -354,7 +354,7 @@ export function CardTrip({ item, transaction, index }) {
   AOS.init({
     offset: 10,
   });
-
+ 
   return (
     <>
       <SubmitModal rest="rest" open={open} setOpen={setOpen} />
@@ -413,6 +413,7 @@ export function CardTransaction({
   const classes = useStyles();
   const [previewImage, setPreviewImage] = React.useState([]);
   const [files, setFiles] = React.useState(null);
+
   const onChange = (e) => {
     let file = e.target.files[0];
     let reader = new FileReader();
@@ -422,7 +423,9 @@ export function CardTransaction({
     };
     reader.readAsDataURL(file);
   };
-  console.log(item)
+
+  console.log(files)
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesXs = useMediaQuery(theme.breakpoints.down("xs"));
@@ -744,10 +747,11 @@ export function CardTransaction({
       {Object.keys(string).length > 0 && (
         <SubmitButton
           user={user}
+          item={item}
           price={price}
           count={count}
           files={files}
-          tripId={item.id}
+          tripId={item._id}
           status={status}
         />
      )} 

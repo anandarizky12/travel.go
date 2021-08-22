@@ -12,6 +12,7 @@ import {
 } from './reducers/user'
 import Alert from './reducers/alert'
 import { getTrip, createTrip, readOneTrip, deleteTrip, editTrip } from './reducers/trip'
+import { createOrder, getAllOrder  } from './reducers/order'
 
 
 
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   deleteTrip,
   readOneTrip,
   editTrip,
+  createOrder,
   alert : Alert
 
 })

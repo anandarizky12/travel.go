@@ -220,7 +220,7 @@ export default function Information({ item }) {
             <Divider style={{ height: 3 }} />
         </Grid>
         <Grid item xs={12} lg={12} align="right" style={{ marginTop: 35 }}>
-            <ButtonBooking price={price} count={count} tripId={item._id} />
+            <ButtonBooking item={item} price={price} count={count} tripId={item._id} />
         </Grid>
       </Grid>
  

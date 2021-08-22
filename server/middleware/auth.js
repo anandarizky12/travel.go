@@ -13,7 +13,7 @@ const isAuth = async (req, res , next)=>{
         token = req.headers.authorization.split(' ')[1];
     }
 
-    console.log(req.headers)
+ 
     if(!token){
 
         return res.status(401).send({message : "Not authorized to acces this route"});
@@ -50,7 +50,7 @@ const isAuth = async (req, res , next)=>{
 
 const isAdmin = async (req, res, next) => {
   let header, token;
-  console.log("is Admin")
+
   if (
     !(header = req.header("Authorization")) ||
     !(token = header.replace("Bearer ", ""))
@@ -68,7 +68,7 @@ const isAdmin = async (req, res, next) => {
       .status(400)
       .send({ status: 400, message: "invalid operation, You Are Not an admin" });
     }
-    console.log('try mantap')
+  
     next();
   } catch (err) {
     console.log(err)

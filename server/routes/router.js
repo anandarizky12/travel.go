@@ -20,6 +20,7 @@ const {
 const {
     createOrder, 
     getOrderById, 
+    getAllOrder,
     updateOrderToPaid 
 } = require('../controller/orderController');
 
@@ -50,7 +51,8 @@ router.delete('/trip/:id', isAdmin, deleteTrip);
 router.put('/trip/:id', isAdmin, updateTrip);
 
 //order 
-router.post('/order', createOrder);
+router.post('/order', isAuth, createOrder);
+router.get('/order', isAdmin, getAllOrder);
 router.get('/order/:id', getOrderById);
 router.patch('/order/:id', updateOrderToPaid);
 
