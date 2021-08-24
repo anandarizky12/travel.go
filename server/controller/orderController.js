@@ -61,13 +61,17 @@ const getAllOrder = async (req,res) => {
 
 const createOrder = async (req,res) =>{
 
+  const { attachment } = req.files;
+  const attachmentName = attachment.name;
+  await attachment.mv(`./Payment-Image/${attachmentName}`);
+  
     try{
         const {
             counterQty,
             total,
             status,
             tripId,
-            attachment,
+            // attachment,
             userId
         } = req.body;
 
@@ -75,14 +79,14 @@ const createOrder = async (req,res) =>{
             res.status(401).send({message : "No order Items"});
         }
         
-        console.log(req.body.attachment)
+      
         const order = new orderModel({
         
             counterQty,
             total,
             user : req.user._id,
             status,
-            attachment,
+            attachment : attachmentName,
             trip : tripId,
             tripId,
             userId,
@@ -120,29 +124,33 @@ const getOrderById = async (req, res) => {
 
 
 const updateOrderToPaid = async (req, res) => {
-    
-    
-    const order = await orderModel.findById(req.params.id)
-  
-    if (order) {
-      order.isPaid = true
-      order.paidAt = Date.now()
-      order.paymentResult = {
-        id: req.body.id,
-        status: req.body.status,
-        update_time: req.body.update_time,
-        email_address: req.body.payer.email_address,
-      }
-  
-      const updatedOrder = await order.save()
-  
-      res.json(updatedOrder)
-    } else {
-      res.status(404)
-      throw new Error('Order not found')
-    }
-  };
+  try {
+    const id = req.params.id;
+    const { status } = req.body;
 
+    const order = await orderModel.findById(id);
+    
+    console.log(req.body)
+    if(!order){
+      res.status(404).send({
+        status: 404,
+        message: "ID Not Found",
+      });
+    }
+
+    order.status = status; 
+    const updatedStatus = await order.save();
+    
+    res.status(200).send({
+      status: 200,
+      message: "update transaction success",
+      data: updatedStatus,
+    });
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ status: 500, message: "update transaction failed" });
+  }
+  };
 
 
   module.exports = {createOrder, getOrderById, updateOrderToPaid, getAllOrder };

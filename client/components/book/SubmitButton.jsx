@@ -75,8 +75,8 @@ export default function SubmitButton({
   const [errors, setErrors] = React.useState("");
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-
-
+   
+   
   const [order, setorder] = React.useState({
     userId : user.id,
     tripId: tripId,
@@ -85,7 +85,8 @@ export default function SubmitButton({
     attachment: files,
     status: status ,
 
-  })
+  });
+
   const postTransaction = () => {
     setIsLoading(true);
     if (!files) {
@@ -93,12 +94,27 @@ export default function SubmitButton({
       setErrors("please upload your payment proof image");
       return;
     };
-    console.log('ok')
-    return dispatch(createOrder(order));
+
+    const formData = new FormData()
+    formData.append('attachment', files)
+    formData.append('counterQty', parseInt(count))
+    formData.append('userId', user.id)
+    formData.append('tripId',  tripId)
+    formData.append('total', parseInt(price))
+    formData.append('status', status)
+  
+    console.log(formData)
+    return dispatch(createOrder(formData));
    
    
   
   };
+
+  React.useEffect(()=>{
+
+    setorder((prev) => ({ ...prev, attachment : files }));
+
+  },[files])
 
   const onSubmit = (e) => {
   
@@ -106,7 +122,7 @@ export default function SubmitButton({
     postTransaction();
   
   };
- 
+
   return (
     <>
       {Object.keys(errors).length > 0 && (

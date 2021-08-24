@@ -7,14 +7,18 @@ import {
     CREATE_ORDER_SUCCESS,
     CREATE_ORDER_FAILED,
   
-  } from "../../actions/actions_type/actions_type_trip"
+    UPDATE_ORDER,
+    UPDATE_ORDER_SUCCESS,
+    UPDATE_ORDER_FAILED,
+  
+  } from "../../actions/actions_type/actions_type_order"
   
   export const getAllOrder = (state = {}, action) => {
       switch (action.type) {
         case GET_ALL_ORDER:
           return { loading: true }
         case GET_ALL_ORDER_SUCCESS:
-          return { loading: false, ALL_ORDER: action.payload }
+          return { loading: false, allorder: action.payload }
         case GET_ALL_ORDER_FAILED:
           return { loading: false, error: action.payload }
         default:
@@ -56,6 +60,20 @@ import {
       case READ_ONE_TRIP_SUCCESS:
         return { loading: false, trip: action.payload }
       case READ_ONE_TRIP_FAILED:
+        return { loading: false, error: action.payload }
+      default:
+        return state;
+    }
+  }
+  
+    
+  export const updateOrder = (state = {}, action) => {
+    switch (action.type) {
+      case UPDATE_ORDER:
+        return { loading: true }
+      case UPDATE_ORDER_SUCCESS:
+        return { loading: false, order: action.payload }
+      case UPDATE_ORDER_FAILED:
         return { loading: false, error: action.payload }
       default:
         return state;

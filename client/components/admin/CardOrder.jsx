@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import SubmitModal from "./SubmitModal";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import {
@@ -25,7 +24,7 @@ import InsertPhotoIcon from "@material-ui/icons/InsertPhoto";
 import dynamic from "next/dynamic";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useRouter } from "next/router";
-import SubmitButton from "./SubmitButton";
+
 
 const useStyles = makeStyles((theme) => ({
   cardTrip: {
@@ -357,7 +356,7 @@ export function CardTrip({ item, transaction, index }) {
  
   return (
     <>
-      <SubmitModal rest="rest" open={open} setOpen={setOpen} />
+   
       <Card
         data-aos="slide-up"
         data-aos-duration="950"
@@ -742,17 +741,6 @@ export function CardTransaction({
           </Grid>
         </Grid>
       </Card>
-      {Object.keys(string).length > 0 && (
-        <SubmitButton
-          user={user}
-          item={item}
-          price={price}
-          count={count}
-          files={files}
-          tripId={item._id}
-          status={status}
-        />
-     )} 
     </>
   );
 }

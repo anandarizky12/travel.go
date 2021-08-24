@@ -2,7 +2,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-
 import {
   userLoginReducer,
   userRegisterReducer,
@@ -12,7 +11,7 @@ import {
 } from './reducers/user'
 import Alert from './reducers/alert'
 import { getTrip, createTrip, readOneTrip, deleteTrip, editTrip } from './reducers/trip'
-import { createOrder, getAllOrder  } from './reducers/order'
+import { createOrder, getAllOrder, updateOrder  } from './reducers/order'
 
 
 
@@ -28,6 +27,8 @@ const reducer = combineReducers({
   deleteTrip,
   readOneTrip,
   editTrip,
+  getAllOrder,
+  updateOrder,
   createOrder,
   alert : Alert
 

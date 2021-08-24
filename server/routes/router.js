@@ -54,6 +54,6 @@ router.put('/trip/:id', isAdmin, updateTrip);
 router.post('/order', isAuth, createOrder);
 router.get('/order', isAdmin, getAllOrder);
 router.get('/order/:id', getOrderById);
-router.patch('/order/:id', updateOrderToPaid);
+router.put('/order/:id', isAdmin, updateOrderToPaid);
 
 module.exports = router;

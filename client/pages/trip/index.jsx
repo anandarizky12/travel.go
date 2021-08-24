@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouter } from "next/router";
+import Router  from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography, Button, CircularProgress } from "@material-ui/core";
 import {useDispatch, useSelector} from 'react-redux';
@@ -63,20 +63,16 @@ const useStyles = makeStyles((theme) => ({
 export default function addtrip() {
 
   const classes = useStyles();
-  const router = useRouter();
   const dispatch = useDispatch();
   const trip = useSelector(state => state.getTrip);
   const user = useSelector(state => state.userLogin);
+  const { userInfo } = user;
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
-  
-    if(user.userData){
-      if (user.userData.admin !== true) {
-        router.push("/");
+      if (userInfo.userData.admin !== true) {
+        Router.push("/");
       }
-   }
-  
 }, [user]);
   
   React.useEffect(() => {
