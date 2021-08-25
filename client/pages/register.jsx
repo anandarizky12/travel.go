@@ -12,6 +12,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useDispatch, useSelector } from 'react-redux'
+import { register } from '../actions/user';
+import MyAlert from '../components/alert/Alert';
+import Router  from "next/router";
+
 
 function Copyright() {
   return (
@@ -48,9 +53,39 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const [state, setState] = React.useState({
+    username : "",
+    email : '',
+    password : ''
+  })
+  const userLogin = useSelector((state)=>state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  const handleInput = (event) =>{
+    const { name,value } = event.target;
+    setState((prev)=>({
+      ...prev, 
+       [name] : value
+    }))
+  };
+
+  React.useEffect(()=>{
+    if (userInfo) {
+      Router.push('/')
+    }
+  },[userInfo]);
+
+
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      dispatch(register(state.username, state.email, state.password))
+  }
 
   return (
     <Container component="main" maxWidth="xs">
+        <MyAlert/>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -59,29 +94,19 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={(e)=>handleSubmit(e)} className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                autoComplete="username"
+                name="username"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="UserName"
+                label="Username"
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                onChange={(e)=>handleInput(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -93,6 +118,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e)=>handleInput(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -105,6 +131,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e)=>handleInput(e)}
               />
             </Grid>
           </Grid>
@@ -117,7 +144,7 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
-          <Grid container justifyContent="flex-end">
+          <Grid container justifyContent="flex-start">
             <Grid item>
               <Link href="#" variant="body2">
                 Already have an account? Sign in

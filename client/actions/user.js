@@ -85,11 +85,18 @@ export const logout = () => (dispatch) => {
   document.location.href = '/login'
 }
 
-export const register = (name, email, password) => async (dispatch) => {
+export const register = (username, email, password) => async (dispatch) => {
+
+
   try {
     dispatch({
       type: REGISTER_USER,
     })
+
+    
+  if(!username || !email || !password){
+    return dispatch(sendAlert('Please fill the Blank Field', 2));
+  };
 
     const config = {
       headers: {
@@ -98,8 +105,8 @@ export const register = (name, email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      '/api/users',
-      { name, email, password },
+      'http://127.0.0.1:5000/api/register',
+      { username, email, password },
       config
     )
 
@@ -111,9 +118,11 @@ export const register = (name, email, password) => async (dispatch) => {
     dispatch({
       type: LOGIN_SUCCESS,
       payload: data,
-    })
+    });
 
-    localStorage.setItem('userInfo', JSON.stringify(data))
+    dispatch(sendAlert('Account Create Successfully', 1));
+    localStorage.setItem('userInfo', JSON.stringify(data));
+
   } catch (error) {
     dispatch({
       type: REGISTER_FAILED,
@@ -121,7 +130,8 @@ export const register = (name, email, password) => async (dispatch) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
-    })
+    });
+    dispatch(sendAlert(error.response ? error.response.data.message : "Network Error", 3))
   }
 }
 

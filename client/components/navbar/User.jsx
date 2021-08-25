@@ -13,7 +13,7 @@ import {
   Divider,
   Box,
 } from "@material-ui/core";
-
+import Link from "../../src/Link";
 
 function randomColor(string) {
   return "#f" + string.slice(1, 6);
@@ -49,7 +49,13 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "500",
     color: "black",
     [theme.breakpoints.down("md")]: {
-      color: "white",
+      color: "gray",
+      marginLeft: 5,
+      fontSize: 14,
+      fontFamily : 'poppins',
+      fontWeight: "500",
+      
+
     },
   },
   icon: { marginLeft: 20 },
@@ -66,7 +72,25 @@ const useStyles = makeStyles((theme) => ({
       height: 35,
       // position: "absolute",
     },
+    [theme.breakpoints.down("xs")]: {
+      width: 30,
+      height: 30,
+      // position: "absolute",
+    },
    
+  },
+  paper : {
+      width: 220,
+      marginTop: "3%",
+      [theme.breakpoints.down("md")]: {
+        width: 125,
+        height : 200
+      },
+  },
+  menuItem : {
+    [theme.breakpoints.down("md")]: {
+      height : 5,
+    }
   },
   iconButton:{
     width : "7px",
@@ -86,7 +110,8 @@ export default function UserMenu({ user, logout, drawerState }) {
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
-    }
+    };
+
     setOpen(false);
   };
 
@@ -154,23 +179,18 @@ export default function UserMenu({ user, logout, drawerState }) {
                 placement === "bottom" ? "center top" : "center bottom",
             }}
           >
-            <Paper
-              style={{
-                width: 220,
-                marginTop: "3%",
-              }}
-            >
+            <Paper className={classes.paper} >
               <Box variant="div" className={classes.arrow} />
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   autoFocusItem={open}
                   id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
+                  onKeyDown = {handleListKeyDown}
                 >
                   {user.role === "Admin" ? (
                     <Box variant="div">
                       <MenuItem
-                        component={null}
+                        component={Link}
                         href="/trip"
                         onClick={handleClose}
                         style={{ marginTop: 5 }}
@@ -183,7 +203,7 @@ export default function UserMenu({ user, logout, drawerState }) {
                         <span className={classes.menu}>Trip</span>
                       </MenuItem>
                       <Divider
-                        style={{ height: 3, marginTop: 15, marginBottom: 10 }}
+                        style={{ height: 3, marginTop: 10, marginBottom: 10 }}
                       />
                       <MenuItem onClick={handleLogout}>
                         <img
@@ -196,19 +216,20 @@ export default function UserMenu({ user, logout, drawerState }) {
                     </Box>
                   ) : (
                     <Box variant="div">
+                      <MenuItem>
+                        <span className={classes.menu}>-</span>
+                      </MenuItem>
                       <MenuItem
-                        component={null}
+                        component={Link}
                         href={`/profile`}
+                        className={classes.menuItem}
                         onClick={handleClose}
-                        style={{
-                          marginTop: 10,
-                        }}
                       >
                         <img src="/user.png" className={classes.icon} alt="" />{" "}
                         <span className={classes.menu}>Profile</span>
                       </MenuItem>
                       <MenuItem
-                        component={null}
+                        component={Link}
                         href={`/pay/`}
                         onClick={handleClose}
                       >
@@ -234,58 +255,7 @@ export default function UserMenu({ user, logout, drawerState }) {
           </Collapse>
         )}
       </Popper>
-      <Paper className={classes.menuMobileWrapper}>
-        <ClickAwayListener onClickAway={handleClose}>
-          <MenuList
-            autoFocusItem={open}
-            id="menu-list-grow"
-            onKeyDown={handleListKeyDown}
-          >
-            {user.admin === true ? (
-              <Box variant="div">
-                <MenuItem
-                  component={null}
-                  href="/trip"
-                  className={classes.menuItem}
-                  onClick={handleClose}
-                >
-                  <img src="/journey.png" alt="" />{" "}
-                  <span className={classes.menu}>Trip</span>
-                </MenuItem>
-                <MenuItem className={classes.menuItem} onClick={handleLogout}>
-                  <img src="/logout.png" alt="" />{" "}
-                  <span className={classes.menu}>Logout</span>
-                </MenuItem>
-              </Box>
-            ) : (
-              <Box variant="div">
-                <MenuItem
-                  component={null}
-                  href={`/profile`}
-                  className={classes.menuItem}
-                  onClick={handleClose}
-                >
-                  <img src="/user.png" alt="" />{" "}
-                  <span className={classes.menu}>Profile</span>
-                </MenuItem>
-                <MenuItem
-                  component={null}
-                  href={`/pay`}
-                  className={classes.menuItem}
-                  onClick={handleClose}
-                >
-                  <img src="/bill.png" alt="" />{" "}
-                  <span className={classes.menu}>Pay</span>
-                </MenuItem>
-                <MenuItem className={classes.menuItem} onClick={handleLogout}>
-                  <img src="/logout.png" alt="" />{" "}
-                  <span className={classes.menu}>Logout</span>
-                </MenuItem>
-              </Box>
-            )}
-          </MenuList>
-        </ClickAwayListener>
-      </Paper>
+    
     </div>
   );
 }

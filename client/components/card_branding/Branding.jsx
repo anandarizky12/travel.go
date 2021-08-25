@@ -6,7 +6,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import CachedIcon from '@material-ui/icons/Cached';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
 
     root:{
         display : 'flex',
@@ -23,20 +23,36 @@ const useStyles = makeStyles({
     },
     icon:{
         fontSize : '140px',
-        color : '#757575'
+        color : '#757575',
+        [theme.breakpoints.down("xs")]: {
+            fontSize : '100px',
+       }
     },
     card:{
         display : 'flex',
         alignItems : 'center',
         justifyContent : 'space-around',
         width : '55%',
-        marginTop : '20px'
+        marginTop : '20px',
+        [theme.breakpoints.down("xs")]: {
+            width : '80%',
+      }
     },
     title:{
         fontSize : '20px',
-        fontWeight : 500
+        fontWeight : 500,
+        [theme.breakpoints.down("xs")]: {
+            fontSize : '17px',
+            fontWeight : 500,
+       }
+    },
+    subtitle : {
+        [theme.breakpoints.down("xs")]: {
+            fontSize : '12px',
+            fontWeight : 500,
+       }
     }
-})
+}));
 
 function Branding() {
 
@@ -53,7 +69,7 @@ function Branding() {
                     <Typography className={classes.title}>
                         Best Price Guarantee
                     </Typography>
-                    <Typography>
+                    <Typography className={classes.subtitle}>
                         A small river named Duren flows by their place and supplies
                     </Typography>
                 </Grid>
@@ -63,7 +79,7 @@ function Branding() {
                     <Typography className={classes.title}>
                         Best In The Dream
                     </Typography>
-                    <Typography>
+                    <Typography className={classes.subtitle}>
                         A small river named Duren flows by their place and supplies
                     </Typography>
                 </Grid>
@@ -75,7 +91,7 @@ function Branding() {
                     <Typography className={classes.title}>
                         Just Rettle Around The World
                     </Typography>
-                    <Typography>
+                    <Typography className={classes.subtitle}>
                         A small river named Duren flows by their place and supplies
                     </Typography>
                 </Grid>
@@ -85,7 +101,7 @@ function Branding() {
                     <Typography className={classes.title}>
                         Enjoyable Trip Guarantee
                     </Typography>
-                    <Typography>
+                    <Typography className={classes.subtitle}>
                         A small river named Duren flows by their place and supplies
                     </Typography>
                 </Grid>

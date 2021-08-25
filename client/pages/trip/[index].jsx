@@ -7,7 +7,7 @@ import Information from '../../components/trip/InformationTrip';
 import Content from '../../components/trip/Content';
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from '@material-ui/core';
-import Reviews from '../../components/trip/Reviews';
+import Reviews from '../../components/review/Reviews';
 
 
 function Book() {

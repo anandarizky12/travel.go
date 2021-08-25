@@ -15,6 +15,7 @@ import Router  from "next/router";
 import { Grid } from '@material-ui/core';
 import { useLoaded } from '../../utils/hook';
 import UserMenu from './User';
+import HomeIcon from '@material-ui/icons/Home';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -32,23 +33,30 @@ function HideOnScroll(props) {
 
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
  
     appBar: {
 
-        height: 116,
+        height: 70,
    
     },
     top:{
         display : 'flex',
         flexDirection : 'row',
         justifyContent : 'space-around',
+        [theme.breakpoints.down("xs")]: {
+          justifyContent : 'space-between',
+        }
       
     },
     bottom:{
         display : 'flex',
         justifyContent : 'center',
-        height : 4
+        height : 4,
+        [theme.breakpoints.down("xs")]: {
+          display : 'flex',
+          justifyContent : 'space-around',
+        }
     },
     ul:{
         display: 'flex',
@@ -58,8 +66,24 @@ const useStyles = makeStyles({
         width : '30%',
         fontWeight : 'light',
         color : '#757575',
+        [theme.breakpoints.down("sm")]: {
+          display : 'none'
+        }
       
     },
+    ulIcons:{
+      display: 'flex',
+      flexDirection : 'row',
+      justifyContent : 'space-between',
+      height : 30,
+      width : '70%',
+      fontWeight : 'light',
+      color : '#757575',
+      [theme.breakpoints.up("md")]: {
+        display : 'none'
+      }
+    
+  },
     searchIcon :{
       display : 'flex',
       flexDirection : 'row',
@@ -78,6 +102,12 @@ const useStyles = makeStyles({
     },
     logo : {
       fontFamily: "Poppins",
+      [theme.breakpoints.down("xs")]: {
+        fontSize : 25,
+      },
+      '&:hover':{
+        cursor : 'pointer'
+      }
     },
     user:{
       marginLeft : '10px',
@@ -101,7 +131,7 @@ const useStyles = makeStyles({
       }
     }
 
-  });
+  }));
   
 
 
@@ -135,10 +165,10 @@ export default function Navbar(props) {
       <HideOnScroll {...props}>
         <AppBar className ={classes.appBar}>
           <Toolbar className={classes.top}>
-              <Typography className={classes.logo} variant="h3">TRAVEL.go</Typography>
+              <Typography onClick={()=>Router.push('/')} className={classes.logo} variant="h3">TRAVEL.go</Typography>
               <Grid className = {classes.icons}> 
                     {/* Search Bar Drawer one pack*/}
-                    <SearchBar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer}/>
+                    <SearchBar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} drawerState="" />
                     {userInfo && loaded 
                      ? 
                     //  <Grid onClick={()=>Router.push('/profile')} className={classes.user}>
@@ -156,14 +186,20 @@ export default function Navbar(props) {
               </Grid>
           </Toolbar>
           
-          <Toolbar className={classes.bottom}>
+          {/* <Toolbar className={classes.bottom}>
+                <div className={classes.ulIcons}>
+                      <HomeIcon className={classes.navIcon}/>
+                      <HomeIcon className={classes.navIcon}/>
+                      <HomeIcon className={classes.navIcon}/>
+                      <HomeIcon className={classes.navIcon}/>
+                </div>
                 <div className={classes.ul}>
                     <Typography className={classes.nav} onClick={()=>Router.push('/')} variant="subtitle1">Home</Typography>
                     <Typography className={classes.nav} onClick={()=>Router.push('/profile')} variant="subtitle1">Profile</Typography>
                     <Typography className={classes.nav} variant="subtitle1">Transaction</Typography>
                     <Typography className={classes.nav} variant="subtitle1">Order</Typography>
                 </div>
-          </Toolbar>
+          </Toolbar> */}
        
         
         </AppBar>

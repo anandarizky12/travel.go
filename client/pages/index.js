@@ -6,24 +6,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import Admin from '../components/admin/Admin';
 
 export default function Home() {
-  
-  const dispatch = useDispatch();
+
   const user = useSelector(state => state.userLogin);
   const { userInfo } = user;
 
-  console.log(userInfo)
-
   return (        
  
-    <div style={{ marginTop : '40px' }} >
+    <div style={{ marginTop : '5px' }} >
        {userInfo && userInfo.userData.admin !== true ? 
-        <>
+        <div>
            <Jumbotron/>
            <Branding/>
            <Content/>
-        </>
+        </div>
         :
-            <Admin/> 
+             <Admin/> 
        }
        
     </div>  

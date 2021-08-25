@@ -8,7 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { TextField } from '@material-ui/core';
 import { useRouter } from 'next/router';
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
 
   list: {
     width: 250,
@@ -18,6 +18,9 @@ const useStyles = makeStyles({
   },
   logo : {
     fontFamily: "Poppins",
+    [theme.breakpoints.down("xs")]: {
+        display : 'none'
+    }
   },
   searchIcon :{
     display : 'flex',
@@ -34,7 +37,9 @@ const useStyles = makeStyles({
     padding : '30px',
     display : 'flex',
     alignItems : 'center',
-    justifyContent : 'center'
+    justifyContent : 'center',
+    
+    
   },
   iconsx : {
     fontSize : 34,
@@ -42,13 +47,20 @@ const useStyles = makeStyles({
     '&:hover':{
         cursor : 'pointer',
         color : 'gray'
+    },
+    [theme.breakpoints.down("xs")]: {
+     fontSize : 20
     }
+    
   },
   textfield : {
     width : '40%',
     fontFamily: "Poppins",
+    [theme.breakpoints.down("xs")]: {
+      width : '80%',
+    }
   }
-});
+}));
 
 export default function SearchBar({openDrawer , setOpenDrawer}) {
   
@@ -56,7 +68,7 @@ export default function SearchBar({openDrawer , setOpenDrawer}) {
   const router = useRouter();
   const [value, setvalue] = useState('');
   const toggleDrawer = (anchor, open) => (event) => {
-    console.log(event)
+
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }

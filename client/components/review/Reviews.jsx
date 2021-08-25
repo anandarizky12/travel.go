@@ -6,6 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import PersonIcon from '@material-ui/icons/Person';
 import { Button } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
+import ModalCreateReview from './ModalCreateReview';
+import CardReview from './CardReview';
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -32,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     },
     root : {
         display : 'flex',
-        flexDirection : 'column'
+        flexDirection : 'column',
+        marginTop : '20px'
     },
     main : {
         display : 'flex',
@@ -45,7 +48,15 @@ const useStyles = makeStyles((theme) => ({
     button : {
         fontSize : 12,
         marginTop : '10px',
-        color : '#757575'
+        color : '#757575',
+        height : '50px',
+        border : "1px solid #bdbdbd"
+    },
+    review : {
+      display : 'flex',
+      width : '100%',
+      marginTop : '25px',
+      justifyContent : 'space-between'
     }
   
   }));
@@ -54,27 +65,34 @@ export default function Reviews() {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(2);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <div>
       <Grid className={classes.root}>
 
-        <Typography variant='h5'>Reviews</Typography>
-       
-        <Grid className={classes.main}>
-           {/* <Typography className={classes.header} component="legend">Reviews</Typography> */}
-            <Typography className={classes.ratingValue} variant="h2">4.0</Typography>
-            <Rating
-            name="simple-controlled"
-            value={value}
-            className={classes.rating}
-            readOnly 
-            size = 'normal'
-            />
-            <Typography variant="subtitle2" className={classes.total} >Total &nbsp; <PersonIcon className={classes.icon}/> 275 </Typography>
-        </Grid>
-        <Button className={classes.button} > <CreateIcon  className={classes.icon}/>  Create Review </Button>
+        <Typography variant='h4'>Reviews</Typography>
 
+        <Grid className={classes.review}>
+            <Grid className={classes.main}>
+                <Typography className={classes.ratingValue} variant="h2">4.0</Typography>
+                <Rating
+                name="simple-controlled"
+                value={value}
+                className={classes.rating}
+                readOnly 
+                size = 'normal'
+                />
+                <Typography variant="subtitle2" className={classes.total} >Total &nbsp; <PersonIcon className={classes.icon}/> 275 </Typography>
+            </Grid>
+            <Button onClick={handleClickOpen} className={classes.button} ><CreateIcon className={classes.icon}/>Create Review</Button>
+        </Grid>
+      <ModalCreateReview open={open} setOpen={setOpen} />
+      <CardReview/>
       </Grid>
     </div>
   );

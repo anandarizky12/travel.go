@@ -2,9 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-const image = 'https://images.unsplash.com/photo-1624104416015-f0ef71c7800a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1502&q=80';
 const image2 = 'https://images.unsplash.com/photo-1496131567027-f594499b5c8b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1490&q=80'
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
 
   
 
@@ -21,18 +20,26 @@ const useStyles = makeStyles({
     content : {
         display : 'flex',
         flexDirection : 'column',
-        width : '40%',
+        width : '85%',
         alignItems  : 'center'
     },
     text1 : {
         color : 'white',
         fontFamily: "Poppins",
-        fontWeight : 'semibold'
+        fontWeight : 'semibold',
+        [theme.breakpoints.down("xs")]: {
+                fontSize : 22,
+                fontWeight : 200,
+          }
     },
     text2 : {
         color : 'white',
         fontFamily: "Montserrat",
-        fontWeight : 500
+        fontWeight : 500,
+        [theme.breakpoints.down("xs")]: {
+            fontSize : 25,
+            fontWeight : 400,
+      }
     },
     gradient : {
         width : '100%',
@@ -64,7 +71,7 @@ const useStyles = makeStyles({
             cursor : 'pointer'
           }
     }
-})
+}));
 
 function Jumbotron() {
 
@@ -74,7 +81,7 @@ function Jumbotron() {
             <div className={classes.gradient}>
                 <div className={classes.content} >
                     <Typography className={classes.text1} variant='h6'>
-                            Welcome To Travel Go
+                        Welcome To Travel Go
                     </Typography>
                     <Typography className = {classes.text2} variant='h4'>
                         Find Great Place With Us
