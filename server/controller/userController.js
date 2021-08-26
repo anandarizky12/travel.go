@@ -51,7 +51,8 @@ const register = async (req,res,next)=>{
 const login = async (req, res, next) => {
 
     const {email, password} = req.body;
-
+    
+    
     if(!email || !password){
         return  res.status(400).send({message : "Please Provide Email or Password"});
     };
@@ -62,7 +63,7 @@ const login = async (req, res, next) => {
         
 
         if(!user){
-
+            console.log("the email")
             return res.status(401).send({message : "The email and password you entered did not match our records. Please double-check and try again."});
 
         }

@@ -14,6 +14,9 @@ import {
     DELETE_TRIP,
     DELETE_TRIP_SUCCESS,
     DELETE_TRIP_FAILED,
+    REVIEW_TRIP,
+    REVIEW_TRIP_SUCCESS,
+    REVIEW_TRIP_FAILED,
 
 } from './actions_type/actions_type_trip';
 import axios from 'axios';
@@ -217,3 +220,45 @@ export const deleteTrip = ( id ) => async (dispatch, getState) => {
 }
 
 
+
+export const createProductReview = (tripId, review) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({
+      type: REVIEW_TRIP,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    await axios.post(`http://localhost:5000/api/${tripId}/reviews`, review, config)
+
+    dispatch({
+      type: REVIEW_TRIP_SUCCESS,
+      payload : 'Review Saved'
+    });
+  
+  } catch (error) {
+    console.log('babi')
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+      
+        dispatch({
+          type: REVIEW_TRIP_FAILED,
+          payload: message,
+        });
+
+  }
+}

@@ -31,7 +31,8 @@ const {
     readOneTrip,
     createTrip, 
     deleteTrip ,
-    updateTrip 
+    updateTrip ,
+    createProductReview
     } = require('../controller/tripController');
 
 
@@ -49,6 +50,7 @@ router.post('/trip', isAdmin, createTrip);
 router.get('/trip/:id', isAuth, readOneTrip);
 router.delete('/trip/:id', isAdmin, deleteTrip);
 router.put('/trip/:id', isAdmin, updateTrip);
+router.post('/:id/reviews' , isAuth , createProductReview);
 
 //order 
 router.post('/order', isAuth, createOrder);

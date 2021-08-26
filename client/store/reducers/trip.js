@@ -17,7 +17,13 @@ import {
  
   DELETE_TRIP,
   DELETE_TRIP_SUCCESS,
-  DELETE_TRIP_FAILED
+  DELETE_TRIP_FAILED,
+  
+  REVIEW_TRIP,
+  REVIEW_TRIP_SUCCESS,
+  REVIEW_TRIP_FAILED,
+
+
 } from "../../actions/actions_type/actions_type_trip"
 
 export const getTrip = (state = {}, action) => {
@@ -84,5 +90,23 @@ export const readOneTrip = (state = {}, action) => {
       return state;
   }
 }
+
+  
+export const reviewTrip = (state = {}, action) => {
+  switch (action.type) {
+    case REVIEW_TRIP:
+      return { loading: true }
+    case REVIEW_TRIP_SUCCESS:
+      return { loading: false, message: action.payload }
+    case REVIEW_TRIP_FAILED:
+      return { loading: false, message: action.payload }
+    default:
+      return state;
+  }
+};
+
+
+
+
 
   

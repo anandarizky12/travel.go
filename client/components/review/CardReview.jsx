@@ -55,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
     daterating : {
         display : 'flex',
         flexDirection : 'row',
+        alignItems : 'center',
+        justifyContent : 'center',
         color : 'gray',
         fontSize : 'bold',
         marginTop : '2px'
@@ -62,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   
   }));
 
-function CardReview() {
+function CardReview({ name, rating, date, comment }) {
 
     const classes = useStyles();
     const [value, setvalue] = React.useState(3)
@@ -71,18 +73,17 @@ function CardReview() {
         <Grid className={classes.root}>
             <Avatar/>
             <Grid style={{marginLeft : '12px'}}>
-                 <Typography variant="subtitle1" >Your Name Here</Typography>
+                 <Typography style={{marginLeft : '5px'}} variant="button" >{name}</Typography>
                 <div className={classes.daterating}>
                     <Rating
                         name="simple-controlled"
-                        value={value}
+                        value={rating}
                         readOnly 
                         size = 'normal'
                     />
-                    <Typography variant="caption" display="block" gutterBottom>17 agustus 1945</Typography>
+                    <Typography style={{marginLeft : '5px'}} variant="caption">{date.slice( 0,10 )}</Typography>
                 </div>
-                    <Typography style={{marginTop : '2px' ,textAlign : 'justify'}}>This movie☺😊😭i cried when we were at the movies with ma fam watching this last nov 28 2019 when the scene that olaf dissapered (the spelling :( ) and like he died. i cried while eating popcorn lol. i miss that so much , 
-                        this movie is not bad the best movie i've ever watch i wish there is a frozen</Typography>
+                    <Typography style={{marginTop : '2px' ,textAlign : 'justify' , marginLeft : '5px'}}>{comment}</Typography>
             </Grid>
            
         </Grid>

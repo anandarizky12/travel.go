@@ -32,7 +32,7 @@ const tripSchema = new mongoose.Schema(
         quota: { type: Number, default: 0, required: true },
         description : {type: String, required: true},
         image : {type:String, required: false},
-        review : [reviewSchema],
+        reviews : [reviewSchema],
         rating: {
             type: Number,
             required: true,

@@ -61,38 +61,45 @@ const useStyles = makeStyles((theme) => ({
   
   }));
 
-export default function Reviews() {
+export default function Reviews({ item }) {
 
   const classes = useStyles();
-  const [value, setValue] = React.useState(2);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
+  console.log(item)
   return (
     <div>
       <Grid className={classes.root}>
-
         <Typography variant='h4'>Reviews</Typography>
-
+       
         <Grid className={classes.review}>
             <Grid className={classes.main}>
-                <Typography className={classes.ratingValue} variant="h2">4.0</Typography>
+                <Typography className={classes.ratingValue} variant="h2">{Math.round(item.rating)}.0</Typography>
                 <Rating
                 name="simple-controlled"
-                value={value}
+                value={item.rating}
                 className={classes.rating}
                 readOnly 
                 size = 'normal'
                 />
-                <Typography variant="subtitle2" className={classes.total} >Total &nbsp; <PersonIcon className={classes.icon}/> 275 </Typography>
+                <Typography variant="subtitle2" className={classes.total} >Total &nbsp; <PersonIcon className={classes.icon}/> {item.numReviews} </Typography>
             </Grid>
             <Button onClick={handleClickOpen} className={classes.button} ><CreateIcon className={classes.icon}/>Create Review</Button>
         </Grid>
-      <ModalCreateReview open={open} setOpen={setOpen} />
-      <CardReview/>
+      <ModalCreateReview item={item} open={open} setOpen={setOpen} />
+      {item ? 
+        item.reviews.map((n)=>{
+            return  <CardReview name={n.name} rating={n.rating} date={n.createdAt} comment={n.comment} />
+        })
+        :
+        <p>Loading . . . </p>
+
+      }
+     
       </Grid>
     </div>
   );

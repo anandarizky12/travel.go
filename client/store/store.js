@@ -10,7 +10,7 @@ import {
   userUpdateReducer,
 } from './reducers/user'
 import Alert from './reducers/alert'
-import { getTrip, createTrip, readOneTrip, deleteTrip, editTrip } from './reducers/trip'
+import { getTrip, createTrip, readOneTrip, deleteTrip, editTrip, reviewTrip } from './reducers/trip'
 import { createOrder, getAllOrder, updateOrder  } from './reducers/order'
 
 
@@ -30,6 +30,7 @@ const reducer = combineReducers({
   getAllOrder,
   updateOrder,
   createOrder,
+  reviewTrip,
   alert : Alert
 
 })

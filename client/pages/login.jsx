@@ -87,7 +87,8 @@ export default function SignIn() {
 
   const submitHandler = (e) =>{
     e.preventDefault();
-    dispatch(login(state.email,state.password))
+    dispatch(login(state.email,state.password));
+  
   }
 
   return (

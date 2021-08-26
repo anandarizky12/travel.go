@@ -12,7 +12,6 @@ const MyAlert = () => {
 	const { id, message, typeToast } = useSelector((state) => state.alert);
 	const [open, setOpen] = useState(false);
 
-	console.log(id)
 	useEffect(() => {
 		id && setOpen(true);
 	}, [id]);

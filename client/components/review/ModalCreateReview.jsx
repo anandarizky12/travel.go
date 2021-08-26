@@ -10,6 +10,12 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { TextField } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
+import { useDispatch,useSelector } from 'react-redux';
+import { createProductReview } from '../../actions/trip';
+import Alert from '@material-ui/lab/Alert';
+
+
+
 
 const styles = (theme) => ({
   root: {
@@ -72,39 +78,66 @@ const TheRating = withStyles((theme) => ({
 
 
 
-export default function ModalCreateReview({ open, setOpen }) {
-
+export default function ModalCreateReview({item, open, setOpen }) {
+  const dispatch = useDispatch();
+  const reviewTrip = useSelector(state => state.reviewTrip)
+  const userLogin = useSelector(state => state.userLogin)
+  const [value, setValue] = React.useState({ comment : "" , rating : 0 })
+  const { userInfo } = userLogin;
+ 
   const handleClose = () => {
     setOpen(false);
   };
 
+  const handleChange = (e) => {
+
+    const {name, value} = e.target;
+
+    setValue((prev)=>({
+      ...prev,
+      [name] : value
+    }))
+
+  }
+
+  const saveReview = () => {
+      dispatch(createProductReview(item._id, value));
+      handleClose();
+  };
+
+
+  if(reviewTrip.message) return <Alert style={{marginTop : '10px'}} severity="info">{reviewTrip.message}</Alert>
+ 
   return (
     <div >
       <Dialog fullWidth onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+        
         <DialogTitle  id="customized-dialog-title" onClose={handleClose}>
-            Review By User
+            Review By {userInfo.userData.username}
         </DialogTitle>
         <DialogContent dividers>
           <TextField
             id="outlined-multiline-flexible"
             label="Your Comment Here"
             multiline
+            name='comment'
             fullWidth
             maxRows={4}
             // value={value}
-            // onChange={handleChange}
+            onChange={(e)=>handleChange(e)}
             variant="outlined"
         />
         </DialogContent>
             <TheRating
-                name="simple-controlled"
-                value={3}
+                defaultValue={parseInt(value.rating)}
+                name = "rating"
+                onChange={(e)=>handleChange(e)}
                 // className={classes.rating}
                 size = 'large'
              />
              
         <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
+          <Button autoFocus onClick={saveReview} color="primary">
             Save changes
           </Button>
         </DialogActions>

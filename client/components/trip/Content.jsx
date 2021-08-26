@@ -85,9 +85,9 @@ export default function Content({ item }) {
             {item.title}    
             &nbsp; 
           </Typography>
-            <Rating size="small" name="read-only" value={4} readOnly />
+            <Rating size="small" name="read-only" value={item.rating} readOnly />
             &nbsp; 
-           <Typography className={classes.reviews}>271 <PersonIcon className={classes.icons}/></Typography>
+           <Typography className={classes.reviews}> {item.numReviews} <PersonIcon className={classes.icons}/></Typography>
         </Grid>
         <Typography variant="body1" className={classes.subs}>
           {item?.countryId}

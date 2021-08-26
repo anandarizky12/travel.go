@@ -43,7 +43,7 @@ function Book() {
         <Grid className={classes.container}>
             <Content item={readTrip.trip.data}/>
             <Information item={readTrip.trip.data}/>  
-            <Reviews/>
+            <Reviews item={readTrip.trip.data}/>
         </Grid>
             : 
             <CircularProgress/>
