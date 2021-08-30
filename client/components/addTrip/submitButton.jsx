@@ -66,8 +66,26 @@ export default function SubmitButton({
   console.log(values,"celll")
 const fileUpload = async () => {
 
+    const data = new FormData()
+    data.append('image', values.imageTrip)
+    data.append("title", values.title);
+    data.append("countryId", parseInt(values.countryId));
+    data.append("accomodation", values.accomodation);
+    data.append("transportation", values.transportation);
+    data.append("eat", values.eat);
+    data.append("day", parseInt(values.day));
+    data.append("night", parseInt(values.night));
+    data.append("dateTrip", values.dateTrip);
+    data.append("quota", parseInt(values.quota));
+    data.append("price", parseInt(values.price));
+    data.append("description", values.description);
+    data.append("imageTrip", values.imageTrip);
+    data.append("screen1", values.screen1);
+    data.append("screen2", values.screen2);
+    data.append("screen3", values.screen3);
+
     setIsLoading(true);
-    dispatch(createTripProduct(values));
+    dispatch(createTripProduct(data));
     setIsLoading(false);
     
   };

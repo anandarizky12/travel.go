@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { CircularProgress, Typography } from '@material-ui/core';
 import NotFoundData from './NotFoundData';
 import { makeStyles } from '@material-ui/core/styles';
-import SearchCard from './SearchCard';
+import MediaCard from '../card/Card';
 
 const useStyles = makeStyles({
     
@@ -63,7 +63,9 @@ function SearchResult() {
                 setloading(false);
               }, 1500);
         }
-    }, [getTrip])
+    }, [getTrip]);
+
+    console.log(data)
   
     return (
         
@@ -71,7 +73,7 @@ function SearchResult() {
             <Typography variant="h6" className={classes.value}>Search Resut For "{value}"</Typography>
             <div className={classes.result}>
                     {data.length > 0 && !loading &&
-                        data.map(e=>{return<SearchCard title={e.title}/>}
+                        data.map((e,i)=>{ return  <MediaCard key={i} id={e._id} image={e.image} name={e.title} desc={e.description} price={e.price}/> }
                         )
                     }
             </div>

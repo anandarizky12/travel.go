@@ -40,9 +40,20 @@ const readOneTrip = async (req, res) => {
 
 const createTrip = async (req, res) => {
 
-
-    console.log(req.body)
     try{    
+
+        const { imageTrip } = req.files;
+        const imageTripName = imageTrip.name;
+        await imageTrip.mv(`./images/${imageTripName}`);
+        const { screen1 } = req.files;
+        const { screen2 } = req.files;
+        const { screen3 } = req.files;
+        const screen1Name = screen1.name;
+        const screen2Name = screen2.name;
+        const screen3Name = screen3.name;
+        await screen1.mv(`./images/${screen1Name}`);
+        await screen2.mv(`./images/${screen2Name}`);
+        await screen3.mv(`./images/${screen3Name}`);
 
         const trip = new tripModel({
         
@@ -56,10 +67,10 @@ const createTrip = async (req, res) => {
             price: req.body.price,
             quota: req.body.quota,
             description : req.body.description,
-            image: "imageTripName.jpg",
-            screen1: "imageTripName.jpg",
-            screen2: "imageTripName.jpg",
-            screen3: "imageTripName.jpg",
+            image: imageTripName,
+            screen1: screen1Name,
+            screen2: screen2Name,
+            screen3: screen3Name,
     
           });
 
@@ -113,8 +124,23 @@ const deleteTrip = async (req, res) => {
 const updateTrip = async (req,res) =>{
 
     try{
+
         const {id} = req.params;
         const trip = await tripModel.findById(id);
+
+
+        const { imageTrip } = req.files;
+        const imageTripName = imageTrip.name;
+        await imageTrip.mv(`./images/${imageTripName}`);
+        const { screen1 } = req.files;
+        const { screen2 } = req.files;
+        const { screen3 } = req.files;
+        const screen1Name = screen1.name;
+        const screen2Name = screen2.name;
+        const screen3Name = screen3.name;
+        await screen1.mv(`./images/${screen1Name}`);
+        await screen2.mv(`./images/${screen2Name}`);
+        await screen3.mv(`./images/${screen3Name}`);
 
         if(trip)
          {
@@ -128,10 +154,10 @@ const updateTrip = async (req,res) =>{
             trip.price = req.body.price
             trip.quota = req.body.quota
             trip.description  = req.body.description
-            trip.image  = req.body.image
-            trip.screen1  = req.body.screen1
-            trip.screen2  = req.body.screen2
-            trip.screen3  = req.body.screen2
+            trip.image  = imageTripName
+            trip.screen1  = screen1Name
+            trip.screen2  = screen2Name
+            trip.screen3  = screen3Name
 
             const updatedProduct = await trip.save();
 

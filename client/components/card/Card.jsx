@@ -51,13 +51,14 @@ export default function MediaCard({id, name, desc, price, image}) {
   
   const router = useRouter();
   const classes = useStyles();
-
+ 
+  console.log(image)
   return (
     <div onClick={()=>  router.push(`/trip/${id}`)} className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={image}
+          image={`http://localhost:5000/images/${image}`}
           title={name}
         />
 

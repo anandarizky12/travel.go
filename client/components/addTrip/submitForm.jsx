@@ -89,6 +89,7 @@ export default function SubmitForm({ form, values, setValues }) {
     reader.readAsDataURL(file);
   };
 
+  console.log(values)
   return (
     <>
       <Grid item xs={11} sm={10}>

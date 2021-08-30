@@ -92,7 +92,8 @@ export const readOneTrip = (id) => async (dispatch, getState) => {
     }
 };
 
-export const createTrip = (trip) => async (dispatch, getState) => {
+export const createTrip = (image) => async (dispatch, getState) => {
+  console.log(image)
   try {
     dispatch({
       type: CREATE_TRIP,
@@ -104,11 +105,12 @@ export const createTrip = (trip) => async (dispatch, getState) => {
 
     const config = {
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
 
-    const { data } = await axios.post(`http://localhost:5000/api/trip`, trip, config)
+    const { data } = await axios.post(`http://localhost:5000/api/trip`,image, config)
  
     dispatch({
       type: CREATE_TRIP_SUCCESS,
@@ -116,6 +118,7 @@ export const createTrip = (trip) => async (dispatch, getState) => {
     });
     dispatch(sendAlert('Create Trip Successfull', 1))
   } catch (error) {
+    console.log(error)
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
@@ -132,12 +135,13 @@ export const createTrip = (trip) => async (dispatch, getState) => {
 }
 
 
-export const editTrip = (trip) => async (dispatch, getState) => {
+export const editTrip = (id, trip) => async (dispatch, getState) => {
   try {
     dispatch({
       type: EDIT_TRIP,
     })
 
+    console.log(id)
     const {
       userLogin: { userInfo },
     } = getState()
@@ -150,7 +154,7 @@ export const editTrip = (trip) => async (dispatch, getState) => {
     }
 
 
-    const { data } = await axios.put(`http://localhost:5000/api/trip/${trip._id}`, trip, config)
+    const { data } = await axios.put(`http://localhost:5000/api/trip/${id}`, trip, config)
   
     dispatch({
       type: EDIT_TRIP_SUCCESS,

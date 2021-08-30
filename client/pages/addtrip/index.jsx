@@ -20,7 +20,7 @@ export default function addtrip() {
    
       <div style={{ minHeight: "81.9vh", marginTop : '70px' }}>
            <MyAlert/>
-        <AddTrip />
+           <AddTrip />
       </div>
  
   );
