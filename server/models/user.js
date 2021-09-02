@@ -23,8 +23,8 @@ const userSchema = new mongoose.Schema(
             selected : false,
         },
         address : { type: String, default : "-", required: false },
-        phone : { type : Number, default : null },
-        profile : {type : String, required : false},
+        phone : { type : String, default : null },
+        profile : {type : String, required : false, default : null},
         admin: { type: Boolean, default: false, required: true }
 
     }, { timestamps: {} }

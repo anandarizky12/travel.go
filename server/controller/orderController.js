@@ -122,8 +122,24 @@ const getOrderById = async (req, res) => {
   };
 
 
+const getMyOrder = async ( req, res ) => {
+  
+  try{
+      const order = await orderModel.find({user : req.user._id}).
+                    populate({ path: 'user', select: 'username email phone address profile' }).
+                    populate({ path: 'trip', populate : { path : 'trip' }});
+
+      return res.status(200).send({message : 'Get order success', data : order})
+  
+    }catch(err){
+      console.log(err)
+      return res.status(400).send({error : 'Failed to get order'})
+  }
+
+}
 
 const updateOrderToPaid = async (req, res) => {
+  
   try {
     const id = req.params.id;
     const { status } = req.body;
@@ -147,10 +163,10 @@ const updateOrderToPaid = async (req, res) => {
       data: updatedStatus,
     });
   } catch (err) {
-    console.log(err)
+  
     res.status(500).send({ status: 500, message: "update transaction failed" });
   }
   };
 
 
-  module.exports = {createOrder, getOrderById, updateOrderToPaid, getAllOrder };
+  module.exports = {createOrder, getOrderById, updateOrderToPaid, getAllOrder, getMyOrder };

@@ -1,9 +1,9 @@
 import { CircularProgress } from '@material-ui/core';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import CardProfile from '../../components/profile/CardProfile';
+import Profile from '../../components/profile';
 
-function Profile() {
+function MainProfile() {
     const dispatch = useDispatch();
     const userLogin = useSelector((state) => state.userLogin)
 
@@ -11,15 +11,11 @@ function Profile() {
 
     console.log(userInfo);
     return (
-        <div  style={{marginTop : '50px' }} >
+        <div  style={{marginTop : '5px' }} >
             {userInfo ?
             <div>
-                <CardProfile 
-                    username={userInfo.userData.username} 
-                    email={userInfo.userData.email} 
-                    phone={userInfo.userData.phone} 
-                    address={userInfo.userData.address} 
-                    image={'null'}
+                <Profile 
+                  user={userInfo.userData}
                 />
             </div>
             :
@@ -29,4 +25,4 @@ function Profile() {
     )
 }
 
-export default Profile;
+export default MainProfile;

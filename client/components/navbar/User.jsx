@@ -144,6 +144,7 @@ export default function UserMenu({ user, logout, drawerState }) {
 
   const classes = useStyles();
 
+  
   return (
     <div className={classes.root}>
       <IconButton
@@ -155,7 +156,7 @@ export default function UserMenu({ user, logout, drawerState }) {
       >
         <Avatar
           className={classes.avatar}
-          src={null}
+          src={`http://localhost:5000/images/${user.profile}`}
           style={{
             backgroundColor: randomColor(user.phone ? user.phone : "pink"),
           }}

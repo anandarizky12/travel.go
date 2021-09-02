@@ -11,7 +11,7 @@ import {
 } from './reducers/user'
 import Alert from './reducers/alert'
 import { getTrip, createTrip, readOneTrip, deleteTrip, editTrip, reviewTrip } from './reducers/trip'
-import { createOrder, getAllOrder, updateOrder  } from './reducers/order'
+import { createOrder, getAllOrder, updateOrder, myOrder } from './reducers/order'
 
 
 
@@ -27,6 +27,7 @@ const reducer = combineReducers({
   deleteTrip,
   readOneTrip,
   editTrip,
+  myOrder,
   getAllOrder,
   updateOrder,
   createOrder,
@@ -34,10 +35,6 @@ const reducer = combineReducers({
   alert : Alert
 
 })
-
-
-
-
 
 let userInfoFromStorage;
 if (typeof window !== 'undefined'){

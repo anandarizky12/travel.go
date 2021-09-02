@@ -21,7 +21,8 @@ const {
     createOrder, 
     getOrderById, 
     getAllOrder,
-    updateOrderToPaid 
+    updateOrderToPaid,
+    getMyOrder,
 } = require('../controller/orderController');
 
 
@@ -42,7 +43,7 @@ router.post('/login',login);
 
 //user routes 
 router.get('/user/:id', isAuth, getUser);
-router.patch('/user/:id', updateUser);
+router.put('/user/update', updateUser);
 
 //trip
 router.get('/trip', getTrip);
@@ -54,6 +55,7 @@ router.post('/:id/reviews' , isAuth , createProductReview);
 
 //order 
 router.post('/order', isAuth, createOrder);
+router.get('/myorders', isAuth, getMyOrder);
 router.get('/order', isAdmin, getAllOrder);
 router.get('/order/:id', getOrderById);
 router.put('/order/:id', isAdmin, updateOrderToPaid);

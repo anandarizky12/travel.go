@@ -50,7 +50,7 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     )
-
+    console.log(data)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: data,
@@ -173,6 +173,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 }
 
 export const updateUserProfile = (user) => async (dispatch, getState) => {
+  
   try {
     dispatch({
       type: UPDATE_USER_DATA,
@@ -189,7 +190,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.put(`/api/users/profile`, user, config)
+    const { data } = await axios.put(`http://localhost:5000/api/user/update`, user, config)
 
     dispatch({
       type: UPDATE_USER_DATA_SUCCESS,
@@ -199,7 +200,9 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       type: LOGIN_SUCCESS,
       payload: data,
     })
-    localStorage.setItem('userInfo', JSON.stringify(data))
+    localStorage.setItem('userInfo', JSON.stringify(data));
+
+
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -215,41 +218,3 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
   }
 }
 
-export const updateUser = (user) => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: UPDATE_USER_DATA,
-    })
-
-    const {
-      userLogin: { userInfo },
-    } = getState()
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    }
-
-    const { data } = await axios.patch(`/api/user/${user._id}`, user, config)
-
-    dispatch({ type: UPDATE_USER_DATA_SUCCESS })
-
-    dispatch({ type: UPDATE_USER_DATA_SUCCESS, payload: data })
-
-    // dispatch({ type: USER_DETAILS_RESET })
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message
-    if (message === 'Not authorized, token failed') {
-      dispatch(logout())
-    }
-    dispatch({
-      type: UPDATE_USER_DATA_FAILED,
-      payload: message,
-    })
-  }
-}

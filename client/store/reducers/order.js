@@ -3,6 +3,10 @@ import {
     GET_ALL_ORDER_FAILED, 
     GET_ALL_ORDER_SUCCESS,
    
+    GET_MY_ORDER, 
+    GET_MY_ORDER_FAILED, 
+    GET_MY_ORDER_SUCCESS,
+   
     CREATE_ORDER,
     CREATE_ORDER_SUCCESS,
     CREATE_ORDER_FAILED,
@@ -74,6 +78,20 @@ import {
       case UPDATE_ORDER_SUCCESS:
         return { loading: false, order: action.payload }
       case UPDATE_ORDER_FAILED:
+        return { loading: false, error: action.payload }
+      default:
+        return state;
+    }
+  }
+
+
+  export const myOrder = (state = {}, action) => {
+    switch (action.type) {
+      case GET_MY_ORDER:
+        return { loading: true }
+      case GET_MY_ORDER_SUCCESS:
+        return { loading: false, order: action.payload }
+      case GET_MY_ORDER_FAILED:
         return { loading: false, error: action.payload }
       default:
         return state;

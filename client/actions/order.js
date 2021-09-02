@@ -3,6 +3,10 @@ import {
     GET_ALL_ORDER_SUCCESS,
     GET_ALL_ORDER_FAILED,
   
+    GET_MY_ORDER,
+    GET_MY_ORDER_SUCCESS,
+    GET_MY_ORDER_FAILED,
+  
     CREATE_ORDER,
     CREATE_ORDER_SUCCESS,
     CREATE_ORDER_FAILED,
@@ -92,17 +96,50 @@ export const createOrder = (order) => async(dispatch, getState) =>{
     }
 }
 
+export const getMyOrder = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: GET_MY_ORDER,
+    })
 
+    const {
+      userLogin: { userInfo },
+    } = getState()
 
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
 
+    const { data } = await axios.get(`http://localhost:5000/api/myorders`, config)
+
+    dispatch({
+      type: GET_MY_ORDER_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    console.log(error)
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
+    dispatch({
+      type: GET_MY_ORDER_FAILED,
+      payload: message,
+    })
+  }
+}
 
 export const updateOrder = (status, id) => async (dispatch, getState) => {
     try {
       dispatch({
         type: UPDATE_ORDER,
       })
-      
-      console.log( JSON.stringify({ status }), id)
+
       const {
         userLogin: { userInfo },
       } = getState()

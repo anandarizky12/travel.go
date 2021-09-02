@@ -114,19 +114,24 @@ const updateUser = async (req, res) => {
 
     try{
         
-        const {id} = req.params;
+      
+       
+        const {id, username, email ,address, phone } = req.body;
 
-        const { profileImage } = req.file;
-        const { username, address, phone } = req.body;
-        const imageProfileName = profileImage.name;
-        await profileImage.mv(`./images/${imageProfileName}`);
-
-        const user = await userModel.findById(id);
+        console.log(req.body)
+        const user = await userModel.findById( id );
 
         if(user){
+        
+            if(req.files){
+                const { profile } = req.files;
+                const imageProfileName = profile.name;
+                await profile.mv(`./images/${imageProfileName}`);
 
-            user.profile = imageProfileName;
+                user.profile = imageProfileName
+            }
             user.username = username;
+            user.email = email;
             user.address = address;
             user.phone = phone;
 
@@ -134,7 +139,7 @@ const updateUser = async (req, res) => {
 
             if(updateUser){
 
-                res.status(200).send({message : "User Succesfully Updated"})
+                sendUserData(updateUser, 200, res);
 
             }   
 

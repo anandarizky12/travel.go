@@ -10,18 +10,33 @@ export default function Home() {
   const user = useSelector(state => state.userLogin);
   const { userInfo } = user;
 
+
+  console.log(userInfo);
+
   return (        
  
     <div style={{ marginTop : '5px' }} >
-       {userInfo && userInfo.userData.admin !== true ? 
-        <div>
-           <Jumbotron/>
-           <Branding/>
-           <Content/>
-        </div>
-        :
+     
+       {!userInfo &&
+               <div>
+                  <Jumbotron/>
+                  <Branding/>
+                  <Content/>
+               </div>
+       }
+       {userInfo && userInfo.userData.admin == true &&
              <Admin/> 
        }
+       {userInfo && userInfo.userData.admin !== true &&
+           <div>
+              <Jumbotron/>
+              <Branding/>
+              <Content/>
+           </div>
+       }
+
+       
+
        
     </div>  
   )
