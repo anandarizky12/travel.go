@@ -70,7 +70,6 @@ React.useEffect(() => {
   }
   }, [readTrip]);
 
-  console.log(tripId, readTrip,user, item)
   return (
     <Box variant="div" className={classes.root}>
       {blank ? (

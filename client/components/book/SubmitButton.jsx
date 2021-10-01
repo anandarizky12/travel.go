@@ -7,7 +7,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useDispatch } from 'react-redux';
 import { createOrder } from "../../actions/order";
-
+import Router  from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -102,11 +102,12 @@ export default function SubmitButton({
     formData.append('tripId',  tripId)
     formData.append('total', parseInt(price))
     formData.append('status', status)
-  
-    console.log(formData)
+    
+    alert("Payment Success");
+    Router.push('/');
     return dispatch(createOrder(formData));
    
-   
+    
   
   };
 

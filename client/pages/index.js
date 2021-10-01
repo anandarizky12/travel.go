@@ -10,13 +10,9 @@ export default function Home() {
   const user = useSelector(state => state.userLogin);
   const { userInfo } = user;
 
-
-  console.log(userInfo);
-
   return (        
  
     <div style={{ marginTop : '5px' }} >
-     
        {!userInfo &&
                <div>
                   <Jumbotron/>
@@ -34,10 +30,6 @@ export default function Home() {
               <Content/>
            </div>
        }
-
-       
-
-       
     </div>  
   )
 }

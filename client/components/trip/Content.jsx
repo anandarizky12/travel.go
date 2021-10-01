@@ -77,6 +77,7 @@ export default function Content({ item }) {
 //       AOS.init();
 //     }
 //   }, [AOS]);
+  console.log(item);
   return (
     <Grid container spacing={1}>
       <Grid item lg={12}>
@@ -97,8 +98,7 @@ export default function Content({ item }) {
         <img
           data-aos="fade-in"
           data-aos-duration="1000"
-          src="/bg.jpg"
-        //   src={`${url}/images/${item.image}`}
+          src={`http://localhost:5000/images/${item.image}`}
           className={classes.image}
           onLoad={() => console.log("load")}
           onEnded={() => console.log("end")}
@@ -108,21 +108,21 @@ export default function Content({ item }) {
       </Grid>
       <Grid item lg={4} className={classes.screenWrap}>
         <img
-          src="/bg-login.jpg"
+          src={`http://localhost:5000/images/${item.screen1}`}
           className={classes.screen}
           alt=""
         />
       </Grid>
       <Grid item xs={12} lg={4} className={classes.screenWrap}>
         <img
-          src="/bg-login.jpg"
+           src={`http://localhost:5000/images/${item.screen2}`}
           className={classes.screen}
           alt=""
         />
       </Grid>
       <Grid item lg={4} className={classes.screenWrap}>
         <img
-          src="/bg.jpg"
+            src={`http://localhost:5000/images/${item.screen3}`}
           className={classes.screen}
           alt=""
         />

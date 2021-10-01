@@ -6,8 +6,6 @@ function CreateReview() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.userLogin);
     const {userInfo} = user;
-
-    console.log(userInfo)
     return (
         <Grid>
             

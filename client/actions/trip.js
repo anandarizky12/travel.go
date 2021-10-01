@@ -21,7 +21,7 @@ import {
 } from './actions_type/actions_type_trip';
 import axios from 'axios';
 import { sendAlert } from './AlertActions';
-
+import { logout } from './user';
 
 
 export const getTrip = () => async (dispatch) => {
@@ -82,6 +82,8 @@ export const readOneTrip = (id) => async (dispatch, getState) => {
      
       
     } catch (error) {
+
+      logout();
       dispatch({
         type: READ_ONE_TRIP_FAILED,
         payload:
@@ -93,7 +95,7 @@ export const readOneTrip = (id) => async (dispatch, getState) => {
 };
 
 export const createTrip = (image) => async (dispatch, getState) => {
-  console.log(image)
+ 
   try {
     dispatch({
       type: CREATE_TRIP,
@@ -141,7 +143,6 @@ export const editTrip = (id, trip) => async (dispatch, getState) => {
       type: EDIT_TRIP,
     })
 
-    console.log(id)
     const {
       userLogin: { userInfo },
     } = getState()
@@ -253,7 +254,7 @@ export const createProductReview = (tripId, review) => async (
     });
   
   } catch (error) {
-    console.log('babi')
+  
     const message =
       error.response && error.response.data.message
         ? error.response.data.message

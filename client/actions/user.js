@@ -44,13 +44,13 @@ export const login = (email, password) => async (dispatch) => {
         'Content-Type': 'application/json',
       },
     }
-
+    
     const { data } = await axios.post(
       'http://127.0.0.1:5000/api/login',
       { email, password },
       config
     )
-    console.log(data)
+   
     dispatch({
       type: LOGIN_SUCCESS,
       payload: data,

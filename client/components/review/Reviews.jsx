@@ -70,7 +70,6 @@ export default function Reviews({ item }) {
     setOpen(true);
   };
 
-  console.log(item)
   return (
     <div>
       <Grid className={classes.root}>

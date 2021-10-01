@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import MediaCard from '../card/Card';
-import { CardMedia, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid} from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,14 +37,10 @@ function Content() {
     const dispatch = useDispatch();
     
     const getTrip = useSelector((state) => state.getTrip)
-
-
     useEffect(() => {
         dispatch(fetchTrip())
     }, [])
 
-    // const { userInfo } = getTrip;
-    console.log(getTrip.trip);
     return (
         <div className= {classes.root}>
             <Typography className={classes.text1}>Our Tour</Typography>

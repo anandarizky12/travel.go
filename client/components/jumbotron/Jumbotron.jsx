@@ -86,7 +86,7 @@ function Jumbotron() {
                     <Typography className = {classes.text2} variant='h4'>
                         Find Great Place With Us
                     </Typography>
-                    <div className = {classes.button}>Go</div>
+                    {/* <div className = {classes.button}>Go</div> */}
                 </div>
             </div>
         </div>

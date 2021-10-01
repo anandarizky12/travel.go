@@ -63,7 +63,7 @@ const login = async (req, res, next) => {
         
 
         if(!user){
-            console.log("the email")
+          
             return res.status(401).send({message : "The email and password you entered did not match our records. Please double-check and try again."});
 
         }
@@ -113,12 +113,9 @@ const getUser = async (req ,res ) => {
 const updateUser = async (req, res) => {
 
     try{
-        
-      
-       
+          
         const {id, username, email ,address, phone } = req.body;
 
-        console.log(req.body)
         const user = await userModel.findById( id );
 
         if(user){
