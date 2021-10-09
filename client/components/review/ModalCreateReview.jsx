@@ -14,9 +14,6 @@ import { useDispatch,useSelector } from 'react-redux';
 import { createProductReview } from '../../actions/trip';
 import Alert from '@material-ui/lab/Alert';
 
-
-
-
 const styles = (theme) => ({
   root: {
     margin: 0,

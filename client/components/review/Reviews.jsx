@@ -90,15 +90,15 @@ export default function Reviews({ item }) {
             <Button onClick={handleClickOpen} className={classes.button} ><CreateIcon className={classes.icon}/>Create Review</Button>
         </Grid>
       <ModalCreateReview item={item} open={open} setOpen={setOpen} />
+      
       {item ? 
         item.reviews.map((n)=>{
             return  <CardReview name={n.name} rating={n.rating} date={n.createdAt} comment={n.comment} />
         })
         :
         <p>Loading . . . </p>
-
       }
-     
+      
       </Grid>
     </div>
   );

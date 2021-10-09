@@ -5,8 +5,6 @@ import Typography from '@material-ui/core/Typography';
 const image2 = 'https://images.unsplash.com/photo-1496131567027-f594499b5c8b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1490&q=80'
 const useStyles = makeStyles((theme)=>({
 
-  
-
     root : {
         backgroundImage : `url(${image2})`,
         height : '70vh',
@@ -14,8 +12,6 @@ const useStyles = makeStyles((theme)=>({
         backgroundPosition : 'center',
         backgroundSize : 'cover',
         backgroundAttachment : 'fixed'
-     
-
     },
     content : {
         display : 'flex',
@@ -93,4 +89,4 @@ function Jumbotron() {
     )
 }
 
-export default Jumbotron
+export default Jumbotron;
