@@ -92,8 +92,8 @@ export default function Reviews({ item }) {
       <ModalCreateReview item={item} open={open} setOpen={setOpen} />
       
       {item ? 
-        item.reviews.map((n)=>{
-            return  <CardReview name={n.name} rating={n.rating} date={n.createdAt} comment={n.comment} />
+        item.reviews.map((n,i)=>{
+            return  <CardReview key={i} name={n.name} rating={n.rating} date={n.createdAt} comment={n.comment} />
         })
         :
         <p>Loading . . . </p>

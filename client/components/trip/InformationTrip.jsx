@@ -12,7 +12,7 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import ButtonBooking from "./ButtonBooking";
 import { formatDate, formatMoney } from "../../src/formatter";
-import Rating from '@material-ui/lab/Rating';
+
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
   body: {
     fontSize: 18,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: 14,
+    },
   },
   price: {
     fontSize: 24,
@@ -61,9 +64,9 @@ const useStyles = makeStyles((theme) => ({
     marginInline: 3,
     bottom: 3,
     [theme.breakpoints.down("xs")]: {
-      marginInline: 7,
-      width: 13,
-      height: 13,
+      marginInline: 2,
+      width: 8,
+      height: 8,
     },
   },
   countWrap: {
@@ -132,25 +135,26 @@ export default function Information({ item }) {
                 display: "flex",
                 justifyContent: "space-between",
                 width: "100%",
+                flexWrap : 'wrap',
             }}
             >
             {array.map((item, i) => (
                 <Box variant="div" key={i}>
-                <Typography variant="h6" className={classes.subTitle}>
-                    {item.title}
-                </Typography>
-                <Typography variant="h6" className={classes.body}>
-                    <img
-                    style={{ position: "relative", top: 4, marginRight: 10 }}
-                    src={item.icon}
-                    alt=""
-                    />
-                    {item.title === "Date Trip"
-                    ? formatDate(item.value)
-                    : item.title === "Duration"
-                    ? item.value.day + " Day " + item.value.night + " Night"
-                    : item.value}
-                </Typography>
+                  <Typography variant="h6" className={classes.subTitle}>
+                      {item.title}
+                  </Typography>
+                  <Typography variant="h6" className={classes.body}>
+                      <img
+                      style={{ position: "relative", top: 4, marginRight: 10 }}
+                      src={item.icon}
+                      alt=""
+                      />
+                      {item.title === "Date Trip"
+                      ? formatDate(item.value)
+                      : item.title === "Duration"
+                      ? item.value.day + " Day " 
+                      : item.value}
+                  </Typography>
                 </Box>
             ))}
             </Box>
@@ -170,7 +174,7 @@ export default function Information({ item }) {
                 {item.title === "Date Trip"
                     ? formatDate(item.value)
                     : item.title === "Duration"
-                    ? item.value.day + " Day " + item.value.night + " Night"
+                    ? item.value.day + " Day "
                     : item.value}
                 </Typography>
             </Grid>
@@ -198,7 +202,7 @@ export default function Information({ item }) {
         <Grid item xs={4} lg={6} align="right">
             <Typography variant="h6" className={classes.count}>
             <IconButton className={classes.button} onClick={onMinus}>
-                <RemoveIcon style={{ color: "white" }} />
+                <RemoveIcon  style={{ color: "white" }} />
             </IconButton>
             <span className={classes.countWrap}>{count}</span>
             <IconButton className={classes.button} onClick={onPlus}>

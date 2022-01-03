@@ -47,6 +47,7 @@ export default function CustomizedTables({ rows, dispatch }) {
     setOpen(true);
     setItem(row);
   };
+  console.log(rows);
   return (
     <>
       <TableContainer component={Paper}>
@@ -58,6 +59,7 @@ export default function CustomizedTables({ rows, dispatch }) {
               <StyledTableCell align="left">Trip</StyledTableCell>
               <StyledTableCell align="left">Proof Payment</StyledTableCell>
               <StyledTableCell align="left">Status</StyledTableCell>
+              <StyledTableCell align="left">Date</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </TableRow>
           </TableHead>
@@ -73,12 +75,13 @@ export default function CustomizedTables({ rows, dispatch }) {
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   <a
-                    href={`http://localhost:5000/ Payment-Image/${row.attachment}`}
-                    target="_blank"
+                    href={`http://localhost:5000/Payment-Image/${row.attachment}`}
+                 
                   >
                     {/* {formatString(row.attachment, 20)} */}{row.attachment}
                   </a>
                 </StyledTableCell>
+              
                 <StyledTableCell
                   align="left"
                   style={{
@@ -93,6 +96,9 @@ export default function CustomizedTables({ rows, dispatch }) {
                   {row.status.toLowerCase() === "waiting payment"
                     ? "pending"
                     : row.status}
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                    {row.createdAt}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <IconButton onClick={() => handleOpen(row)}>

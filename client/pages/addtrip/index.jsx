@@ -10,7 +10,7 @@ const AddTrip = dynamic(() => import("../../components/addtrip/formInput"), {
 });
 
 
-export default function addtrip() {
+export default function Addtrip() {
   
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin;

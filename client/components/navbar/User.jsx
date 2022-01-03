@@ -50,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     [theme.breakpoints.down("md")]: {
       color: "gray",
-      marginLeft: 5,
+      marginLeft: 0,
+      padding: "0px",
       fontSize: 14,
       fontFamily : 'poppins',
       fontWeight: "500",
@@ -58,7 +59,11 @@ const useStyles = makeStyles((theme) => ({
 
     },
   },
-  icon: { marginLeft: 20 },
+  icon: { 
+    marginLeft: 20,
+    filter : 'grayscale(100%)',
+   
+  },
   menuItem: {
     "&:hover": {
       backgroundColor: "#444",
@@ -88,9 +93,7 @@ const useStyles = makeStyles((theme) => ({
       },
   },
   menuItem : {
-    [theme.breakpoints.down("md")]: {
-      height : 5,
-    }
+   
   },
   iconButton:{
     width : "7px",
@@ -144,7 +147,7 @@ export default function UserMenu({ user, logout, drawerState }) {
 
   const classes = useStyles();
 
-  
+  console.log(user);
   return (
     <div className={classes.root}>
       <IconButton
@@ -188,16 +191,45 @@ export default function UserMenu({ user, logout, drawerState }) {
                   id="menu-list-grow"
                   onKeyDown = {handleListKeyDown}
                 >
-                  {user.role === "Admin" ? (
+                  {user.admin ? (
                     <Box variant="div">
                       <MenuItem
                         component={Link}
-                        href="/trip"
+                        href="/profile"
+                        className={classes.menuItem}
                         onClick={handleClose}
                         style={{ marginTop: 5 }}
                       >
                         <img
-                          src="/journey.png"
+                          src="https://raw.githubusercontent.com/anfedu/dewe_tour/master/client/public/user.png"
+                          className={classes.icon}
+                          alt=""
+                        />{" "}
+                        <span className={classes.menu}>Profile</span>
+                      </MenuItem>
+                      <MenuItem
+                        component={Link}
+                        href="/addtrip"
+                        className={classes.menuItem}
+                        onClick={handleClose}
+                        style={{ marginTop: 5 }}
+                      >
+                        <img
+                          src="https://raw.githubusercontent.com/anfedu/dewe_tour/master/client/public/journey.png"
+                          className={classes.icon}
+                          alt=""
+                        />{" "}
+                        <span className={classes.menu}>Add Trip</span>
+                      </MenuItem>
+                      <MenuItem
+                        component={Link}
+                        href="/trip"
+                        className={classes.menuItem}
+                        onClick={handleClose}
+                        style={{ marginTop: 5 }}
+                      >
+                        <img
+                          src="https://raw.githubusercontent.com/anfedu/dewe_tour/master/client/public/plane.png"
                           className={classes.icon}
                           alt=""
                         />{" "}
@@ -207,8 +239,8 @@ export default function UserMenu({ user, logout, drawerState }) {
                         style={{ height: 3, marginTop: 10, marginBottom: 10 }}
                       />
                       <MenuItem onClick={handleLogout}>
-                        <img
-                          src="/logout.png"
+                       <img
+                          src="https://raw.githubusercontent.com/anfedu/dewe_tour/master/client/public/logout.png"
                           className={classes.icon}
                           alt=""
                         />{" "}
@@ -216,33 +248,34 @@ export default function UserMenu({ user, logout, drawerState }) {
                       </MenuItem>
                     </Box>
                   ) : (
-                    <Box variant="div">
-                      <MenuItem>
-                        <span className={classes.menu}>-</span>
-                      </MenuItem>
+                    <Box className={classes.box} variant="div">
+                   
                       <MenuItem
                         component={Link}
                         href={`/profile`}
                         className={classes.menuItem}
                         onClick={handleClose}
                       >
-                        <img src="/user.png" className={classes.icon} alt="" />{" "}
+                        <img src="https://raw.githubusercontent.com/anfedu/dewe_tour/master/client/public/user.png" className={classes.icon} alt="" />{" "}
                         <span className={classes.menu}>Profile</span>
                       </MenuItem>
                       <MenuItem
                         component={Link}
-                        href={`/pay/`}
+                        href={`/order/`}
+                        className={classes.menuItem}
                         onClick={handleClose}
                       >
-                        <img src="/bill.png" className={classes.icon} alt="" />{" "}
-                        <span className={classes.menu}>Pay</span>
+                        <img src="https://raw.githubusercontent.com/anfedu/dewe_tour/master/client/public/bill.png" className={classes.icon} alt="" />{" "}
+                        <span className={classes.menu}>Your Order</span>
                       </MenuItem>
                       <Divider
                         style={{ height: 3, marginTop: 20, marginBottom: 10 }}
                       />
-                      <MenuItem onClick={handleLogout}>
+                      <MenuItem 
+                                className={classes.menuItem}
+                                onClick={handleLogout}>
                         <img
-                          src="/logout.png"
+                          src="https://raw.githubusercontent.com/anfedu/dewe_tour/master/client/public/logout.png"
                           className={classes.icon}
                           alt=""
                         />{" "}

@@ -197,7 +197,7 @@ export default function FormInput({ data }) {
     { id: 9, code: "MY", label: "Malaysia", phone: "60" },
   ];
 
-
+console.log(values)
   return (
     <div className={classes.root}>
       <Container>

@@ -53,10 +53,7 @@ export default function Profile({ user }) {
         <div className={classes.container1}>
             <CardProfile user={user} />
         </div>
-        <div className={classes.container}>
-            <Typography className={classes.title} variant="h4">Your Order</Typography>
-            <UserOrderTable />
-        </div>
+       
     </div>
   );
 }

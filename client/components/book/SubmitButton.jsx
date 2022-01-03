@@ -103,8 +103,7 @@ export default function SubmitButton({
     formData.append('total', parseInt(price))
     formData.append('status', status)
     
-    alert("Payment Success");
-    Router.push('/');
+  
     return dispatch(createOrder(formData));
    
     

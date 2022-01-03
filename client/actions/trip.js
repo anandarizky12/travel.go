@@ -162,6 +162,7 @@ export const editTrip = (id, trip) => async (dispatch, getState) => {
       payload: data,
     });
     dispatch(sendAlert('Edit Trip Successfull', 1))
+    window.location.reload();
   } catch (error) {
     
     const message =

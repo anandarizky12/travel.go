@@ -6,6 +6,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import CachedIcon from '@material-ui/icons/Cached';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 
+
 const useStyles = makeStyles((theme)=>({
 
     root:{
@@ -57,11 +58,11 @@ const useStyles = makeStyles((theme)=>({
 function Branding() {
 
     const classes = useStyles();
-
+ 
     return (
         <Grid className={classes.root}>
 
-            <Typography className={classes.text1}>Why Book With Travel.go?</Typography>
+            <Typography  className={classes.text1}>Why Book With Travel.go?</Typography>
 
            <Grid className={classes.card}>
                 <PaymentIcon className={classes.icon}/>

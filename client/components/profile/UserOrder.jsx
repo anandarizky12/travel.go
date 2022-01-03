@@ -37,7 +37,10 @@ const useStyles = makeStyles({
     minWidth: 700,
   },
   main : {
-      width : '95%'
+      width : '95%',
+      display : 'flex',
+      justifyContent : 'center',
+      alignItems : 'center',
   }
 });
 
@@ -54,7 +57,6 @@ React.useEffect(()=>{
 
 },[])
 
-  console.log(myOrder)
 
   return (
     <TableContainer className={classes.main} component={Paper}>

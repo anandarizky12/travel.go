@@ -37,7 +37,7 @@ function NotFoundData({ value }) {
     const classes = useStyles();
     return (
         <div className= {classes.root}>
-            <Typography className={classes.value}>Whoops! We didn't find any result for your search criteria</Typography>
+            <Typography className={classes.value}>Whoops! We didn &apos; t find any result for your search criteria</Typography>
         </div>
     )
 }

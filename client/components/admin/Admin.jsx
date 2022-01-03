@@ -8,17 +8,11 @@ import { getAllOrder as fetchOrder } from '../../actions/order';
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: "#E5E5E5",
-    padding: "50px 13vh 100px 13vh",
-    minHeight: "81.9vh",
-    [theme.breakpoints.down("md")]: {
-      minHeight: "82.99vh",
-      padding: "50px 3vh 100px 3vh",
-    },
+  body :{
+    margin : 10,
+    padding : 130,
     [theme.breakpoints.down("xs")]: {
-      minHeight: "87.1vh",
-      padding: "30px 1vh 70px 1vh",
+     padding : 0,
     },
   },
   button: {
@@ -53,17 +47,17 @@ export default function Admin() {
   }, []);
 
   console.log(getAllOrder);
-  if(!getAllOrder.allorder) return <p>Loading . . .</p>
+  // if(!getAllOrder.allorder) return <p>Loading . . .</p>
   return (
-    <Box variant="div" className={classes.root}>
+   <div className={classes.body}>
       <Typography variant="h3" className={classes.title}>
         Incoming Transaction
       </Typography>
-      {getAllOrder.loading ? (
+      {getAllOrder && !getAllOrder.allorder ? (
         <TableAdminSkeleton />
       ) : (
         <TableAdmin rows={getAllOrder.allorder.data} dispatch={dispatch} />
       )}
-    </Box>
+    </div>
   );
 }

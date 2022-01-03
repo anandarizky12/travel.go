@@ -38,6 +38,11 @@ const useStyles = makeStyles((theme)=>({
     appBar: {
 
         height: 70,
+        [theme.breakpoints.down("xs")]: {
+          display : 'flex',
+          justifyContent : 'center',
+         
+        }
    
     },
     top:{
@@ -46,6 +51,7 @@ const useStyles = makeStyles((theme)=>({
         justifyContent : 'space-around',
         [theme.breakpoints.down("xs")]: {
           justifyContent : 'space-between',
+          alignItems : 'center',
         }
       
     },

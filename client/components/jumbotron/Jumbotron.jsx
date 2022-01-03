@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import AOS from "aos";
 
 const image2 = 'https://images.unsplash.com/photo-1496131567027-f594499b5c8b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1490&q=80'
 const useStyles = makeStyles((theme)=>({
@@ -35,6 +36,7 @@ const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.down("xs")]: {
             fontSize : 25,
             fontWeight : 400,
+            textAlign : 'center'
       }
     },
     gradient : {
@@ -71,11 +73,18 @@ const useStyles = makeStyles((theme)=>({
 
 function Jumbotron() {
 
+    React.useEffect(()=>{
+        AOS.init({
+            duration : 1000
+        })
+    }
+    ,[])
+
     const classes = useStyles();
     return (
         <div className={classes.root}>
             <div className={classes.gradient}>
-                <div className={classes.content} >
+                <div   data-aos="fade-in" className={classes.content} >
                     <Typography className={classes.text1} variant='h6'>
                         Welcome To Travel Go
                     </Typography>

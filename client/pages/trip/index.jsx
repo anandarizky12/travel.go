@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 },
 }));
 
-export default function addtrip() {
+export default function Addtrip() {
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -97,7 +97,7 @@ export default function addtrip() {
                 </Grid>
                 <Grid item xs={6} lg={6} align="right">
                     <Button
-                        href="/addtrip"
+                        href="/A"
                         variant="contained"
                         className={classes.button}
                     >

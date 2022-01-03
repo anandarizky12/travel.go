@@ -39,18 +39,20 @@ function Content() {
     const getTrip = useSelector((state) => state.getTrip)
     useEffect(() => {
         dispatch(fetchTrip())
+     
     }, [])
 
+    console.log(getTrip)
     return (
         <div className= {classes.root}>
             <Typography className={classes.text1}>Our Tour</Typography>
-            <Grid className={classes.content}>            
+            <Grid  className={classes.content}>            
                 {getTrip.trip 
                 ?
                 getTrip.trip.map((e,i)=>{
-                    return <MediaCard key={i} id={e._id} image={e.image} name={e.title} desc={e.description} price={e.price}/>
+                    return <MediaCard   key={i} id={e._id} reviews = {e.reviews} Totalreviews = {e.numReviews} image={e.image} name={e.title} desc={e.description} price={e.price}/>
                 })
-                : <p>NO trip found</p>
+                : <p>No trip found</p>
             }
             </Grid>
         </div>

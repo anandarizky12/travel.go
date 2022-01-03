@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography } from "@material-ui/core";
-// import AOS from "aos";
+import AOS from "aos";
 import Rating from '@material-ui/lab/Rating';
 import PersonIcon from '@material-ui/icons/Person';
 
@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       fontSize: 30,
     },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 23,
+    },
+  
   },
   subs: {
     color: "#ababab",
@@ -28,24 +32,41 @@ const useStyles = makeStyles((theme) => ({
     height: 400,
     borderRadius: 7,
     [theme.breakpoints.down("sm")]: {
-      width: "89vw",
+      width: "100%",
     },
     [theme.breakpoints.down("xs")]: {
-      height: 230,
-      width: "95.5vw",
+      height: 180,
+      width: "100%",
     },
   },
   screen: {
-    width: 323,
+    width: 330,
     height: 163,
     borderRadius: 5,
     backgroundColor: "hsl(220, 20%, 90%)",
     animation: "loading 0.8s infinite alternate",
+
+    [theme.breakpoints.down("md")]: {
+      height: 400,
+      borderRadius: 7,
+      width: "100%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: 180,
+      borderRadius: 7,
+      width: "100%",
+    },
   },
   titleContainer : {
       display : 'flex',
       alignItems : 'center',
-      textAlign : 'center'
+      textAlign : 'center',
+      [theme.breakpoints.down("sm")]: {
+        textAlign : 'left',
+      },
+      [theme.breakpoints.down("xs")]: {
+        textAlign : 'left',
+      },
   },
   reviews:{
     fontFamily : 'poppins',
@@ -57,11 +78,6 @@ const useStyles = makeStyles((theme) => ({
   icons : {
     fontSize : '17px'
   },
-  screenWrap: {
-    [theme.breakpoints.down("md")]: {
-      display: "none",
-    },
-  },
   "@keyframes loading": {
     "0%": {
       backgroundColor: "hsl(220, 10%, 75%)",
@@ -72,11 +88,13 @@ const useStyles = makeStyles((theme) => ({
 export default function Content({ item }) {
   const classes = useStyles();
   const url = process.env.server;
-//   React.useEffect(() => {
-//     if (AOS) {
-//       AOS.init();
-//     }
-//   }, [AOS]);
+  React.useEffect(() => {
+    if (AOS) {
+      AOS.init({
+        once: true
+     });
+    }
+  }, [AOS]);
   console.log(item);
   return (
     <Grid container spacing={1}>
@@ -90,11 +108,11 @@ export default function Content({ item }) {
             &nbsp; 
            <Typography className={classes.reviews}> {item.numReviews} <PersonIcon className={classes.icons}/></Typography>
         </Grid>
-        <Typography variant="body1" className={classes.subs}>
+        {/* <Typography variant="body1" className={classes.subs}>
           {item?.countryId}
-        </Typography>
+        </Typography> */}
       </Grid>
-      <Grid item lg={12}>
+      <Grid item md={12} lg={12}>
         <img
           data-aos="fade-in"
           data-aos-duration="1000"
@@ -106,27 +124,38 @@ export default function Content({ item }) {
           alt=""
         />
       </Grid>
-      <Grid item lg={4} className={classes.screenWrap}>
-        <img
-          src={`http://localhost:5000/images/${item.screen1}`}
-          className={classes.screen}
-          alt=""
-        />
-      </Grid>
-      <Grid item xs={12} lg={4} className={classes.screenWrap}>
-        <img
-           src={`http://localhost:5000/images/${item.screen2}`}
-          className={classes.screen}
-          alt=""
-        />
-      </Grid>
-      <Grid item lg={4} className={classes.screenWrap}>
-        <img
-            src={`http://localhost:5000/images/${item.screen3}`}
-          className={classes.screen}
-          alt=""
-        />
-      </Grid>
+      {/* <div className={classes.master}> */}
+        <Grid item lg={4} md={12} sm={12} className={classes.screenWrap}>
+          <img
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            src={`http://localhost:5000/images/${item.screen1}`}
+            className={classes.screen}
+            alt=""
+          />
+        </Grid>
+        <Grid item lg={4} md={12} sm={12} className={classes.screenWrap}>
+          <img
+            data-aos="zoom-in"
+
+            data-aos-duration="1000"
+            src={`http://localhost:5000/images/${item.screen2}`}
+            className={classes.screen}
+            alt=""
+          />
+        </Grid>
+        <Grid item lg={4} md={12} sm={12} className={classes.screenWrap}>
+          <img
+            data-aos="zoom-in"
+
+            data-aos-duration="1000"
+              src={`http://localhost:5000/images/${item.screen3}`}
+            className={classes.screen}
+            alt=""
+          />
+        </Grid>
+      {/* </div> */}
+     
     </Grid>
   );
 }

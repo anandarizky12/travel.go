@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useRouter } from "next/router";
+import { formatMoney } from '../../src/Formatter';
+
 
 const useStyles = makeStyles({
   root: {
@@ -47,14 +49,20 @@ const useStyles = makeStyles({
   }
 });
 
-export default function MediaCard({id, name, desc, price, image}) {
+export default function MediaCard({id, name, Totalreviews, desc, reviews ,price, image}) {
   
   const router = useRouter();
   const classes = useStyles();
  
-  console.log(image)
+  const ratingVal = reviews.reduce((a,b)=>{
+      return a+b.rating
+  },0);
+
+  const rating =  ratingVal/reviews.length;
+
+
   return (
-    <div onClick={()=>  router.push(`/trip/${id}`)} className={classes.root}>
+    <div  onClick={()=>  router.push(`/trip/${id}`)} className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -68,11 +76,19 @@ export default function MediaCard({id, name, desc, price, image}) {
             </Typography>
 
             <div className={classes.rating}>
-                <div className={classes.ratingContent}>
-                    4.5/5.0
-                </div>
+              {Totalreviews > 0
+              ?
+              <div className={classes.ratingContent}>
+                {rating.toFixed(1)}/5.0
+              </div>
+              :
+              <div className={classes.ratingContent}>
+               - /5.0
+              </div>
+              }
+               
                 <Typography color="secondary" variant="subtitle2">
-                    from 150 user
+                    from {Totalreviews} user
                 </Typography>
             </div>
 
@@ -81,7 +97,8 @@ export default function MediaCard({id, name, desc, price, image}) {
                     from &nbsp;
                 </Typography>
                 <Typography size="small" color="secondary" >
-                89.000.000
+                  IDR. {formatMoney(price)}
+                  
                 </Typography>
             </div>
        </div>

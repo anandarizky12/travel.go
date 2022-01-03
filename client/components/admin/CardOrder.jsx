@@ -568,7 +568,7 @@ export function CardTransaction({
             >
               {attachment.length > 0 ? (
                 <img
-                  src={`${process.env.server}/images/${attachment}`}
+                  src={`http://localhost:5000/Images/${attachment}`}
                   className={classes.image}
                   alt=""
                 />

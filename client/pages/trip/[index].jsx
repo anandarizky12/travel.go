@@ -43,7 +43,7 @@ function Book() {
         }
     },[userInfo])
 
-   console.log(userInfo)
+
     return (
     <Grid className={classes.main}>
         {readTrip.trip 

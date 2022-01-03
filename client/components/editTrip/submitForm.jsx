@@ -2,6 +2,7 @@ import React, { useState, Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, IconButton } from "@material-ui/core";
 import dynamic from "next/dynamic";
+import Typography from "@material-ui/core/Typography";
 const SubmitButton = dynamic(() => import("./SubmitButton"), {
   ssr: false,
 });
@@ -156,7 +157,9 @@ export default function SubmitForm({ form, values, setValues }) {
           <input name="screen3" type="file" hidden />
         </IconButton>
       </Grid>
-      <Grid item xs={11} sm={10}></Grid>
+      <Grid item xs={11} sm={10}>
+        <Typography variant="subtitle" color="secondary" >Make Sure You Re Upload The Image If you Edit the data</Typography>
+      </Grid>
       <SubmitButton
         form={form}
         setValues={setValues}

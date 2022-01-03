@@ -114,6 +114,7 @@ export default function ModalLogin({ open, setOpen, item, rows }) {
     setLoading({ approve: false, cancel: false });
   };
 
+  console.log(item)
   return (
     <>
       <Dialog
@@ -128,7 +129,7 @@ export default function ModalLogin({ open, setOpen, item, rows }) {
       >
         {Object.keys(item).length > 0 && matches && (
           <img
-            src={`${process.env.server}/images/${item.attachment}`}
+            src={`http://localhost:5000/Payment-Image/${item.attachment}`}
             style={{ width: 164, height: 164 }}
             alt=""
           />

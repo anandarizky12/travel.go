@@ -84,6 +84,8 @@ export const createOrder = (order) => async(dispatch, getState) =>{
         });
         
         dispatch(sendAlert('Order Created', 1))
+        alert("Payment Success");
+        window.location.href = '/';
     } catch (error) {
         dispatch({
             type : CREATE_ORDER_FAILED,

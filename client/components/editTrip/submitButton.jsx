@@ -88,10 +88,7 @@ const fileUpload = async () => {
     setIsLoading(true);
     dispatch(editTrip(id, data));
     setIsLoading(false);
-    setTimeout(()=>{
-      location.reload();
-    },500);
-   
+    
   };
 
   const onSubmit = (e) => {

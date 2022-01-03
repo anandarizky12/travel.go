@@ -65,20 +65,29 @@ function SearchResult() {
         }
     }, [getTrip]);
 
-    console.log(data)
+
   
     return (
         
         <div className={classes.root} >
-            <Typography variant="h6" className={classes.value}>Search Resut For "{value}"</Typography>
+            <Typography variant="h6" className={classes.value}>Search Resut For &quot;{value}&quot;</Typography>
             <div className={classes.result}>
                     {data.length > 0 && !loading &&
-                        data.map((e,i)=>{ return  <MediaCard key={i} id={e._id} image={e.image} name={e.title} desc={e.description} price={e.price}/> }
+                        data.map((e,i)=>{ 
+                            return  <div  key={i} style ={ { marginRight : '10px' }}>
+                                        <MediaCard   id={e._id} reviews = {e.reviews} Totalreviews = {e.numReviews} image={e.image} name={e.title} desc={e.description} price={e.price}/> 
+                                    </div> 
+                      
+                        }
                         )
                     }
             </div>
         
-            {loading && <CircularProgress/>}
+            {loading && 
+             <div style={{width: "100%" ,textAlign : 'center' }}>
+                  <CircularProgress/>
+             </div>
+               }
             {data.length < 1 && !loading && 
                 <NotFoundData value={value}/>
             }

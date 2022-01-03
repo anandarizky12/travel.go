@@ -6,7 +6,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
     root : {
         width : '100%',
         height : 200,
@@ -20,7 +20,13 @@ const useStyle = makeStyles({
         bottom : 0
     },
     text1:{
-        marginBottom : '5px'
+        marginBottom : '5px',
+        [theme.breakpoints.down("sm")]: {
+           marginTop : '5px',
+          },
+          [theme.breakpoints.down("xs")]: {
+           marginTop : '5px',
+          },
     },
     icons:{
         marginTop : '5px',
@@ -33,7 +39,9 @@ const useStyle = makeStyles({
         display : 'flex',
         justifyContent : 'space-between',
         width : '50%',
-        marginLeft : '40px'
+        flexWrap : 'wrap',
+        marginLeft : '40px',
+       
     },
     copyright : {
         fontFamily: "Poppins",
@@ -41,8 +49,14 @@ const useStyle = makeStyles({
         fontSize : '12px',
         position : 'absolute',
         right : 40,
+        [theme.breakpoints.down("sm")]: {
+            display : 'none',
+          },
+          [theme.breakpoints.down("xs")]: {
+           display : 'none',
+          },
     }
-})
+}))
 
 function Footer() {
     const classes = useStyle();
