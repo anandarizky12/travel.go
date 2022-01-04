@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormInput() {
+export default function FormInputData() {
   const classes = useStyles();
   const form = useRef(null);
   const [errorType, setErrorType] = useState({
