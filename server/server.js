@@ -18,7 +18,6 @@ app.use("/Payment-Image", express.static("Payment-Image"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-const PORT = process.env.PORT
 const DB_URI = process.env.MONGODBURI;
 
 mongoose.connect(DB_URI, {
@@ -27,5 +26,6 @@ mongoose.connect(DB_URI, {
     useCreateIndex : true,
     useFindAndModify: false
 })
-.then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+.then(() => app.listen(process.env.PORT || 3000, function(){ console.log(`Server Running on Port: http://localhost:${PORT}`)}))
 .catch(error => console.log(error.message) )
+
