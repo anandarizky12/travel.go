@@ -116,11 +116,11 @@ export default function Content({ item }) {
         <img
           data-aos="fade-in"
           data-aos-duration="1000"
-          src={`http://localhost:5000/images/${item.image}`}
+          src={`https://travalgo-me.herokuapp.com/images/${item.image}`}
           className={classes.image}
-          onLoad={() => console.log("load")}
-          onEnded={() => console.log("end")}
-          onError={() => console.log("err")}
+          // onLoad={() => console.log("load")}
+          // onEnded={() => console.log("end")}
+          // onError={() => console.log("err")}
           alt=""
         />
       </Grid>
@@ -129,7 +129,7 @@ export default function Content({ item }) {
           <img
             data-aos="zoom-in"
             data-aos-duration="1000"
-            src={`http://localhost:5000/images/${item.screen1}`}
+            src={`https://travalgo-me.herokuapp.com/images/${item.screen1}`}
             className={classes.screen}
             alt=""
           />
@@ -139,7 +139,7 @@ export default function Content({ item }) {
             data-aos="zoom-in"
 
             data-aos-duration="1000"
-            src={`http://localhost:5000/images/${item.screen2}`}
+            src={`https://travalgo-me.herokuapp.com/images/${item.screen2}`}
             className={classes.screen}
             alt=""
           />
@@ -149,7 +149,7 @@ export default function Content({ item }) {
             data-aos="zoom-in"
 
             data-aos-duration="1000"
-              src={`http://localhost:5000/images/${item.screen3}`}
+              src={`https://travalgo-me.herokuapp.com/images/${item.screen3}`}
             className={classes.screen}
             alt=""
           />

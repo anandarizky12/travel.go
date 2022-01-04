@@ -37,7 +37,7 @@ export const getAllOrder = () => async(dispatch,getState) =>{
             },
           }
 
-        const { data } = await axios.get('http://127.0.0.1:5000/api/order', config);
+        const { data } = await axios.get('/api/order', config);
       
         dispatch({
             type :  GET_ALL_ORDER_SUCCESS,
@@ -75,7 +75,7 @@ export const createOrder = (order) => async(dispatch, getState) =>{
             },
           }
   
-        const { data } = await axios.post('http://127.0.0.1:5000/api/order', order, config);
+        const { data } = await axios.post('/api/order', order, config);
         
  
         dispatch({
@@ -114,7 +114,7 @@ export const getMyOrder = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.get(`http://localhost:5000/api/myorders`, config)
+    const { data } = await axios.get(`/api/myorders`, config)
 
     dispatch({
       type: GET_MY_ORDER_SUCCESS,
@@ -154,7 +154,7 @@ export const updateOrder = (status, id) => async (dispatch, getState) => {
       }
   
   
-      const { data } = await axios.put(`http://localhost:5000/api/order/${id}`,  JSON.stringify({ status }), config)
+      const { data } = await axios.put(`/api/order/${id}`,  JSON.stringify({ status }), config)
     
       dispatch({
         type: UPDATE_ORDER_SUCCESS,

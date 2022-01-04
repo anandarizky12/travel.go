@@ -6,7 +6,8 @@ const {
     register,
     login,
     getUser,
-    updateUser 
+    updateUser ,
+    checkAdmin
     } = require('../controller/userController');
 
 //user route
@@ -39,13 +40,14 @@ const {
 //auth user
 router.post('/register', register);
 router.post('/login',login);
-
+router.get('/isadmin', checkAdmin);
 //user routes 
 router.get('/user/:id', isAuth, getUser);
 router.put('/user/update', updateUser);
 
 //trip
 router.get('/trip', getTrip);
+
 router.post('/trip', isAdmin, createTrip);
 router.get('/trip/:id', isAuth, readOneTrip);
 router.delete('/trip/:id', isAdmin, deleteTrip);

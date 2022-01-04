@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from '@material-ui/core';
 import Reviews from '../../components/review/Reviews';
 import Router  from "next/router";
+import CardDetailSkeleton from '../../components/skeleton/DetailSkeleton';
 
 function Book() {
 
@@ -31,7 +32,12 @@ function Book() {
             marginTop : '65px',
             marginBottom : '45px'
           },
+          skeleton :{
+              display : 'flex',
+              flexDirection : 'column'
+          }
     });
+
     const classes = useStyles();
     useEffect(() => {
         dispatch(readOneTrip(query))
@@ -54,7 +60,10 @@ function Book() {
             <Reviews item={readTrip.trip.data}/>
         </Grid>
             : 
-            <CircularProgress/>
+        <Grid className={classes.skeleton} >
+
+            <CardDetailSkeleton/>
+        </Grid>
         }
     </Grid>
     )

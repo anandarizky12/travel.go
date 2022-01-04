@@ -47,7 +47,7 @@ export default function CustomizedTables({ rows, dispatch }) {
     setOpen(true);
     setItem(row);
   };
-  console.log(rows);
+
   return (
     <>
       <TableContainer component={Paper}>
@@ -75,7 +75,7 @@ export default function CustomizedTables({ rows, dispatch }) {
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   <a
-                    href={`http://localhost:5000/Payment-Image/${row.attachment}`}
+                    href={`https://travalgo-me.herokuapp.com/Payment-Image/${row.attachment}`}
                  
                   >
                     {/* {formatString(row.attachment, 20)} */}{row.attachment}

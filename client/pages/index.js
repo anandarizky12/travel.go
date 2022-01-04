@@ -22,20 +22,22 @@ export default function Home() {
  
     <div style={{ marginTop : '5px' }} >
      
-     
-       {userInfo && userInfo.userData.admin == true ?
+     {userInfo ?
+        userInfo.userData.admin == true ?
           <div >
             <Admin />
-            </div>
-            :
-            <div>
-            <Jumbotron/>
-            <Branding/>
-            <Content/>
-         </div>
-                
-       }
-      
+          </div>
+          :
+          <div>
+              <Jumbotron/>
+              <Branding/>
+              <Content/>
+          </div>
+     : 
+     <p>Loading</p>
+     }
+    
     </div>  
   )
 }
+

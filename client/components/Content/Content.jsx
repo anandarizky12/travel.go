@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Grid} from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTrip as fetchTrip } from '../../actions/trip';
+import CardTripSkeleton from '../skeleton/CardTripSkeleton';
 
 const useStyles = makeStyles({
     
@@ -39,10 +40,9 @@ function Content() {
     const getTrip = useSelector((state) => state.getTrip)
     useEffect(() => {
         dispatch(fetchTrip())
-     
     }, [])
 
-    console.log(getTrip)
+
     return (
         <div className= {classes.root}>
             <Typography className={classes.text1}>Our Tour</Typography>
@@ -52,7 +52,13 @@ function Content() {
                 getTrip.trip.map((e,i)=>{
                     return <MediaCard   key={i} id={e._id} reviews = {e.reviews} Totalreviews = {e.numReviews} image={e.image} name={e.title} desc={e.description} price={e.price}/>
                 })
-                : <p>No trip found</p>
+                :   <Grid container spacing={0}>
+                    {[1, 2, 3].map((item, i) => (
+                    <Grid item lg={4} md={6} sm={12} xs={12} key={i} align="center">
+                        <CardTripSkeleton />
+                    </Grid>
+                    ))}
+                </Grid>
             }
             </Grid>
         </div>

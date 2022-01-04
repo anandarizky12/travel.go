@@ -150,6 +150,20 @@ const updateUser = async (req, res) => {
 
 };
 
+const checkAdmin = async (req, res) => {
+    try{
+
+        user = req.user
+        console.log(user)
+        // res.status(200).json({
+        //     message: "get data User success",
+        //     data: user,
+        //     })
+    }catch(err){
+        console.log(err)
+    }
+}
 
 
-module.exports = {register, login, getUser, updateUser};
+
+module.exports = {register, login, getUser, updateUser, checkAdmin};

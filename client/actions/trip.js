@@ -31,7 +31,7 @@ export const getTrip = () => async (dispatch) => {
       });
 
       const { data } = await axios.get(
-        'http://127.0.0.1:5000/api/trip'
+        '/api/trip'
       )
   
       dispatch({
@@ -72,7 +72,7 @@ export const readOneTrip = (id) => async (dispatch, getState) => {
         },
       };
 
-      const { data } = await axios.get(`http://127.0.0.1:5000/api/trip/${id}`, config)
+      const { data } = await axios.get(`/api/trip/${id}`, config)
   
       dispatch({
         type: READ_ONE_TRIP_SUCCESS,
@@ -112,7 +112,7 @@ export const createTrip = (image) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`http://localhost:5000/api/trip`,image, config)
+    const { data } = await axios.post(`/api/trip`,image, config)
  
     dispatch({
       type: CREATE_TRIP_SUCCESS,
@@ -155,7 +155,7 @@ export const editTrip = (id, trip) => async (dispatch, getState) => {
     }
 
 
-    const { data } = await axios.put(`http://localhost:5000/api/trip/${id}`, trip, config)
+    const { data } = await axios.put(`/api/trip/${id}`, trip, config)
   
     dispatch({
       type: EDIT_TRIP_SUCCESS,
@@ -199,7 +199,7 @@ export const deleteTrip = ( id ) => async (dispatch, getState) => {
       },
     }
 
-    const { deleted } = await axios.delete(`http://localhost:5000/api/trip/${id}`, config )
+    const { deleted } = await axios.delete(`/api/trip/${id}`, config )
 
     dispatch({
       type: DELETE_TRIP_SUCCESS,
@@ -247,7 +247,7 @@ export const createProductReview = (tripId, review) => async (
       },
     }
 
-    await axios.post(`http://localhost:5000/api/${tripId}/reviews`, review, config)
+    await axios.post(`/api/${tripId}/reviews`, review, config)
 
     dispatch({
       type: REVIEW_TRIP_SUCCESS,

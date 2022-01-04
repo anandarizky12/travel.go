@@ -11,8 +11,9 @@ const useStyles = makeStyles((theme) => ({
   body :{
     margin : 10,
     padding : 130,
+    paddingTop : 60,
     [theme.breakpoints.down("xs")]: {
-     padding : 0,
+     padding : 15,
     },
   },
   button: {
@@ -46,8 +47,7 @@ export default function Admin() {
 
   }, []);
 
-  console.log(getAllOrder);
-  // if(!getAllOrder.allorder) return <p>Loading . . .</p>
+ 
   return (
    <div className={classes.body}>
       <Typography variant="h3" className={classes.title}>

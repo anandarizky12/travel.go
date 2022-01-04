@@ -62,12 +62,16 @@ const useStyles = makeStyles((theme) => ({
   icon: { 
     marginLeft: 20,
     filter : 'grayscale(100%)',
-   
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: 0,
+      // position: "absolute",
+    },
   },
   menuItem: {
     "&:hover": {
       backgroundColor: "#444",
     },
+
   },
   avatar: {
     fontWeight: "bold",
@@ -89,11 +93,14 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "3%",
       [theme.breakpoints.down("md")]: {
         width: 125,
-        height : 200
+        height : 220,
+
       },
-  },
-  menuItem : {
-   
+      [theme.breakpoints.down("xs")]: {
+        height : 250,
+        padding : "0px",
+        // position: "absolute",
+      },
   },
   iconButton:{
     width : "7px",

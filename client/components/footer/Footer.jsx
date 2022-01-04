@@ -10,7 +10,7 @@ const useStyle = makeStyles((theme) => ({
     root : {
         width : '100%',
         height : 200,
-        background : "#212121",
+        backgroundColor : "#212121",
         color : '#e0e0e0',
         display : 'flex',
         justifyContent : 'flex-start',

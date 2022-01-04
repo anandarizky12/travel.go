@@ -66,7 +66,7 @@ export default function MediaCard({id, name, Totalreviews, desc, reviews ,price,
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={`http://localhost:5000/images/${image}`}
+          image={`https://travalgo-me.herokuapp.com/Images/${image}`}
           title={name}
         />
 
