@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from "next/router";
-import FormInputData from '../../components/editTrip/formInput';
+import InputForm from '../../components/editTrip/formInput';
 import MyAlert from '../../components/alert/Alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { readOneTrip as getTrip } from '../../actions/trip';
@@ -27,7 +27,7 @@ function Index() {
         ? 
              <div >
                  <MyAlert/>
-                 <FormInputData data={trip.data} />
+                 <InputForm data={trip.data} />
              </div>
         :
         <CircularProgress/>
