@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, IconButton } from "@material-ui/core";
 import dynamic from "next/dynamic";
 import Typography from "@material-ui/core/Typography";
-const SubmitButton = dynamic(() => import("./SubmitButton"), {
+const SubmitButton = dynamic(() => import("./submitButton"), {
   ssr: false,
 });
 import PermMediaIcon from "@material-ui/icons/PermMedia";

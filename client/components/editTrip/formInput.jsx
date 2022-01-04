@@ -3,7 +3,7 @@ import React, { Fragment, useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Grid, TextField, Container } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import SubmitForm from "./SubmitForm";
+import SubmitForm from "./submitForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
