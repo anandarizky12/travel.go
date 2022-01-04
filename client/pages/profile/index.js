@@ -6,13 +6,17 @@ import Profile from '../../components/profile';
 function MainProfile() {
     const dispatch = useDispatch();
     const userLogin = useSelector((state) => state.userLogin)
-
+    const [mounted, setMounted] = React.useState(false)
+  
+    React.useEffect(() =>{  
+      setMounted(true)
+    }, [])
     const { userInfo } = userLogin;
 
-    console.log(userInfo);
+ 
     return (
         <div  style={{marginTop : '5px' }} >
-            {userInfo ?
+            {mounted && userInfo ?
             <div>
                 <Profile 
                   user={userInfo.userData}
