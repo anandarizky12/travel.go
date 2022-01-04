@@ -36,7 +36,7 @@ export default function SubmitButton({
   const { userInfo } = userLogin;
   const dispatch = useDispatch();
 
-  console.log(createTrip)
+
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [alert, setAlert] = React.useState({
@@ -63,7 +63,7 @@ export default function SubmitButton({
     screen3: "",
   };
 
-  console.log(values,"celll")
+  
 const fileUpload = async () => {
 
     const data = new FormData()

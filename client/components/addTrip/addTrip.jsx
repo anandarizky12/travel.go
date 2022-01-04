@@ -4,7 +4,7 @@ import { Typography, Grid, TextField, Container } from "@material-ui/core";
 import dynamic from "next/dynamic";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-const SubmitForm = dynamic(() => import("./SubmitForm"), {
+const SubmitForm = dynamic(() => import("./submitForm"), {
   ssr: false,
 });
 
