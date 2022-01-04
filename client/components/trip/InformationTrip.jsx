@@ -11,7 +11,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import ButtonBooking from "./ButtonBooking";
-import { formatDate, formatMoney } from "../../src/formatter";
+import { formatDate, formatMoney } from "../../src/Formatter";
 
 
 const useStyles = makeStyles((theme) => ({
