@@ -5,12 +5,12 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux';
 import MyAlert from '../../components/alert/Alert';
 
-const InputForm = dynamic(() => import("../../components/addTrip/formInput"), {
+const FormInput = dynamic(() => import("../../components/addTrip/addTrip"), {
   ssr: false,
 });
 
 
-export default function InputForm() {
+export default function Index() {
   
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin;
@@ -20,7 +20,7 @@ export default function InputForm() {
    
       <div style={{ minHeight: "81.9vh", marginTop : '70px' }}>
            <MyAlert/>
-           <InputForm />
+           <FormInput />
       </div>
  
   );
