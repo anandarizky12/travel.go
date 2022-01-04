@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from '@material-ui/icons/Edit';
-import { formatString } from "../../src/formatter";
+import { formatString } from "../../src/Formatter";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { useSelector } from 'react-redux';
 import Confirmation from "../confirmation/Confirmation";

@@ -18,10 +18,10 @@ import {
   dayName,
   formatMoney,
   formatString,
-  Hidden,
+
 } from "../../src/Formatter";
 import InsertPhotoIcon from "@material-ui/icons/InsertPhoto";
-import dynamic from "next/dynamic";
+
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useRouter } from "next/router";
 
@@ -568,7 +568,7 @@ export function CardTransaction({
             >
               {attachment.length > 0 ? (
                 <img
-                  src={`http://localhost:5000/Images/${attachment}`}
+                  src={`https://travalgo-me.herokuapp.com/Images/${attachment}`}
                   className={classes.image}
                   alt=""
                 />

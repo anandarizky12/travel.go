@@ -45,7 +45,7 @@ export default function ButtonBooking({ price, count, tripId, item }) {
         // asPath: `/book/${count}`,
       })
   };
-  console.log(item)
+
   return (
     <>
       <Button variant="contained" className={classes.button} onClick={onSubmit}>

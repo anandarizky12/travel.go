@@ -1,10 +1,7 @@
-import React, {useEffect} from 'react';
-import MediaCard from '../card/Card';
-import { CardMedia, Typography } from '@material-ui/core';
+import React from 'react';
+
+import {  Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import {Grid} from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { getTrip as fetchTrip } from '../../actions/trip';
 
 const useStyles = makeStyles({
     
