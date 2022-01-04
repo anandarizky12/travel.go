@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux';
 import MyAlert from '../../components/alert/Alert';
 
-const InputForm = dynamic(() => import("../../components/InputForm/formInput"), {
+const InputForm = dynamic(() => import("../../components/addTrip/formInput"), {
   ssr: false,
 });
 
