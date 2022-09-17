@@ -1,9 +1,17 @@
 import React from "react";
-import UserOrderTable from "../../components/profile/UserOrder";
-import { makeStyles } from "@material-ui/styles";
-import { Typography } from "@material-ui/core";
+import { CircularProgress, Typography } from "@material-ui/core";
+import dynamic from "next/dynamic";
 
-const useStyles = makeStyles((theme) => ({
+const UserOrderTable = dynamic(
+    () => import("../../components/profile/UserOrder"),
+    {
+        ssr: false,
+        // eslint-disable-next-line react/display-name
+        loading: () => <CircularProgress size={12} />,
+    }
+);
+
+const useStyles = {
     container: {
         width: "100%",
         display: "flex",
@@ -17,13 +25,11 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 300,
         marginBottom: "30px",
     },
-}));
+};
 function Index() {
-    const classes = useStyles();
-
     return (
-        <div className={classes.container}>
-            <Typography className={classes.title} variant="h4">
+        <div style={useStyles.container}>
+            <Typography style={useStyles.title} variant="h4">
                 Your Order
             </Typography>
             <UserOrderTable />
