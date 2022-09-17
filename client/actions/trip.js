@@ -120,7 +120,7 @@ export const createTrip = (image) => async (dispatch, getState) => {
     });
     dispatch(sendAlert('Create Trip Successfull', 1))
   } catch (error) {
-    console.log(error)
+  
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
@@ -207,7 +207,7 @@ export const deleteTrip = ( id ) => async (dispatch, getState) => {
     });
     dispatch(sendAlert('Delete Trip Successfull', 1))
   } catch (error) {
-    console.log(error)
+  
     const message =
       error.response && error.response.data.message
         ? error.response.data.message

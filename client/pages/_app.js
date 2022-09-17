@@ -1,7 +1,7 @@
 import Layout from "../components/layout/Layout";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../src/theme";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import store from "../store/store";
 
 
@@ -13,7 +13,6 @@ function MyApp({ Component, pageProps }) {
         <Layout>
           <Component {...pageProps} />
         </Layout>  
-
     </ThemeProvider>
   </Provider>
   )}

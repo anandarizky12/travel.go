@@ -2,9 +2,11 @@ import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/core/styles";
 import theme from "../src/theme";
-import CssBaseline from "@material-ui/core/CssBaseline";
+
+
 
 export default class MyDocument extends Document {
+
   render() {
     return (
       <Html lang="en">
@@ -35,12 +37,9 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500&display=swap" 
             rel="stylesheet"
           />  
-
-
         </Head>
         <body
           style={{
-            // overflowX: "hidden",
             padding: 0,
             margin: 0,
             scrollBehavior: "smooth",

@@ -12,17 +12,16 @@ import {
   Button,
   Box,
   Divider,
-  CircularProgress,
+ 
 } from "@material-ui/core";
 import {
   formatDate,
   dayName,
   formatMoney,
   formatString,
-  Hidden,
+ 
 } from "../../src/Formatter";
 import InsertPhotoIcon from "@material-ui/icons/InsertPhoto";
-import dynamic from "next/dynamic";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useRouter } from "next/router";
 import SubmitButton from "./SubmitButton";
@@ -348,9 +347,7 @@ export function CardTrip({ item, transaction, index }) {
       setOpen(true);
     }
   };
-  const enter = {
-    enter: `${((index + 1) / 5).toFixed(2) * 100}s`,
-  };
+  
   AOS.init({
     offset: 10,
   });
@@ -415,8 +412,8 @@ export function CardTransaction({
   const [files, setFiles] = React.useState(null);
 
   const onChange = (e) => {
-    let file = e.target.files[0];
-    let reader = new FileReader();
+    const file = e.target.files[0];
+    const reader = new FileReader();
     setFiles(file);
     reader.onload = () => {
       setPreviewImage([reader.result]);
