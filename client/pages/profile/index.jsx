@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Profile from "../../components/profile";
+import withAuth from "../../components/utils/isAuth";
 
 function MainProfile() {
     const userLogin = useSelector((state) => state.userLogin);
@@ -24,4 +25,4 @@ function MainProfile() {
     );
 }
 
-export default MainProfile;
+export default withAuth(MainProfile);

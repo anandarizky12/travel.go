@@ -4,8 +4,6 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN_FAILED,
 
-	LOGOUT_USER,
-	
 	REGISTER_USER,
 	REGISTER_SUCCESS,
 	REGISTER_FAILED,
@@ -19,7 +17,7 @@ import {
 	FETCH_USER,
 
 	FETCH_USER_FAILED,
-	FETCH_USER_RESET,
+  LOGOUT_SUCCESS,
 
 } from './actions_type/actions_type_user';
 import { sendAlert } from './AlertActions';
@@ -75,10 +73,8 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo')
   localStorage.removeItem('paymentMethod')
-  dispatch({ type: LOGOUT_USER })
-  dispatch({ type: FETCH_USER_RESET })
+  dispatch({ type: LOGOUT_SUCCESS })
 
-  document.location.href = '/login'
 }
 
 export const register = (username, email, password) => async (dispatch) => {
@@ -159,7 +155,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message
     if (message === 'Not authorized, token failed') {
-      dispatch(logout())
+      dispatch(logout(dispatch))
     }
     dispatch({
       type: FETCH_USER_FAILED,
@@ -205,7 +201,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message
     if (message === 'Not authorized, token failed') {
-      dispatch(logout())
+      dispatch(logout(dispatch))
     }
     dispatch({
       type: UPDATE_USER_DATA_FAILED,

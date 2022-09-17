@@ -127,7 +127,7 @@ export const getMyOrder = () => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message
     if (message === 'Not authorized, token failed') {
-      dispatch(logout())
+      dispatch(logout(dispatch))
     }
     dispatch({
       type: GET_MY_ORDER_FAILED,
@@ -168,7 +168,7 @@ export const updateOrder = (status, id) => async (dispatch, getState) => {
           ? error.response.data.message
           : error.message
       if (message === 'Not authorized, token failed') {
-        dispatch(logout())
+        dispatch(logout(dispatch))
       }
   
       dispatch({

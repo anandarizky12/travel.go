@@ -19,7 +19,7 @@ const initialState = {
 };
 
 const Alert = (state = initialState, action) => {
-	let py = action.payload; // buat nerima parameter yang dilempar dispacth
+	const py = action.payload; // buat nerima parameter yang dilempar dispacth
 
 	// ini logic buat handle spesifik tugas
 	switch (action.type) {
@@ -42,6 +42,12 @@ const Alert = (state = initialState, action) => {
 				id: uid(), // buat unique biar berubah kalau sama alert
 				message: py, // nanti data message dikirim di dispacth
 				typeToast: 3, // 1 karna error alert
+			};
+		case types.CLEAR_ALERT:
+			return {
+				id: null, // buat unique
+				message: "",
+				typeToast: null,
 			};
 
 		default:

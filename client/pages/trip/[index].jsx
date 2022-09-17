@@ -7,8 +7,8 @@ import Content from "../../components/trip/Content";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import Reviews from "../../components/review/Reviews";
-import Router from "next/router";
 import CardDetailSkeleton from "../../components/skeleton/DetailSkeleton";
+import withAuth from "../../components/utils/isAuth";
 
 const useStyles = makeStyles({
     container: {
@@ -32,19 +32,11 @@ function Book() {
     const query = router.query.index;
     const dispatch = useDispatch();
     const readTrip = useSelector((state) => state.readOneTrip);
-    const user = useSelector((state) => state.userLogin);
-    const { userInfo } = user;
     const classes = useStyles();
 
     useEffect(() => {
         dispatch(readOneTrip(query));
     }, [query]);
-
-    useEffect(() => {
-        if (!userInfo) {
-            Router.push("/login");
-        }
-    }, [userInfo]);
 
     return (
         <Grid className={classes.main}>
@@ -63,4 +55,4 @@ function Book() {
     );
 }
 
-export default Book;
+export default withAuth(Book);

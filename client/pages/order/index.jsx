@@ -1,6 +1,7 @@
 import React from "react";
 import { CircularProgress, Typography } from "@material-ui/core";
 import dynamic from "next/dynamic";
+import withAuth from "../../components/utils/isAuth";
 
 const UserOrderTable = dynamic(
     () => import("../../components/profile/UserOrder"),
@@ -37,4 +38,4 @@ function Index() {
     );
 }
 
-export default Index;
+export default withAuth(Index);

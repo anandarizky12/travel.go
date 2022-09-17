@@ -23,4 +23,11 @@ export const sendAlert = (message, type) => (dispatch) => {
 			payload: message,
 		});
 	}
+	setTimeout(()=>{
+		dispatch({
+			type: types.CLEAR_ALERT,
+		});
+	},3000)
+
+	
 };

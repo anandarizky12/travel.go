@@ -39,6 +39,8 @@ const MyAlert = () => {
         alertMessage = (
             <AlertComponent severity="error">{message}</AlertComponent>
         );
+    } else {
+        return null;
     }
     return (
         <>
