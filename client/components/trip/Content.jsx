@@ -119,7 +119,7 @@ export default function Content({ item }) {
                 <img
                     data-aos="fade-in"
                     data-aos-duration="1000"
-                    src={`${process.env.NEXT_API}/images/${item.image}`}
+                    src={`${process.env.NEXT_PUBLIC_API}/images/${item.image}`}
                     className={classes.image}
                     alt=""
                 />
@@ -128,7 +128,7 @@ export default function Content({ item }) {
                 <img
                     data-aos="zoom-in"
                     data-aos-duration="1000"
-                    src={`${process.env.NEXT_API}/images/${item.screen1}`}
+                    src={`${process.env.NEXT_PUBLIC_API}/images/${item.screen1}`}
                     className={classes.screen}
                     alt=""
                 />
@@ -137,7 +137,7 @@ export default function Content({ item }) {
                 <img
                     data-aos="zoom-in"
                     data-aos-duration="1000"
-                    src={`${process.env.NEXT_API}/images/${item.screen2}`}
+                    src={`${process.env.NEXT_PUBLIC_API}/images/${item.screen2}`}
                     className={classes.screen}
                     alt=""
                 />
@@ -146,7 +146,7 @@ export default function Content({ item }) {
                 <img
                     data-aos="zoom-in"
                     data-aos-duration="1000"
-                    src={`${process.env.NEXT_API}/images/${item.screen3}`}
+                    src={`${process.env.NEXT_PUBLIC_API}/images/${item.screen3}`}
                     className={classes.screen}
                     alt=""
                 />

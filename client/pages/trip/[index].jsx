@@ -34,8 +34,8 @@ function Book() {
     const readTrip = useSelector((state) => state.readOneTrip);
     const user = useSelector((state) => state.userLogin);
     const { userInfo } = user;
-
     const classes = useStyles();
+
     useEffect(() => {
         dispatch(readOneTrip(query));
     }, [query]);

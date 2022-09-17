@@ -90,10 +90,6 @@ export default function SubmitButton({
         return dispatch(createOrder(formData));
     };
 
-    React.useEffect(() => {
-        setorder((prev) => ({ ...prev, attachment: files }));
-    }, [files]);
-
     const onSubmit = (e) => {
         e.preventDefault();
         postTransaction();

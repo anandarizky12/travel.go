@@ -47,10 +47,10 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 16,
         fontFamily: "poppins",
         fontWeight: "500",
-        color: "black",
+        color: "gray",
         [theme.breakpoints.down("md")]: {
             color: "gray",
-            marginLeft: 0,
+            marginLeft: 12,
             padding: "0px",
             fontSize: 14,
             fontFamily: "poppins",
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     icon: {
-        marginLeft: 20,
+        marginLeft: 2,
         filter: "grayscale(100%)",
         [theme.breakpoints.down("xs")]: {
             marginLeft: 0,
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     },
     menuItem: {
         "&:hover": {
-            backgroundColor: "#444",
+            backgroundColor: "#e5e5e5",
         },
     },
     avatar: {
@@ -86,14 +86,15 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         width: 220,
-        marginTop: "3%",
+
         [theme.breakpoints.down("md")]: {
             width: 125,
-            height: 220,
+            width: 220,
         },
         [theme.breakpoints.down("xs")]: {
-            height: 250,
             padding: "0px",
+            width: 220,
+
             // position: "absolute",
         },
     },
