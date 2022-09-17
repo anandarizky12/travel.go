@@ -5,7 +5,11 @@ import Content from "../components/Content/Content";
 import { useSelector } from "react-redux";
 import Admin from "../components/admin/Admin";
 import { useRouter } from "next/router";
-import Loading from "../components/loading/Loading";
+import dynamic from "next/dynamic";
+
+const Loading = dynamic(() => import("../components/loading/Loading"), {
+    ssr: false,
+});
 
 export default function Home() {
     const user = useSelector((state) => state.userLogin);
@@ -23,7 +27,11 @@ export default function Home() {
         }
     }, [userInfo]);
 
-    if (!userInfo) return <Loading />;
+    if (typeof window !== "undefined") {
+        if (!userInfo) {
+            return <Loading />;
+        }
+    }
     return (
         <div>
             {mounted && userInfo?.userData.admin == true ? (

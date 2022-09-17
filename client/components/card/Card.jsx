@@ -70,7 +70,7 @@ export default function MediaCard({
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image={`/Images/${image}`}
+                    image={`${process.env.NEXT_PUBLIC_API}/Images/${image}`}
                     title={name}
                 />
 

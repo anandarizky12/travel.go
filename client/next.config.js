@@ -1,6 +1,8 @@
 module.exports = {
   reactStrictMode: true,
-
+  env:{
+    NEXT_API: process.env.NEXT_API
+  }
 }
 
 module.exports = {
@@ -10,6 +12,7 @@ module.exports = {
         // type: LOAD_ARTICLES,
         source: '/api/:slug*',
         destination: 'http://localhost:5000/api/:slug*', // Proxy to Backend
+       
       }
     ]
   }

@@ -1,8 +1,8 @@
-import { CircularProgress, makeStyles } from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 import React from "react";
 
-const useStyles = makeStyles((theme) => ({
-    container: {
+const style = {
+    containerLoading: {
         display: "flex",
         width: "100%",
         height: "100%",
@@ -14,12 +14,11 @@ const useStyles = makeStyles((theme) => ({
         background: "white",
         zIndex: 10000,
     },
-}));
+};
 
 function Loading() {
-    const classes = useStyles();
     return (
-        <div className={classes.container}>
+        <div style={style.containerLoading}>
             <CircularProgress size={96} style={{ color: "blue" }} />
         </div>
     );

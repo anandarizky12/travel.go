@@ -127,7 +127,7 @@ export default function ModalLogin({ open, setOpen, item, rows }) {
             >
                 {Object.keys(item).length > 0 && matches && (
                     <img
-                        src={`http://localhost:5000/Payment-Image/${item.attachment}`}
+                        src={`${process.env.NEXT_PUBLIC_API}/Payment-Image/${item.attachment}`}
                         style={{ width: 164, height: 164 }}
                         alt=""
                     />

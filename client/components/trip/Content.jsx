@@ -93,7 +93,6 @@ export default function Content({ item }) {
             });
         }
     }, [AOS]);
-    console.log(item);
     return (
         <Grid container spacing={1}>
             <Grid item lg={12}>
@@ -115,28 +114,21 @@ export default function Content({ item }) {
                         <PersonIcon className={classes.icons} />
                     </Typography>
                 </Grid>
-                {/* <Typography variant="body1" className={classes.subs}>
-          {item?.countryId}
-        </Typography> */}
             </Grid>
             <Grid item md={12} lg={12}>
                 <img
                     data-aos="fade-in"
                     data-aos-duration="1000"
-                    src={`https://travalgo-me.herokuapp.com/images/${item.image}`}
+                    src={`${process.env.NEXT_API}/images/${item.image}`}
                     className={classes.image}
-                    // onLoad={() => console.log("load")}
-                    // onEnded={() => console.log("end")}
-                    // onError={() => console.log("err")}
                     alt=""
                 />
             </Grid>
-            {/* <div className={classes.master}> */}
             <Grid item lg={4} md={12} sm={12} className={classes.screenWrap}>
                 <img
                     data-aos="zoom-in"
                     data-aos-duration="1000"
-                    src={`https://travalgo-me.herokuapp.com/images/${item.screen1}`}
+                    src={`${process.env.NEXT_API}/images/${item.screen1}`}
                     className={classes.screen}
                     alt=""
                 />
@@ -145,7 +137,7 @@ export default function Content({ item }) {
                 <img
                     data-aos="zoom-in"
                     data-aos-duration="1000"
-                    src={`https://travalgo-me.herokuapp.com/images/${item.screen2}`}
+                    src={`${process.env.NEXT_API}/images/${item.screen2}`}
                     className={classes.screen}
                     alt=""
                 />
@@ -154,7 +146,7 @@ export default function Content({ item }) {
                 <img
                     data-aos="zoom-in"
                     data-aos-duration="1000"
-                    src={`https://travalgo-me.herokuapp.com/images/${item.screen3}`}
+                    src={`${process.env.NEXT_API}/images/${item.screen3}`}
                     className={classes.screen}
                     alt=""
                 />
