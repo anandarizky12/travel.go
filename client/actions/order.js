@@ -46,7 +46,7 @@ export const getAllOrder = () => async(dispatch,getState) =>{
         
         
     } catch (error) {
-        console.log(error)
+      
         dispatch({
             type : GET_ALL_ORDER_FAILED,
             payload : 
@@ -121,7 +121,7 @@ export const getMyOrder = () => async (dispatch, getState) => {
       payload: data,
     })
   } catch (error) {
-    console.log(error)
+  
     const message =
       error.response && error.response.data.message
         ? error.response.data.message

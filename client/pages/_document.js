@@ -35,12 +35,9 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500&display=swap" 
             rel="stylesheet"
           />  
-
-
         </Head>
         <body
           style={{
-            // overflowX: "hidden",
             padding: 0,
             margin: 0,
             scrollBehavior: "smooth",

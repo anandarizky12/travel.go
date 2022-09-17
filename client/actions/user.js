@@ -5,26 +5,22 @@ import {
 	LOGIN_FAILED,
 
 	LOGOUT_USER,
-	LOGOUT_SUCCESS,
-	LOGOUT_FAILED,
 	
 	REGISTER_USER,
 	REGISTER_SUCCESS,
 	REGISTER_FAILED,
 	
-	GET_USER_DATA,
+
 	UPDATE_USER_DATA,
 	UPDATE_USER_DATA_SUCCESS,
 	UPDATE_USER_DATA_FAILED,
-	UPDATE_USER_DATA_RESET,
+
 	
 	FETCH_USER,
-	FETCH_USER_SUCCESS,
+
 	FETCH_USER_FAILED,
 	FETCH_USER_RESET,
-	
-	USER_IS_UNAUTHORIZED,
-	SET_TOKEN,
+
 } from './actions_type/actions_type_user';
 import { sendAlert } from './AlertActions';
 // import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
@@ -68,7 +64,7 @@ export const login = (email, password) => async (dispatch) => {
           ? error.response.data.message
           : error.message,
     });
-    dispatch(sendAlert(error.response ? error.response.data.message : "Network Error", 3))
+    dispatch(sendAlert(error?.response?.data?.message ? error.response.data.message : "Server Error", 3))
 
   }
 }
@@ -131,7 +127,7 @@ export const register = (username, email, password) => async (dispatch) => {
           ? error.response.data.message
           : error.message,
     });
-    dispatch(sendAlert(error.response ? error.response.data.message : "Network Error", 3))
+    dispatch(sendAlert(error?.response?.data?.message ? error.response.data.message : "Server Error", 3))
   }
 }
 

@@ -9,7 +9,7 @@ module.exports = {
       {
         // type: LOAD_ARTICLES,
         source: '/api/:slug*',
-        destination: 'https://travalgo-me.herokuapp.com/api/:slug*', // Proxy to Backend
+        destination: 'http://localhost:5000/api/:slug*', // Proxy to Backend
       }
     ]
   }

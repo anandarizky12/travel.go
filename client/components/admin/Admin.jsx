@@ -1,19 +1,18 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import TableAdmin from "./TableAdmin";
 import TableAdminSkeleton from "../skeleton/TableAdminSkeleton";
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllOrder as fetchOrder } from '../../actions/order';
-
+import { useDispatch, useSelector } from "react-redux";
+import { getAllOrder as fetchOrder } from "../../actions/order";
 
 const useStyles = makeStyles((theme) => ({
-  body :{
-    margin : 10,
-    padding : 130,
-    paddingTop : 60,
+  body: {
+    margin: 10,
+    padding: 130,
+    paddingTop: 60,
     [theme.breakpoints.down("xs")]: {
-     padding : 15,
+      padding: 15,
     },
   },
   button: {
@@ -39,17 +38,14 @@ const useStyles = makeStyles((theme) => ({
 export default function Admin() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const getAllOrder = useSelector(state => state.getAllOrder);
+  const getAllOrder = useSelector((state) => state.getAllOrder);
 
   React.useEffect(() => {
-    
     dispatch(fetchOrder());
-
   }, []);
 
- 
   return (
-   <div className={classes.body}>
+    <div className={classes.body}>
       <Typography variant="h3" className={classes.title}>
         Incoming Transaction
       </Typography>

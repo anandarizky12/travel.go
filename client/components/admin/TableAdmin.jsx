@@ -12,111 +12,121 @@ import SearchIcon from "@material-ui/icons/Search";
 import { formatString } from "../../src/Formatter";
 import ModalApprove from "./ModalApprove";
 
-
 const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.white,
-    color: theme.palette.common.black,
-    fontWeight: "bold",
-  },
-  body: {
-    fontSize: 14,
-  },
+    head: {
+        backgroundColor: theme.palette.white,
+        color: theme.palette.common.black,
+        fontWeight: "bold",
+    },
+    body: {
+        fontSize: 14,
+    },
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
+    root: {
+        "&:nth-of-type(odd)": {
+            backgroundColor: theme.palette.action.hover,
+        },
     },
-  },
 }))(TableRow);
 
 const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
-  },
+    table: {
+        minWidth: 700,
+    },
 });
 
 export default function CustomizedTables({ rows, dispatch }) {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [item, setItem] = React.useState({});
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+    const [item, setItem] = React.useState({});
 
-  const handleOpen = (row) => {
-    setOpen(true);
-    setItem(row);
-  };
+    const handleOpen = (row) => {
+        setOpen(true);
+        setItem(row);
+    };
 
-  return (
-    <>
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align="left">No</StyledTableCell>
-              <StyledTableCell>Users</StyledTableCell>
-              <StyledTableCell align="left">Trip</StyledTableCell>
-              <StyledTableCell align="left">Proof Payment</StyledTableCell>
-              <StyledTableCell align="left">Status</StyledTableCell>
-              <StyledTableCell align="left">Date</StyledTableCell>
-              <StyledTableCell align="center">Action</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row, i) => (
-              <StyledTableRow key={i}>
-                <StyledTableCell align="left">{i + 1}</StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  {formatString(row.user.username, 25)}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {formatString(row.trip.title, 25)}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <a
-                    href={`https://travalgo-me.herokuapp.com/Payment-Image/${row.attachment}`}
-                 
-                  >
-                    {/* {formatString(row.attachment, 20)} */}{row.attachment}
-                  </a>
-                </StyledTableCell>
-              
-                <StyledTableCell
-                  align="left"
-                  style={{
-                    color:
-                      row.status === "approve"
-                        ? "#0ACF83"
-                        : row.status === "cancel"
-                        ? "#FF0742"
-                        : "#F7941E",
-                  }}
-                >
-                  {row.status.toLowerCase() === "waiting payment"
-                    ? "pending"
-                    : row.status}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                    {row.createdAt}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  <IconButton onClick={() => handleOpen(row)}>
-                    <SearchIcon style={{ color: "#2FC5F7" }} />
-                  </IconButton>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <ModalApprove
-        open={open}
-        setOpen={setOpen}
-        item={item}
-        dispatch={dispatch}
-        rows={rows}
-      />
-    </>
-  );
+    return (
+        <>
+            <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell align="left">No</StyledTableCell>
+                            <StyledTableCell>Users</StyledTableCell>
+                            <StyledTableCell align="left">Trip</StyledTableCell>
+                            <StyledTableCell align="left">
+                                Proof Payment
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                                Status
+                            </StyledTableCell>
+                            <StyledTableCell align="left">Date</StyledTableCell>
+                            <StyledTableCell align="center">
+                                Action
+                            </StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row, i) => (
+                            <StyledTableRow key={i}>
+                                <StyledTableCell align="left">
+                                    {i + 1}
+                                </StyledTableCell>
+                                <StyledTableCell component="th" scope="row">
+                                    {formatString(row.user.username, 25)}
+                                </StyledTableCell>
+                                <StyledTableCell align="left">
+                                    {formatString(row.trip.title, 25)}
+                                </StyledTableCell>
+                                <StyledTableCell align="left">
+                                    <a
+                                        href={`/Payment-Image/${row.attachment}`}
+                                    >
+                                        {/* {formatString(row.attachment, 20)} */}
+                                        {row.attachment}
+                                    </a>
+                                </StyledTableCell>
+
+                                <StyledTableCell
+                                    align="left"
+                                    style={{
+                                        color:
+                                            row.status === "approve"
+                                                ? "#0ACF83"
+                                                : row.status === "cancel"
+                                                ? "#FF0742"
+                                                : "#F7941E",
+                                    }}
+                                >
+                                    {row.status.toLowerCase() ===
+                                    "waiting payment"
+                                        ? "pending"
+                                        : row.status}
+                                </StyledTableCell>
+                                <StyledTableCell align="left">
+                                    {row.createdAt}
+                                </StyledTableCell>
+                                <StyledTableCell align="center">
+                                    <IconButton onClick={() => handleOpen(row)}>
+                                        <SearchIcon
+                                            style={{ color: "#2FC5F7" }}
+                                        />
+                                    </IconButton>
+                                </StyledTableCell>
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <ModalApprove
+                open={open}
+                setOpen={setOpen}
+                item={item}
+                dispatch={dispatch}
+                rows={rows}
+            />
+        </>
+    );
 }

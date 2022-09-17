@@ -26,7 +26,32 @@ import {
 	SET_TOKEN,
   } from '../../actions/actions_type/actions_type_user';
   
-  export const userLoginReducer = (state = {}, action) => {
+  
+  let initialState;
+
+  if (typeof localStorage !== "undefined") {
+    const userInfo = localStorage.getItem("userInfo")
+    if (userInfo) {
+      initialState = {
+        userInfo : userInfo
+      };
+    } else {
+      initialState = {
+        userInfo: null,
+        loading : false,
+        error : false
+      };
+    }
+  } else {
+    initialState = {
+      userInfo: null,
+      loading : false,
+      error : false
+    };
+  }
+
+
+  export const userLoginReducer = (state = initialState, action) => {
     switch (action.type) {
       case LOGIN_USER:
         return { loading: true }
@@ -34,7 +59,6 @@ import {
         return { loading: false, userInfo: action.payload }
       case LOGIN_FAILED:
         return { loading: false, error: action.payload }
-       
       case LOGOUT_SUCCESS:
         return {}
       default:
