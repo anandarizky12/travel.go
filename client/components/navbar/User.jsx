@@ -14,6 +14,7 @@ import {
     Box,
 } from "@material-ui/core";
 import Link from "../../src/Link";
+import { useDispatch } from "react-redux";
 
 function randomColor(string) {
     return "#f" + string.slice(1, 6);
@@ -108,7 +109,7 @@ export default function UserMenu({ user, logout, drawerState }) {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const router = useRouter();
-
+    const dispatch = useDispatch();
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
@@ -124,7 +125,7 @@ export default function UserMenu({ user, logout, drawerState }) {
     const handleLogout = (event) => {
         event.preventDefault();
         router.push("/");
-        logout();
+        logout(dispatch);
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }

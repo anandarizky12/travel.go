@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import withAuth from "../components/utils/isAuth";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Loading = dynamic(() => import("../components/loading/Loading"), {
     ssr: false,
@@ -19,32 +21,21 @@ const Admin = dynamic(() => import("../components/admin/Admin"), {
     ssr: false,
 });
 
-export default function Home() {
+function Home() {
     const user = useSelector((state) => state.userLogin);
+    const [mounted, setMounted] = useState(false);
     const { userInfo } = user;
-    const [mounted, setMounted] = React.useState(false);
-    const router = useRouter();
+    const isAdmin = userInfo?.userData.admin;
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    useEffect(() => {
-        if (!userInfo) {
-            router.push("/login");
-        }
-    }, [userInfo]);
-
-    if (typeof window !== "undefined") {
-        if (!userInfo) {
-            return <Loading />;
-        }
-    }
+    if (!mounted || !userInfo) return <Loading />;
     return (
         <div>
-            {mounted && userInfo?.userData.admin == true ? (
-                <Admin />
-            ) : (
+            {isAdmin && <Admin />}
+            {!isAdmin && (
                 <>
                     <Jumbotron />
                     <Branding />
@@ -54,3 +45,5 @@ export default function Home() {
         </div>
     );
 }
+
+export default withAuth(Home);

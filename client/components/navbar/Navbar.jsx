@@ -147,7 +147,7 @@ export default function Navbar(props) {
     const loaded = useLoaded();
 
     const logoutHandler = () => {
-        dispatch(logout());
+        dispatch(logout(dispatch));
     };
 
     return (

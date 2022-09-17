@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTrip as fetchTrip } from "../../actions/trip";
 import CustomizedTables from "../../components/table/TripTable";
 import MyAlert from "../../components/alert/Alert";
+import withAuth from "../../components/utils/isAuth";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -57,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Addtrip() {
+function Addtrip() {
     const classes = useStyles();
     const dispatch = useDispatch();
     const trip = useSelector((state) => state.getTrip);
@@ -65,10 +66,10 @@ export default function Addtrip() {
     const { userInfo } = user;
 
     React.useEffect(() => {
-        if (userInfo.userData.admin !== true) {
+        if (userInfo?.userData.admin !== true) {
             Router.push("/");
         }
-    }, [user]);
+    }, [user, userInfo]);
 
     React.useEffect(() => {
         dispatch(fetchTrip());
@@ -112,3 +113,5 @@ export default function Addtrip() {
         </Grid>
     );
 }
+
+export default withAuth(Addtrip);

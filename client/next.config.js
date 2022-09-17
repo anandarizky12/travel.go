@@ -11,7 +11,7 @@ module.exports = {
       {
         // type: LOAD_ARTICLES,
         source: '/api/:slug*',
-        destination: 'http://localhost:5000/api/:slug*', // Proxy to Backend
+        destination: `${process.env.NEXT_PUBLIC_API}/api/:slug*`, // Proxy to Backend
        
       }
     ]

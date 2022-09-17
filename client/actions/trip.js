@@ -83,7 +83,7 @@ export const readOneTrip = (id) => async (dispatch, getState) => {
       
     } catch (error) {
 
-      logout();
+      logout(dispatch);
       dispatch({
         type: READ_ONE_TRIP_FAILED,
         payload:
@@ -126,7 +126,7 @@ export const createTrip = (image) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message
     if (message === 'Not authorized, token failed') {
-      dispatch(logout())
+      dispatch(logout(dispatch))
     }
     dispatch({
       type: CREATE_TRIP_FAILED,
@@ -170,7 +170,7 @@ export const editTrip = (id, trip) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message
     if (message === 'Not authorized, token failed') {
-      dispatch(logout())
+      dispatch(logout(dispatch))
     }
 
     dispatch({
@@ -215,7 +215,7 @@ export const deleteTrip = ( id ) => async (dispatch, getState) => {
     
     console.log(message)
     if (message === 'Not authorized, token failed') {
-      dispatch(logout())
+      dispatch(logout(dispatch))
     }
     dispatch({
       type: DELETE_TRIP_FAILED,

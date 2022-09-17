@@ -53,7 +53,6 @@ function AuthProvider(props) {
 
   function logout() {
     localStorage.clear();
-    dispatch({ type: "LOGOUT", payload: initialState });
   }
 
   return (

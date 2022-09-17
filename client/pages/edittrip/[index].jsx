@@ -5,6 +5,7 @@ import MyAlert from "../../components/alert/Alert";
 import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
 import { readOneTrip as fetchTrip } from "../../actions/trip";
+import withAuth from "../../components/utils/isAuth";
 
 function Index() {
     const router = useRouter();
@@ -31,4 +32,4 @@ function Index() {
     );
 }
 
-export default Index;
+export default withAuth(Index);

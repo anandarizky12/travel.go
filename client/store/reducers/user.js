@@ -3,15 +3,12 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN_FAILED,
 
-	LOGOUT_USER,
 	LOGOUT_SUCCESS,
-	LOGOUT_FAILED,
 	
 	REGISTER_USER,
 	REGISTER_SUCCESS,
 	REGISTER_FAILED,
 	
-	GET_USER_DATA,
 	UPDATE_USER_DATA,
 	UPDATE_USER_DATA_SUCCESS,
 	UPDATE_USER_DATA_FAILED,
@@ -22,8 +19,6 @@ import {
 	FETCH_USER_FAILED,
 	FETCH_USER_RESET,
 	
-	USER_IS_UNAUTHORIZED,
-	SET_TOKEN,
   } from '../../actions/actions_type/actions_type_user';
   
   
@@ -60,7 +55,11 @@ import {
       case LOGIN_FAILED:
         return { loading: false, error: action.payload }
       case LOGOUT_SUCCESS:
-        return {}
+        return {
+          userInfo: null,
+          loading : false,
+          error : false
+        };
       default:
         return state
     }
